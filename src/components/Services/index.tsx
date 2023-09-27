@@ -1,6 +1,9 @@
 import styles from "@/styles/Home.module.css";
 import Image from "next/image";
+import { useState } from "react";
+import Modal from "../Modal";
 export default function Services() {
+  const [openModal, setOpenModal] = useState(false)
   const services = [
     {
       id: 0,
@@ -37,11 +40,12 @@ export default function Services() {
             <div key={el.id} className={styles.servicesBlock}>
               <p>{el.name}</p>
               <Image src={el.img} width={150} height={150} alt="" />
-              <button>Рассчитать стоимость</button>
+              <button onClick={() => setOpenModal(true)}>Рассчитать стоимость</button>
             </div>
           ))}
         </div>
       </div>
+      {openModal && <Modal setOpenModal={setOpenModal}/>}
     </div>
   );
 }

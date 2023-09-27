@@ -1,8 +1,12 @@
 import styles from "@/styles/Home.module.css";
 import Image from "next/image";
+import { useState } from "react";
+import Modal from "../Modal";
 export default function Tinkoff() {
+  const [openModal, setOpenModal] = useState(false)
+
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} id="tinkoff">
       <div className={styles.container}>
         <div
           className={styles.content}
@@ -44,13 +48,14 @@ export default function Tinkoff() {
                 <Image src={"/dolyami.svg"} width={200} height={50} alt="" />
               </div>
             </div>
-            <button>Оставить заявку</button>
+            <button onClick={() => setOpenModal(true)}>Оставить заявку</button>
             <div style={{ position: "absolute", right: 10, bottom: 0 }}>
               <Image src={"/agent.png"} width={500} height={450} alt="" />
             </div>
           </div>
         </div>
       </div>
+      {openModal && <Modal setOpenModal={setOpenModal}/>}
     </div>
   );
 }

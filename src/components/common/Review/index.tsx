@@ -1,3 +1,4 @@
+//@ts-nocheck
 import styles from "@/styles/Home.module.css";
 import Image from "next/image";
 export const Review = ({
@@ -14,9 +15,11 @@ export const Review = ({
       <p>{text}</p>
       <div className={styles.infoReviewer}>
         <p>{name}</p>
-        {Array(star).map((el, i) => (
+        <div className={styles.starContainer}>
+        {[...Array(star).keys()].map((el, i) => (
           <Image src={"/star.svg"} alt="star" width={24} height={24} key={i} />
         ))}
+        </div>
       </div>
     </div>
   );

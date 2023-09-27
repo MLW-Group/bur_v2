@@ -31,7 +31,7 @@
   display: flex;
   width: 100%;
   justify-content: space-evenly;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .tooltip {
@@ -44,7 +44,8 @@
 .tooltip h1 {
   color: #fbcf00 !important;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 700 !important;
+  font-size: 48px !important;
 }
 
 .tooltip p {
@@ -96,7 +97,8 @@
   border-radius: 50%;
 }
 
-.shapeContainer::before {}
+.shapeContainer::before {
+}
 
 .header {
   background-color: #04186e;
@@ -257,7 +259,7 @@
 }
 
 .works {
-  min-width: 100vw;
+  /* min-width: 100vw; */
   /* min-height: 40vh; */
   background-color: #2c2c2c;
 }
@@ -337,8 +339,10 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   background: #ececec;
   border-radius: 3px;
+  min-height: 544px;
   display: flex;
   flex-direction: column;
+  font-size: 18px !important;
   justify-content: space-between;
 }
 
@@ -364,6 +368,10 @@
   border-radius: 40px;
   padding: 40px;
   position: relative;
+}
+
+.starContainer {
+  display: flex;
 }
 
 .tinkoffBlockTitle {
@@ -406,4 +414,102 @@
 .tinkoffBlock span {
   font-size: 12px;
   color: rgba(170, 170, 170, 1);
+}
+
+.modal {
+  top: 0;
+  z-index: 6;
+  background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.modalBody {
+  border-radius: 6px;
+  max-width: 400px;
+  margin-top: 60px;
+  width: 100%;
+  background: #fff;
+  padding: 30px;
+  z-index: 7;
+}
+
+.modalHeader {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.close {
+  padding: 5px;
+  width: 12px;
+  height: 12px;
+  color: #c4c4c4;
+  cursor: pointer;
+}
+
+.bodyModal {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  text-align: center;
+}
+
+.bodyModal h1 {
+  font-weight: bold;
+  font-style: normal;
+  color: rgba(44, 44, 44, 1);
+  font-size: 26px;
+  text-align: center;
+}
+
+.bodyModal p {
+  font-weight: 400;
+  font-style: normal;
+  color: rgba(44, 44, 44, 1);
+  font-size: 14px;
+  text-align: center;
+}
+
+.soglashenie {
+  display: flex;
+  flex-wrap: wrap;
+  place-content: space-between;
+}
+
+.infoCompany {
+  position: absolute;
+  padding: 5px 5px;
+  top: 25%;
+  background: #252830;
+  max-width: 230px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  border-radius: 5px;
+  flex-direction: column;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  align-items: center;
+}
+
+.infoCompany h4 {
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+.infoCompany p {
+  color: #fff;
+  text-align: center;
+}
+
+.infoCompany a {
+  color: #3288e6;
 }

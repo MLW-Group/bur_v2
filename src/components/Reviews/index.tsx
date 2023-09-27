@@ -1,12 +1,12 @@
 //@ts-nocheck
-import styles from "@/styles/Home.module.css";
-import { Review } from "../common/Review";
 import { reviews } from "@/dummy/reviews";
-import { Swiper } from "swiper/react";
+import styles from "@/styles/Home.module.css";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Review } from "../common/Review";
 const Reviews = () => {
   return (
     <div className={styles.wrapper}>
@@ -24,12 +24,13 @@ const Reviews = () => {
               onSlideChange={() => console.log("slide change")}
             >
               {reviews.map((review, i) => (
+                <SwiperSlide key={i}>
                 <Review
-                  key={i}
                   text={review.text}
                   name={review.name}
                   star={review.star}
                 />
+                </SwiperSlide>
               ))}
             </Swiper>
           </div>

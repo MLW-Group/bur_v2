@@ -1,6 +1,7 @@
+import { dummyBannerLeft, dummyBannerRight } from "@/dummy/banner/banner";
 import styles from "@/styles/Home.module.css";
 import Image from "next/image";
-import { dummyBannerLeft, dummyBannerRight } from "@/dummy/banner/banner";
+import Link from "next/link";
 export default function Banner() {
   return (
     <div className={styles.banner}>
@@ -125,7 +126,7 @@ export default function Banner() {
               cursor: "pointer",
             }}
           >
-            УЗНАТЬ ПОДРОБНЕЕ
+            <Link href="#tinkoff" style={{color: '#1E1E1E'}}>УЗНАТЬ ПОДРОБНЕЕ</Link>
           </button>
           <div style={{ marginTop: 10, marginBottom: 10 }}>
             <p>+ Получите гарантированный подарок</p>

@@ -2,6 +2,9 @@
   margin: 0;
   padding: 0;
 }
+html{
+  scroll-behavior: smooth;
+}
 
 button {
   cursor: pointer;
@@ -37,4 +40,11 @@ button:hover {
   background: #2c2c2c;
   border: none;
   color: #fff;
+}
+a, a:link, a:visited  {
+  text-decoration: none;
+}
+
+a:hover  {
+  text-decoration: none;
 }

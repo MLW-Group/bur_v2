@@ -1,18 +1,19 @@
-import Head from "next/head";
-import styles from "@/styles/Home.module.css";
-import Header from "@/components/Header";
 import Banner from "@/components/Banner";
-import Services from "@/components/Services";
-import Questions from "@/components/Questions";
-import Works from "@/components/Works";
-import Sqhema from "@/components/Sqhema";
+import Equipment from "@/components/Equipment";
+import Experiense from "@/components/Experiense";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import InCost from "@/components/InCost";
+import KnowCost from "@/components/KnowCost";
+import Questions from "@/components/Questions";
 import Reviews from "@/components/Reviews";
+import Services from "@/components/Services";
+import Sqhema from "@/components/Sqhema";
 import Tinkoff from "@/components/Tinkoff";
 import Types from "@/components/Types";
-import Experiense from "@/components/Experiense";
-import Equipment from "@/components/Equipment";
-import KnowCost from "@/components/KnowCost";
+import Works from "@/components/Works";
+import styles from "@/styles/Home.module.css";
+import Head from "next/head";
 
 export default function Home() {
   return (
@@ -37,6 +38,7 @@ export default function Home() {
         <InCost />
         <Sqhema />
         <Questions />
+        <Footer/>
       </main>
     </>
   );
