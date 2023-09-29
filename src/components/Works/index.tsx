@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "@/styles/Home.module.css";
 import { dummyVideo } from "@/dummy/video/video";
 export default function Works() {

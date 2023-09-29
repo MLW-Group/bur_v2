@@ -48,8 +48,24 @@ export default function Equipment() {
               flexDirection: "column",
             }}
           >
-            <img src={"/text.png"} alt="" />
-            <img src={"/text1.png"} alt="" />
+            <Image
+              src={"/text.png"}
+              priority
+              width={900}
+              height={700}
+              alt="Картинка"
+              loading="eager"
+              layout="responsive"
+            />
+            <Image
+              src={"/text1.png"}
+              priority
+              width={900}
+              height={700}
+              alt="Картинка"
+              loading="eager"
+              layout="responsive"
+            />
           </div>
         </div>
       </div>

@@ -1,3 +1,4 @@
+"use client";
 //@ts-nocheck
 import { reviews } from "@/dummy/reviews";
 import styles from "@/styles/Home.module.css";

@@ -5,20 +5,25 @@ export default function Experiense() {
     {
       id: 0,
       src: "/circle1.png",
+      alt: "11 лет опыта работы",
     },
     {
       id: 1,
       src: "/circle2.png",
+      alt: "528 скважин пробурили",
     },
     {
       id: 2,
       src: "/circle3.png",
+      alt: "8 единиц техники",
     },
     {
       id: 3,
       src: "/circle4.png",
+      alt: "208 116 метров",
     },
   ];
+
   return (
     <div
       className={styles.wrapper}
@@ -42,11 +47,17 @@ export default function Experiense() {
               style={{
                 display: "flex",
                 flexDirection: "column",
-                width: "50%",
+                // width: "50%",
               }}
             >
               <div className={styles.thriangleNumber}>
-                <Image src={el.src} alt="" width={350} height={300} />
+                <Image
+                  src={el.src}
+                  alt={el.alt}
+                  width={300}
+                  height={250}
+                  loading="eager"
+                />
               </div>
             </div>
           ))}

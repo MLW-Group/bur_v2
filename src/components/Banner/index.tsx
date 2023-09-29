@@ -2,6 +2,7 @@ import { dummyBannerLeft, dummyBannerRight } from "@/dummy/banner/banner";
 import styles from "@/styles/Home.module.css";
 import Image from "next/image";
 import Link from "next/link";
+
 export default function Banner() {
   return (
     <div className={styles.banner}>
