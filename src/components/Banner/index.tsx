@@ -1,3 +1,5 @@
+"use client";
+
 import { dummyBannerLeft, dummyBannerRight } from "@/dummy/banner/banner";
 import styles from "@/styles/Home.module.css";
 import Image from "next/image";
