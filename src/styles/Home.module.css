@@ -360,12 +360,12 @@
 }
 
 .tinkoffBlock {
-  width: 90%;
+  /* width: 90%; */
   background-color: rgba(36, 36, 36, 1);
   /* height: 50vh; */
   border-radius: 40px;
-  padding: 40px;
-  position: relative;
+  /* padding: 40px; */
+  /* position: relative; */
 }
 
 .starContainer {
@@ -376,14 +376,14 @@
   color: white;
   font-size: 45px;
   line-height: 120%;
-  width: 80%;
+  /* width: 80%; */
   letter-spacing: 0.1vh;
   font-weight: bold;
 }
 
 .freeTinkoff {
   /* background-color: red; */
-  width: 35%;
+  /* width: 35%; */
   display: flex;
   flex-direction: column;
   justify-content: center;
