@@ -1,36 +1,35 @@
-import styles from "@/styles/Home.module.css";
-import Thriangle from "../../../public/thriangle.svg";
-import Image from "next/image";
-import { thrinagle } from "@/dummy/thriangle/thriangle";
+import styles from '@/styles/Home.module.css';
+import Thriangle from '../../../public/thriangle.svg';
+import Image from 'next/image';
+import { thrinagle } from '@/dummy/thriangle/thriangle';
 export default function InCost() {
   return (
-    <div className={styles.wrapper} style={{ backgroundColor: "#2c2c2c" }}>
+    <section className={styles.wrapper} style={{ backgroundColor: '#2c2c2c' }}>
       <div className={`${styles.container}`}>
         <div className={styles.content} style={{ gap: 20, marginTop: 20 }}>
-          <h1 style={{ color: "white" }}>В стоимость бурения входит</h1>
+          <h2 style={{ color: 'white' }}>В стоимость бурения входит</h2>
           <div className={styles.shape} />
           <div className={styles.row}>
             <div className={styles.thrinagleRow}>
               {thrinagle.map((el) => (
-                <div
+                <article
                   key={el.number}
                   style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: "50%",
-                  }}
-                >
+                    display: 'flex',
+                    flexDirection: 'column',
+                    width: '50%',
+                  }}>
                   <div className={styles.thriangleNumber}>
                     <Image src={Thriangle} alt="" width={90} height={90} />
                     <div className={styles.number}>{el.number}</div>
                   </div>
                   <p className={styles.thriangleName}>{el.name}</p>
-                </div>
+                </article>
               ))}
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

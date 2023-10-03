@@ -41,7 +41,7 @@
   text-align: center;
 }
 
-.tooltip h1 {
+.tooltip h3 {
   color: #fbcf00 !important;
   font-style: normal;
   font-weight: 700 !important;
@@ -78,7 +78,7 @@
   font-weight: 400;
 }
 
-.content h1 {
+.content h2 {
   color: #2c2c2c;
   /* font-family: roboto; */
   font-size: 36px;
@@ -95,9 +95,6 @@
   border-color: rgba(0, 0, 0, 1);
   border-width: 0;
   border-radius: 50%;
-}
-
-.shapeContainer::before {
 }
 
 .header {
@@ -235,7 +232,7 @@
 }
 
 .imgService {
-  background-image: url("../../public/services_bac.jpg");
+  background-image: url('../../public/services_bac.jpg');
   background-position: 50% 50%;
   background-repeat: no-repeat;
   min-height: 40vh;
@@ -273,8 +270,9 @@
   gap: 20px;
 }
 
-.nameWorks p {
+.nameWorks h2 {
   color: white;
+  font-weight: 400;
   font-size: 28px;
 }
 
@@ -457,7 +455,7 @@
   text-align: center;
 }
 
-.bodyModal h1 {
+.bodyModal h2 {
   font-weight: bold;
   font-style: normal;
   color: rgba(44, 44, 44, 1);
