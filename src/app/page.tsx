@@ -22,14 +22,14 @@ export default function Home() {
   return (
     <main className={`${inter.className} ${styles.main}`}>
       <Header slug="main" />
-      <Banner />
-      <Services />
+      <Banner slug="chelyabinsk"/>
+      <Services slug="chelyabinsk"/>
       <Works />
       <Tinkoff />
       <Types />
       <Experiense />
       <Equipment />
-      <KnowCost />
+      <KnowCost slug="chelyabinsk"/>
       <Reviews />
       <InCost />
       <Sqhema />

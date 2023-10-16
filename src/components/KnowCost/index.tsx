@@ -1,6 +1,8 @@
+import { BannerSlugTitle } from "@/dummy/bannerSlug";
 import styles from "@/styles/Home.module.css";
 import Image from "next/image";
-export default function KnowCost() {
+export default function KnowCost({ slug }: { slug: string }) {
+  const knowCostTitle = BannerSlugTitle.filter((el) => el.name === slug)[0].knowCost
   return (
     <div
       className={styles.wrapper}
@@ -29,7 +31,7 @@ export default function KnowCost() {
                 alignItems: "center",
               }}
             >
-              Узнайте стоимость вашей скважины
+              {knowCostTitle}
             </p>
             <p
               style={{ maxWidth: "70%", fontSize: "22px", marginTop: "100px" }}

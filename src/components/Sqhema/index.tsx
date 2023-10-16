@@ -1,5 +1,5 @@
-import styles from '@/styles/Home.module.css';
 import { tooltips } from '@/dummy/sqhema';
+import styles from '@/styles/Home.module.css';
 
 const Sqhema = () => {
   return (

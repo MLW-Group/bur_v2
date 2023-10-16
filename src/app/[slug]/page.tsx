@@ -402,7 +402,27 @@ const meta: { [k: string]: Metadata } = {
       "Бурение скважин на воду в Усть-Катаве и Челябинская области, бурение выполняется с помощью собственной буровой техники. Мы используем современные материалы и технологии. Все материалы имеют гарантию!",
   },
 };
-
+const shoes = [
+  "ekb",
+  "aramil",
+  "bakal",
+  "beryozovsky",
+  "chebarkul",
+  "kamensk",
+  "katav-ivanovsk",
+  "minyar",
+  "sim",
+  "miass",
+  "polevskoy",
+  "satka",
+  "sysertskiy-region",
+  "verkhnyaya-pyshma",
+  "yuryuzan",
+  "zlatoust",
+  "kusa",
+  "karabash",
+  "ust-katav",
+];
 export async function generateMetadata({
   params,
 }: {
@@ -419,35 +439,13 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  const shoes = [
-    "",
-    "ekb",
-    "aramil",
-    "bakal",
-    "beryozovsky",
-    "chebarkul",
-    "kamensk",
-    "katav-ivanovsk",
-    "minyar",
-    "sim",
-    "miass",
-    "polevskoy",
-    "satka",
-    "sysertskiy-region",
-    "verkhnyaya-pyshma",
-    "yuryuzan",
-    "zlatoust",
-    "kusa",
-    "karabash",
-    "ust-katav",
-  ];
-
   return shoes.map((shoe: any) => ({
     slug: shoe,
   }));
 }
 
 import { Roboto } from "next/font/google";
+import { notFound } from "next/navigation";
 
 const inter = Roboto({
   weight: ["400", "500", "700", "900"],
@@ -459,17 +457,18 @@ export default function Home({
 }: {
   params: { slug: keyof typeof LinkByCitySlug };
 }) {
+  if (!shoes.includes(params.slug)) return notFound()
   return (
     <main className={`${inter.className} ${styles.main}`}>
       <Header slug={params.slug} />
-      <Banner />
-      <Services />
+      <Banner slug={params.slug} />
+      <Services slug={params.slug} />
       <Works />
       <Tinkoff />
       <Types />
       <Experiense />
       <Equipment />
-      <KnowCost />
+      <KnowCost slug={params.slug} />
       <Reviews />
       <InCost />
       <Sqhema />

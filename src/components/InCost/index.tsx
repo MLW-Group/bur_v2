@@ -1,7 +1,7 @@
-import styles from '@/styles/Home.module.css';
-import Thriangle from '../../../public/thriangle.svg';
-import Image from 'next/image';
 import { thrinagle } from '@/dummy/thriangle/thriangle';
+import styles from '@/styles/Home.module.css';
+import Image from 'next/image';
+import Thriangle from '../../../public/thriangle.svg';
 export default function InCost() {
   return (
     <section className={styles.wrapper} style={{ backgroundColor: '#2c2c2c' }}>

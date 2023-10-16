@@ -1,7 +1,7 @@
 'use client';
 
-import styles from '@/styles/Home.module.css';
 import { dummyVideo } from '@/dummy/video/video';
+import styles from '@/styles/Home.module.css';
 export default function Works() {
   return (
     <div className={styles.works}>

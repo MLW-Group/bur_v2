@@ -1,10 +1,9 @@
-'use client';
 
-import styles from '@/styles/Home.module.css';
+import { LinkByCitySlug } from '@/dummy/links';
 import LogoBur from '@/public/logo.svg';
 import Phone from '@/public/phone.svg';
+import styles from '@/styles/Home.module.css';
 import Image from 'next/image';
-import { LinkByCitySlug } from '@/dummy/links';
 import Link from 'next/link';
 
 export default function Header({ slug }: { slug: keyof typeof LinkByCitySlug }) {
