@@ -575,7 +575,7 @@
     max-width: 100% !important;
   }
   .tinkoffBlock div {
-    position: static !important;
+    display: none !important;
   }
   .tinkoffBlock .rowCenter {
     flex-direction: column;
