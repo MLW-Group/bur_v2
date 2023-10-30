@@ -528,11 +528,19 @@
   .mainTitle span {
     font-size: 24px !important;
   }
+  .bannerOpacity > div {
+    max-width: 100% !important;
+  }
   .columnBanner {
+    width: 100%;
     margin-top: 20px;
+    margin-bottom: 20px;
     flex-direction: column;
     align-items: center;
     gap: 24px;
+  }
+  .columnBanner div {
+    gap: 20px;
   }
   .columnBanner div > article {
     flex-direction: column !important;
@@ -559,6 +567,20 @@
   }
   .sqemaContainer .rowCenter {
     flex-direction: column;
+  }
+  .tinkoffBlock {
+    padding-left: 20px;
+  }
+  .tinkoffBlock p {
+    max-width: 100% !important;
+  }
+  .tinkoffBlock div {
+    position: static !important;
+  }
+  .tinkoffBlock .rowCenter {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
   }
   .tinkoffBlockTitle {
     font-size: 32px;
