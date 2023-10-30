@@ -9,7 +9,7 @@ const Sqhema = () => {
         backgroundImage:
           'url(https://m-files.cdnvideo.ru/lpfile/d/d/0/dd04481bd8d766c9d182c33bd35528ab.jpg)',
       }}>
-      <div className={styles.container}>
+      <div className={`${styles.container} ${styles.sqemaContainer}`}>
         <div className={styles.content} style={{ gap: 50 }}>
           <h2>Cхема работы</h2>
           <div className={styles.shape} />

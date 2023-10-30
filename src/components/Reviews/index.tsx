@@ -17,8 +17,18 @@ const Reviews = () => {
           <div className={styles.rowCenter}>
             <Swiper
               modules={[Navigation, Pagination]}
-              spaceBetween={50}
-              slidesPerView={3}
+              spaceBetween={20}
+              slidesPerView={1}
+              breakpoints={{
+                320: {
+                  slidesPerView: 2,
+                  spaceBetween: 30,
+                },
+                980: {
+                  slidesPerView: 3,
+                  spaceBetween: 50,
+                },
+              }}
               navigation
               pagination={{ clickable: true }}
               onSwiper={(swiper: any) => console.log(swiper)}
