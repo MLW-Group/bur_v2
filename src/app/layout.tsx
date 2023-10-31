@@ -5,7 +5,7 @@ import Script from "next/script";
 
 
 export const metadata: Metadata = {
-  title: "Бурение скважин на воду в Челябинске",
+  title: "Бурение скважин на воду в Челябинской области",
   description: "Бурение скважин на воду",
 };
 

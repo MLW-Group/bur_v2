@@ -18,7 +18,7 @@ import { Metadata } from "next";
 
 const meta: { [k: string]: Metadata } = {
   main: {
-    title: "Бурение скважин на воду в Челябинске",
+    title: "Бурение скважин на воду в Челябинской области",
     keywords: [
       "бурение на воду",
       "бурение скважин",
