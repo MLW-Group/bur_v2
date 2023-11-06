@@ -1,14 +1,25 @@
-import { tooltips } from '@/dummy/sqhema';
-import styles from '@/styles/Home.module.css';
+'use client'
+import { tooltips } from "@/dummy/sqhema";
+import styles from "@/styles/Home.module.css";
+import axios from "axios";
+import { ChangeEvent, useState } from "react";
 
 const Sqhema = () => {
+  const [phone, setPhone] = useState("");
+  const sendForm = () => {
+    console.log("🚀 ~ file: index.tsx:12 ~ sendForm ~ phone:", phone);
+    axios.post(`/api`, {
+      phone,
+    });
+  };
   return (
     <section
       className={styles.wrapper}
       style={{
         backgroundImage:
-          'url(https://m-files.cdnvideo.ru/lpfile/d/d/0/dd04481bd8d766c9d182c33bd35528ab.jpg)',
-      }}>
+          "url(https://m-files.cdnvideo.ru/lpfile/d/d/0/dd04481bd8d766c9d182c33bd35528ab.jpg)",
+      }}
+    >
       <div className={`${styles.container} ${styles.sqemaContainer}`}>
         <div className={styles.content} style={{ gap: 50 }}>
           <h2>Cхема работы</h2>
@@ -22,8 +33,14 @@ const Sqhema = () => {
             ))}
           </div>
           <div className={styles.rowCenter}>
-            <input type="tel" placeholder="Телефон*" />
-            <button>Записаться на замер</button>
+            <input
+              type="tel"
+              placeholder="Телефон*"
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setPhone(e.target.value)
+              }
+            />
+            <button onClick={sendForm}>Записаться на замер</button>
           </div>
         </div>
       </div>

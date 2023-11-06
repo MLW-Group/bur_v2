@@ -9,11 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/axios": "^0.14.0",
     "@vercel/analytics": "^1.0.2",
+    "axios": "^1.6.0",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "swiper": "^10.3.0"
+    "swiper": "^10.3.0",
+    "telegraf": "^4.15.0"
   },
   "devDependencies": {
     "@types/node": "latest",

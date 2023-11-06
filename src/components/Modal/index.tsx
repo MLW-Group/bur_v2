@@ -1,7 +1,8 @@
 //@ts-nocheck
 import styles from '@/styles/Home.module.css';
+import axios from 'axios';
 import Link from 'next/link';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 const Modal = ({
   setOpenModal,
   title = 'Рассчитать стоимость',
@@ -9,6 +10,13 @@ const Modal = ({
   setOpenModal: (value: boolean) => void;
   title?: string;
 }) => {
+  const [phone, setPhone] = useState("");
+  const sendForm = () => {
+    console.log("🚀 ~ file: index.tsx:12 ~ sendForm ~ phone:", phone)
+    axios.post(`/api`, {
+      phone,
+    });
+  };
   const ref = useRef();
   function useOutsideClick(ref) {
     useEffect(() => {
@@ -37,8 +45,10 @@ const Modal = ({
             <div className={styles.bodyModal}>
               <h2>{title}</h2>
               <p>Наш специалист свяжется с вами в течение 15 минут</p>
-              <input type="tel" placeholder="Телефон*"></input>
-              <button>Отправить</button>
+              <input type="tel" placeholder="Телефон*"  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setPhone(e.target.value)
+                }></input>
+              <button onClick={sendForm}>Отправить</button>
               <p className={styles.soglashenie}>
                 Нажимая на кнопку, вы принимаете
                 <Link href="/">Положение</Link>и<Link href="/">Согласие</Link>

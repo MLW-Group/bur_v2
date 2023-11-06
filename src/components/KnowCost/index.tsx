@@ -1,8 +1,19 @@
+"use client";
 import { BannerSlugTitle } from "@/dummy/bannerSlug";
 import styles from "@/styles/Home.module.css";
+import axios from "axios";
 import Image from "next/image";
+import { ChangeEvent, useState } from "react";
 export default function KnowCost({ slug }: { slug: string }) {
-  const knowCostTitle = BannerSlugTitle.filter((el) => el.name === slug)[0].knowCost
+  const [phone, setPhone] = useState("");
+  const sendForm = () => {
+    console.log("🚀 ~ file: index.tsx:12 ~ sendForm ~ phone:", phone)
+    axios.post(`/api`, {
+      phone,
+    });
+  };
+  const knowCostTitle = BannerSlugTitle.filter((el) => el.name === slug)[0]
+    .knowCost;
   return (
     <div
       className={styles.wrapper}
@@ -53,8 +64,14 @@ export default function KnowCost({ slug }: { slug: string }) {
                 marginBottom: 10,
               }}
             >
-              <input type="tel" placeholder="Телефон*" />
-              <button>Узнать стоимость</button>
+              <input
+                type="tel"
+                placeholder="Телефон*"
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setPhone(e.target.value)
+                }
+              />
+              <button onClick={sendForm}>Узнать стоимость</button>
             </div>
             <span>
               Нажимая на кнопку, вы принимаете{" "}
