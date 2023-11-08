@@ -6,11 +6,14 @@ import { ChangeEvent, useState } from "react";
 
 const Sqhema = () => {
   const [phone, setPhone] = useState("");
-  const sendForm = () => {
-    console.log("🚀 ~ file: index.tsx:12 ~ sendForm ~ phone:", phone);
-    axios.post(`/api`, {
+  const sendForm = async () => {
+    // @ts-ignore
+    ym(94753079,'reachGoal','zamer1')
+    await axios.post(`/api`, {
       phone,
     });
+    // @ts-ignore
+    ym(94753079,'reachGoal','zamer2')
   };
   return (
     <section

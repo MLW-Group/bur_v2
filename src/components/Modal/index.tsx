@@ -3,6 +3,7 @@ import styles from '@/styles/Home.module.css';
 import axios from 'axios';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
+
 const Modal = ({
   setOpenModal,
   title = 'Рассчитать стоимость',
@@ -11,11 +12,12 @@ const Modal = ({
   title?: string;
 }) => {
   const [phone, setPhone] = useState("");
-  const sendForm = () => {
-    console.log("🚀 ~ file: index.tsx:12 ~ sendForm ~ phone:", phone)
-    axios.post(`/api`, {
+  const sendForm = async () => {
+    ym(94753079,'reachGoal','modalPhone1')
+    await axios.post(`/api`, {
       phone,
     });
+    ym(94753079,'reachGoal','modalPhone2')
   };
   const ref = useRef();
   function useOutsideClick(ref) {
@@ -48,6 +50,7 @@ const Modal = ({
               <input type="tel" placeholder="Телефон*"  onChange={(e: ChangeEvent<HTMLInputElement>) =>
                   setPhone(e.target.value)
                 }></input>
+
               <button onClick={sendForm}>Отправить</button>
               <p className={styles.soglashenie}>
                 Нажимая на кнопку, вы принимаете

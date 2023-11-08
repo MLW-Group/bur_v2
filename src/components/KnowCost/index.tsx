@@ -6,11 +6,14 @@ import Image from "next/image";
 import { ChangeEvent, useState } from "react";
 export default function KnowCost({ slug }: { slug: string }) {
   const [phone, setPhone] = useState("");
-  const sendForm = () => {
-    console.log("🚀 ~ file: index.tsx:12 ~ sendForm ~ phone:", phone)
-    axios.post(`/api`, {
+  const sendForm = async () => {
+    // @ts-ignore
+    ym(94753079,'reachGoal','phone1')
+    await axios.post(`/api`, {
       phone,
     });
+    // @ts-ignore
+    ym(94753079,'reachGoal','phone2')
   };
   const knowCostTitle = BannerSlugTitle.filter((el) => el.name === slug)[0]
     .knowCost;
