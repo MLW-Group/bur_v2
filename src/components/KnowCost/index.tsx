@@ -7,13 +7,17 @@ import { ChangeEvent, useState } from "react";
 export default function KnowCost({ slug }: { slug: string }) {
   const [phone, setPhone] = useState("");
   const sendForm = async () => {
-    // @ts-ignore
-    ym(94753079,'reachGoal','phone1')
+    if (process.env.NODE_ENV !== "development") {
+      // @ts-ignore
+      ym(94753079, "reachGoal", "modalPhone1");
+    }
     await axios.post(`/api`, {
       phone,
     });
-    // @ts-ignore
-    ym(94753079,'reachGoal','phone2')
+    if (process.env.NODE_ENV !== "development") {
+      // @ts-ignore
+      ym(94753079, "reachGoal", "modalPhone2");
+    }
   };
   const knowCostTitle = BannerSlugTitle.filter((el) => el.name === slug)[0]
     .knowCost;

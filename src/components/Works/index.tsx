@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { dummyVideo } from '@/dummy/video/video';
-import styles from '@/styles/Home.module.css';
+import { dummyVideo } from "@/dummy/video/video";
+import styles from "@/styles/Home.module.css";
 export default function Works() {
   return (
     <div className={styles.works}>
@@ -19,7 +19,8 @@ export default function Works() {
                   height="250"
                   src={el.src}
                   title="Бурение скважины"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                ></iframe>
               </div>
             ))}
           </div>

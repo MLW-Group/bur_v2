@@ -1,23 +1,28 @@
 //@ts-nocheck
-import styles from '@/styles/Home.module.css';
-import axios from 'axios';
-import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import styles from "@/styles/Home.module.css";
+import axios from "axios";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
 const Modal = ({
   setOpenModal,
-  title = 'Рассчитать стоимость',
+  title = "Рассчитать стоимость",
 }: {
   setOpenModal: (value: boolean) => void;
   title?: string;
 }) => {
   const [phone, setPhone] = useState("");
   const sendForm = async () => {
-    ym(94753079,'reachGoal','modalPhone1')
+    if (process.env.NODE_ENV !== "development") {
+      ym(94753079, "reachGoal", "modalPhone1");
+    }
     await axios.post(`/api`, {
       phone,
     });
-    ym(94753079,'reachGoal','modalPhone2')
+    if (process.env.NODE_ENV !== "development") {
+      ym(94753079, "reachGoal", "modalPhone2");
+    }
+    setOpenModal(false);
   };
   const ref = useRef();
   function useOutsideClick(ref) {
@@ -27,9 +32,9 @@ const Modal = ({
           setOpenModal(false);
         }
       }
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
       return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
+        document.removeEventListener("mousedown", handleClickOutside);
       };
     }, [ref]);
   }
@@ -47,9 +52,13 @@ const Modal = ({
             <div className={styles.bodyModal}>
               <h2>{title}</h2>
               <p>Наш специалист свяжется с вами в течение 15 минут</p>
-              <input type="tel" placeholder="Телефон*"  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              <input
+                type="tel"
+                placeholder="Телефон*"
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
                   setPhone(e.target.value)
-                }></input>
+                }
+              ></input>
 
               <button onClick={sendForm}>Отправить</button>
               <p className={styles.soglashenie}>
