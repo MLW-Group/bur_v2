@@ -20,7 +20,7 @@ export default function InCost() {
                     width: '50%',
                   }}>
                   <div className={styles.thriangleNumber}>
-                    <Image src={Thriangle} alt="" width={90} height={90} />
+                    <Image loading="lazy" src={Thriangle} alt="" width={90} height={90} />
                     <div className={styles.number}>{el.number}</div>
                   </div>
                   <p className={styles.thriangleName}>{el.name}</p>

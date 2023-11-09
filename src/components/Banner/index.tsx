@@ -7,9 +7,11 @@ import Image from "next/image";
 import Link from "next/link";
 import Modal from "../Modal";
 import { useState } from "react";
+import ModalReCall from "../ModalRe";
 export default function Banner({ slug }: { slug: string }) {
   const title = BannerSlugTitle.filter((el) => el.name === slug)[0].title;
   const [openModal, setOpenModal] = useState(false);
+  const [openModalRe, setOpenModalRe] = useState(false);
   return (
     <section className={styles.banner}>
       <div className={styles.bannerOpacity}>
@@ -55,7 +57,13 @@ export default function Banner({ slug }: { slug: string }) {
                     alignItems: "center",
                   }}
                 >
-                  <Image src={el.img} width={45} height={45} alt="" />
+                  <Image
+                    loading="lazy"
+                    src={el.img}
+                    width={45}
+                    height={45}
+                    alt=""
+                  />
                   <span style={{ marginLeft: 10, fontSize: 22 }}>
                     {el.name}
                   </span>
@@ -83,7 +91,13 @@ export default function Banner({ slug }: { slug: string }) {
                     alignItems: "center",
                   }}
                 >
-                  <Image src={el.img} width={45} height={45} alt="" />
+                  <Image
+                    loading="lazy"
+                    src={el.img}
+                    width={45}
+                    height={45}
+                    alt=""
+                  />
                   <span style={{ fontSize: 22 }}>{el.name}</span>
                 </article>
               ))}
@@ -154,7 +168,10 @@ export default function Banner({ slug }: { slug: string }) {
           </button>
         </div>
       </div>
-      {openModal && <Modal setOpenModal={setOpenModal} />}
+      {openModal && (
+        <Modal setOpenModal={setOpenModal} setOpenModalRe={setOpenModalRe} />
+      )}
+      {openModalRe && <ModalReCall setOpenModalRe={setOpenModalRe} />}
     </section>
   );
 }

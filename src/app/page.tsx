@@ -1,3 +1,4 @@
+'use client'
 import Banner from "@/components/Banner";
 import Equipment from "@/components/Equipment";
 import Experiense from "@/components/Experiense";
@@ -15,21 +16,22 @@ import Works from "@/components/Works";
 import styles from "@/styles/Home.module.css";
 
 import { Roboto } from "next/font/google";
-
-const inter = Roboto({ weight: [ "400", "500", "700", "900"], subsets: ["cyrillic", "latin"] });
-
+const inter = Roboto({
+  weight: ["400", "500", "700", "900"],
+  subsets: ["cyrillic"],
+});
 export default function Home() {
   return (
     <main className={`${inter.className} ${styles.main}`}>
       <Header slug="main" />
-      <Banner slug="chelyabinsk"/>
-      <Services slug="chelyabinsk"/>
+      <Banner slug="chelyabinsk" />
+      <Services slug="chelyabinsk" />
       <Works />
       <Tinkoff />
       <Types />
       <Experiense />
       <Equipment />
-      <KnowCost slug="chelyabinsk"/>
+      <KnowCost slug="chelyabinsk" />
       <Reviews />
       <InCost />
       <Sqhema />

@@ -24,7 +24,7 @@ export default function Types() {
           {services.map((el) => (
             <article key={el.id} className={styles.servicesBlock}>
               <p>{el.name}</p>
-              <Image src={el.img} width={250} height={200} alt="" />
+              <Image loading="lazy" src={el.img} width={250} height={200} alt="" />
               <button>Подробнее</button>
             </article>
           ))}

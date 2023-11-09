@@ -49,7 +49,7 @@ export default function Experiense() {
                 // width: "50%",
               }}>
               <div className={styles.thriangleNumber}>
-                <Image src={el.src} alt={el.alt} width={300} height={250} loading="eager" />
+                <Image loading="lazy" src={el.src} alt={el.alt} width={300} height={250} />
               </div>
             </div>
           ))}

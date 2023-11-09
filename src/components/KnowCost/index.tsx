@@ -4,19 +4,30 @@ import styles from "@/styles/Home.module.css";
 import axios from "axios";
 import Image from "next/image";
 import { ChangeEvent, useState } from "react";
+import ModalReCall from "../ModalRe";
+import InputMask from "react-input-mask";
+
 export default function KnowCost({ slug }: { slug: string }) {
   const [phone, setPhone] = useState("");
+  const [openModalRe, setOpenModalRe] = useState(false);
+  const [error, setError] = useState("");
+
   const sendForm = async () => {
-    if (process.env.NODE_ENV !== "development") {
-      // @ts-ignore
-      ym(94753079, "reachGoal", "modalPhone1");
-    }
-    await axios.post(`/api`, {
-      phone,
-    });
-    if (process.env.NODE_ENV !== "development") {
-      // @ts-ignore
-      ym(94753079, "reachGoal", "modalPhone2");
+    if (phone.length == 0 || phone.includes("_")) {
+      setError("Заполните номер телефона");
+    } else {
+      if (process.env.NODE_ENV !== "development") {
+        // @ts-ignore
+        ym(94753079, "reachGoal", "modalPhone1");
+      }
+      await axios.post(`/api`, {
+        phone,
+      });
+      if (process.env.NODE_ENV !== "development") {
+        // @ts-ignore
+        ym(94753079, "reachGoal", "modalPhone2");
+      }
+      setOpenModalRe(true);
     }
   };
   const knowCostTitle = BannerSlugTitle.filter((el) => el.name === slug)[0]
@@ -71,15 +82,28 @@ export default function KnowCost({ slug }: { slug: string }) {
                 marginBottom: 10,
               }}
             >
-              <input
-                type="tel"
+              <InputMask
+                alwaysShowMask={true}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  setPhone(e.target.value), setError("");
+                }}
+                mask="+7 999 999 99 99"
                 placeholder="Телефон*"
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setPhone(e.target.value)
-                }
-              />
+              ></InputMask>
               <button onClick={sendForm}>Узнать стоимость</button>
             </div>
+            {error && (
+              <p
+                style={{
+                  // textAlign: "center",
+                  color: "red",
+                  fontWeight: 500,
+                  fontSize: "20px",
+                }}
+              >
+                {error}
+              </p>
+            )}
             <span>
               Нажимая на кнопку, вы принимаете{" "}
               <a href="https://bur-center.ru/regulation.html">Положение</a> и{" "}
@@ -87,12 +111,19 @@ export default function KnowCost({ slug }: { slug: string }) {
               обработку персональных данных
             </span>
             <div style={{ position: "absolute", right: 10, bottom: 0 }}>
-              <Image src={"/ag1.png"} width={300} height={400} alt="" />
+              <Image
+                loading="lazy"
+                src={"/ag1.png"}
+                width={300}
+                height={400}
+                alt=""
+              />
               <p style={{ marginTop: 10 }}>
                 Гл. инженер <br /> Корнилов Евгений Александрович
               </p>
             </div>
           </div>
+          {openModalRe && <ModalReCall setOpenModalRe={setOpenModalRe} />}
         </div>
       </div>
     </div>

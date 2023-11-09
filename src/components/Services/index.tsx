@@ -5,8 +5,10 @@ import styles from "@/styles/Home.module.css";
 import Image from "next/image";
 import { useState } from "react";
 import Modal from "../Modal";
+import ModalReCall from "../ModalRe";
 export default function Services({ slug }: { slug: string }) {
   const [openModal, setOpenModal] = useState(false);
+  const [openModalRe, setOpenModalRe] = useState(false);
   const serviceTitle = BannerSlugTitle.filter((el) => el.name === slug)[0]
     .services;
   const services = [
@@ -44,7 +46,13 @@ export default function Services({ slug }: { slug: string }) {
           {services.map((el) => (
             <div key={el.id} className={styles.servicesBlock}>
               <p>{el.name}</p>
-              <Image src={el.img} width={150} height={150} alt="" />
+              <Image
+                loading="lazy"
+                src={el.img}
+                width={150}
+                height={150}
+                alt=""
+              />
               <button onClick={() => setOpenModal(true)}>
                 Рассчитать стоимость
               </button>
@@ -52,7 +60,10 @@ export default function Services({ slug }: { slug: string }) {
           ))}
         </div>
       </div>
-      {openModal && <Modal setOpenModal={setOpenModal} />}
+      {openModal && (
+        <Modal setOpenModal={setOpenModal} setOpenModalRe={setOpenModalRe} />
+      )}
+      {openModalRe && <ModalReCall setOpenModalRe={setOpenModalRe} />}
     </section>
   );
 }

@@ -2,6 +2,7 @@
   display: flex;
   /* font-family: Arial, Helvetica, sans-serif; */
   flex-direction: column;
+  background-color: #f1f1f1;
 }
 
 .wrapper {
@@ -285,6 +286,7 @@
 
 .videoChild {
   margin: 10px;
+  max-width: 450px;
 }
 
 .thrinagleRow {
@@ -585,4 +587,12 @@
   .tinkoffBlockTitle {
     font-size: 32px;
   }
+}
+.buttonYT{
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+.buttonYT:hover{
+  transition: 0.3s ease-in-out;
+  opacity: 0.6;
 }

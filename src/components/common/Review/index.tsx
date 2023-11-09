@@ -16,9 +16,16 @@ export const Review = ({
       <div className={styles.infoReviewer}>
         <p>{name}</p>
         <div className={styles.starContainer}>
-        {[...Array(star).keys()].map((el, i) => (
-          <Image src={"/star.svg"} alt="star" width={24} height={24} key={i} />
-        ))}
+          {[...Array(star).keys()].map((el, i) => (
+            <Image
+              loading="lazy"
+              src={"/star.svg"}
+              alt="star"
+              width={24}
+              height={24}
+              key={i}
+            />
+          ))}
         </div>
       </div>
     </div>

@@ -1,9 +1,11 @@
-'use client';
-import styles from '@/styles/Home.module.css';
-import { useState } from 'react';
-import Modal from '../Modal';
+"use client";
+import styles from "@/styles/Home.module.css";
+import { useState } from "react";
+import Modal from "../Modal";
+import ModalReCall from "../ModalRe";
 const Questions = () => {
   const [openModal, setOpenModal] = useState(false);
+  const [openModalRe, setOpenModalRe] = useState(false);
   return (
     <section className={styles.wrapper}>
       <div className={styles.container}>
@@ -15,13 +17,27 @@ const Questions = () => {
               <span>Закажите обратный звонок</span>
               <p>Наш специалист ответит в течение 15 минут</p>
             </div>
-            <button className={styles.button} onClick={() => setOpenModal(true)}>
+            <button
+              className={styles.button}
+              onClick={() => setOpenModal(true)}
+            >
               Заказать звонок
             </button>
           </div>
         </div>
       </div>
-      {openModal && <Modal setOpenModal={setOpenModal} title="Закажите обратный звонок" />}
+      {openModal && (
+        <Modal
+          setOpenModal={setOpenModal}
+          setOpenModalRe={setOpenModalRe}
+          title="Закажите обратный звонок"
+        />
+      )}
+      {openModalRe && (
+        <ModalReCall
+          setOpenModalRe={setOpenModalRe}
+        />
+      )}
     </section>
   );
 };
