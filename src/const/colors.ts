@@ -1,0 +1,14 @@
+export const gray1000 = "#1C1D20";
+export const gray990 = "#232834";
+export const gray800 = "#3E4352";
+export const gray400 = "#E1E4EC";
+export const gray300 = "#505A78";
+export const gray200 = "#949CB7";
+export const gray100 = "#F0F2F7";
+export const yellow200 = "#E2E0DA";
+export const yallow100 = "#F9F6E9";
+export const white0 = "#FFFFFF";
+export const skiey100 = "#B3E6F0";
+export const skiey200 = "#86E0F0";
+export const blue0 = "#0046FB";
+export const mint0 = "#04AAC8"

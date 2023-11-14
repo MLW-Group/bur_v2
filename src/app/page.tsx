@@ -1,95 +1,48 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
 
+import { Header } from "@/components/Header";
+import { Main } from "@/components/Main";
+import { MainBottom } from "@/components/MainBottom";
+import { Offer } from "@/components/Offer";
+import { SliderPage } from "@/components/SliderPage";
+import { UnderHeader } from "@/components/UnderHeader";
+import styled from "styled-components";
+
+const Block = styled.div`
+  width: 100vw;
+
+  background-image: linear-gradient(
+      rgba(1, 2, 2, 0.2) 0%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    url("https://mos-710255.oml.ru/d/bez_nazvaniya_2022-09-14t155347804.png"),
+    linear-gradient(rgba(1, 2, 2, 0.25) 0%, rgba(1, 2, 2, 0.25) 100%),
+    linear-gradient(
+      0deg,
+      rgba(1, 2, 2, 1) 0%,
+      rgba(1, 2, 2, 1) 16%,
+      rgba(0, 0, 0, 0) 43%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    url("/img/back.jpg");
+  background-repeat: no-repeat, repeat, no-repeat, no-repeat, no-repeat;
+  background-position: left 0px top 0px, left 0 top 0, left 0px top 0px,
+    left 0px top 0px, center bottom 0;
+  background-size: auto, 1322px auto, auto, auto, cover;
+  background-attachment: scroll, scroll, scroll, scroll, scroll;
+  padding-top: 0px;
+`;
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+    <div>
+      <Block>
+        <Header />
+        <UnderHeader />
+        <Main />
+        <MainBottom />
+        <SliderPage />
+        <Offer />
+      </Block>
+    </div>
+  );
 }
