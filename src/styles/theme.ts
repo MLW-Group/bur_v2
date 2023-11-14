@@ -56,8 +56,8 @@ export const theme = {
     XXL: "700",
   },
   fontFamily: {
-    oswald: "var(--oswald)",
-    open: "var(--open)",
+    oswald: "Oswald",
+    open: "Open Sans",
   },
   transform: {
     upper: "uppercase",

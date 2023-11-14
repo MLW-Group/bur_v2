@@ -33,7 +33,7 @@ export const Text = styled.p<{
     theme.margin[$margin!] || theme.margin.mix[$mix!]};
   font-weight: ${({ theme, $fontWeight }) => theme.fontWeight[$fontWeight!]};
   font-family: ${({ theme, $fontFamily }) =>
-    theme.fontFamily[$fontFamily!] || "var(--oswald)"};
+    theme.fontFamily[$fontFamily!] || "Oswald"};
   text-transform: ${({ theme, $transform }) => theme.transform[$transform!]};
   -webkit-text-fill-color: ${({ theme, $textFill }) =>
     theme.colors[$textFill!]};

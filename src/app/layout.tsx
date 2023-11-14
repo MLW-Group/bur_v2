@@ -6,14 +6,11 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "@/styles/theme";
 import { Open_Sans, Oswald } from "next/font/google";
 
-const open = Open_Sans({
-  weight: ["300", "400", "500", "700"],
-  subsets: ["cyrillic"],
-});
-const oswald = Oswald({
-  weight: ["200", "300", "400", "500", "600", "700"],
-  subsets: ["cyrillic"],
-});
+// const open = Open_Sans({
+//   weight: ["300", "400", "500", "700"],
+//   subsets: ["cyrillic"],
+// });
+
 export default function RootLayout({
   children,
 }: {
@@ -22,6 +19,18 @@ export default function RootLayout({
   return (
     <html>
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap"
+          rel="stylesheet"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
         <link
           rel="stylesheet"
           type="text/css"
@@ -34,14 +43,6 @@ export default function RootLayout({
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
         />
       </head>
-      <style jsx global>
-        {`
-          :root {
-            --open: ${open.style.fontFamily};
-            --oswald: ${oswald.style.fontFamily};
-          }
-        `}
-      </style>
       <body>
         <StyledComponentsRegistry>
           <ThemeProvider theme={theme}>
