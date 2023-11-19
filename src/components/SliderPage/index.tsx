@@ -10,12 +10,15 @@ import {
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
 import "swiper/css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Image from "next/image";
 import { Text } from "../Text/styled";
 import { Button } from "../Button/styled";
 import { Block } from "../Block/styled";
+import { AppContext } from "@/context/app-context";
 export function SliderPage() {
+  const { width, modal } = useContext(AppContext);
+
   const dummy = [
     {
       img: "/img/slide11.webp",
@@ -52,7 +55,7 @@ export function SliderPage() {
         </Swiper>
         <BlockUnderSlider>
           {dummy.map((el, i) => (
-            <BlockCenter>
+            <BlockCenter key={i}>
               <Image
                 alt=""
                 src={el.img}
@@ -66,7 +69,11 @@ export function SliderPage() {
       </BlockHalf>
       <BlockHalf>
         <BlockCenterRight>
-          <Text $size="80" $transform="upper" $fontWeight="XXL">
+          <Text
+            $size={width < 700 ? "50" : "80"}
+            $transform="upper"
+            $fontWeight="XXL"
+          >
             О компании
           </Text>
           <Text
@@ -81,7 +88,7 @@ export function SliderPage() {
             оказываемых услуг или предлагаемых товаров.
           </Text>
           <Text
-            $size="12"
+            $size="XS"
             $fontFamily="open"
             $fontWeight="M"
             $textAlign="center"
@@ -95,18 +102,22 @@ export function SliderPage() {
             контента или сервиса».
           </Text>
           <Button
-            $mix="21x45"
+            $mix={"21x45"}
             $size="L"
             $fontWeight="XXL"
             $background="orange"
             $color="white"
+            $transform="upper"
+            onClick={() => modal.setOpenModal(true)}
           >
-            Заказать обратный звонок
+            <Text $size="L" $whiteSpace="nowrap">
+              Заказать обратный звонок
+            </Text>
           </Button>
         </BlockCenterRight>
         <BlockCenterBottom>
           <BlockBot>
-            <Block $flexDirection="col">
+            <Block $flexDirection="col" $gap="S">
               <Text $size="medium" $fontWeight="XXL" $color="orange">
                 1000+
               </Text>
@@ -119,7 +130,7 @@ export function SliderPage() {
                 СКВАЖИН ПРОБУРЕНО ЗА ГОДЫ РАБОТЫ
               </Text>
               <Text
-                $size="12"
+                $size="XS"
                 $textAlign="center"
                 $color="black"
                 $fontFamily="open"
@@ -129,7 +140,7 @@ export function SliderPage() {
             </Block>
           </BlockBot>
           <BlockBot>
-            <Block $flexDirection="col">
+            <Block $flexDirection="col" $gap="S">
               <Block>
                 <Text
                   $size="40"
@@ -152,7 +163,7 @@ export function SliderPage() {
                 ЕДИНИЦ ТЕХНИКИ В АВТОПАРКЕ
               </Text>
               <Text
-                $size="12"
+                $size="XS"
                 $textAlign="center"
                 $color="black"
                 $fontFamily="open"

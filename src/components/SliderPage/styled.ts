@@ -5,11 +5,20 @@ export const SliderContainer = styled.div`
   background: white;
   padding: 70px;
   display: flex;
+  @media (max-width: 1300px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+  }
 `;
 
 export const BlockHalf = styled.div`
   height: 100%;
   width: 50%;
+  @media (max-width: 1300px) {
+    width: 100%;
+  }
 `;
 export const BlockCenter = styled.div`
   display: flex;
@@ -23,6 +32,9 @@ export const BlockUnderSlider = styled.div`
   gap: 37px;
   margin-top: 20px;
   align-items: center;
+  @media (max-width: 700px) {
+    display: none;
+  }
 `;
 export const BlockCenterRight = styled.div`
   display: flex;
@@ -34,9 +46,16 @@ export const BlockCenterRight = styled.div`
 export const BlockCenterBottom = styled.div`
   display: flex;
   justify-content: space-between;
+  @media (max-width: 700px) {
+    justify-content: center;
+    gap: 20px;
+  }
 `;
 export const BlockBot = styled.div`
   width: 40%;
   display: flex;
   justify-content: center;
+  @media (max-width: 700px) {
+    width: 100%;
+  }
 `;

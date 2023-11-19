@@ -7,11 +7,13 @@ import { WorkTime, WorkTimePreText } from "@/texts/works";
 import { OurAddress, OurAddressText } from "@/texts/addresses";
 import { Link } from "../Link/styled";
 import { Text } from "../Text/styled";
-
+import { AppContext } from "@/context/app-context";
+import { useContext } from "react";
 export function Header() {
+  const width = useContext(AppContext);
   return (
     <HeaderContainer>
-      <Block>
+      <Block $flexDirection={width < 500 && "col"} $gap={width < 500 && "XS"}>
         <Image alt="123" src={ClockSVG} />
         <Text $size="M" $color="orange" $mix="0x10" $fontFamily="open">
           {WorkTimePreText}:
@@ -26,7 +28,7 @@ export function Header() {
           {WorkTime}
         </Text>
       </Block>
-      <Block>
+      <Block $flexDirection={width < 500 && "col"} $gap={width < 500 && "XS"}>
         <Image alt="123" src={Address} />
         <Text $size="M" $color="orange" $mix="0x10" $fontFamily="open">
           {OurAddressText}

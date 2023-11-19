@@ -7,9 +7,13 @@ export const theme = {
     gray: "rgba(255, 255, 255, 0.60)",
     grayNumber: "rgba(255, 255, 255, 0.10)",
     grayBlack: "rgba(1, 2, 2, 0.60)",
+    grayBlackNo: "rgba(1, 2, 2, 1)",
     black: "rgba(28, 14, 30, 0.69)",
     transparent: "transparent",
     whiteOp: "rgba(255, 255, 255, 0.3)",
+    circleGray: "rgba(150, 150, 150, 0.3)",
+    yellow: "#fbcf00",
+    error: "red",
   },
   textSize: {
     "12": "12px",
@@ -21,7 +25,10 @@ export const theme = {
     XXL: "35px",
     medium: "65px",
     lg: "75px",
+    "26": "26px",
+    "30": "30px",
     "40": "40px",
+    "50": "50px",
     "70": "70px",
     "80": "80px",
     "120": "120px",
@@ -43,8 +50,12 @@ export const theme = {
       "0x10": "0 10px",
       "10x0": "10px 0",
       "10x4": "4px 10px",
+      "10x6": "6px 10px",
+      "10x60": "10px 80px",
+      "10x120": "10px 150px",
       "17x52": "17px 52px",
       "21x45": "21px 45px",
+      "28x50": "28px 50px",
     },
   },
   fontWeight: {
@@ -58,6 +69,10 @@ export const theme = {
   fontFamily: {
     oswald: "Oswald",
     open: "Open Sans",
+  },
+  fontStyle: {
+    normal: "normal",
+    italic: "italic",
   },
   transform: {
     upper: "uppercase",
@@ -75,15 +90,39 @@ export const theme = {
     FE: "flex-end",
   },
   blockSize: {
+    XS: "30px",
     S: "50px",
     L: "100px",
   },
   gap: {
+    XS: "5px",
     S: "10px",
     medium: "15px",
     M: "20px",
     L: "30px",
     XL: "40px",
+    "100": "100px",
+  },
+  maxWidth: {
+    "20%": "20%",
+    "30%": "30%",
+    "50%": "50%",
+    "70%": "70%",
+    "80%": "80%",
+    "90%": "90%",
+    "100%": "100%",
+    "100px": "100px",
+    "200px": "200px",
+    "300px": "300px",
+  },
+  whiteSpace: {
+    nowrap: "nowrap",
+  },
+  borderRadius: {
+    "4px": "4px",
+    "5px": "5px",
+    "6px": "6px",
+    "10px": "10px",
   },
 } as const;
 
@@ -98,5 +137,8 @@ export type FontWeight = keyof (typeof theme)["fontWeight"];
 export type FontFamily = keyof (typeof theme)["fontFamily"];
 export type Transform = keyof (typeof theme)["transform"];
 export type JustifyContent = keyof (typeof theme)["justifyContent"];
-
+export type MaxWidth = keyof (typeof theme)["maxWidth"];
+export type FontStyle = keyof (typeof theme)["fontStyle"];
+export type WhiteSpace = keyof (typeof theme)["whiteSpace"];
+export type BorderRadius = keyof (typeof theme)["borderRadius"];
 export default theme;

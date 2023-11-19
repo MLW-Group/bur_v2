@@ -27,4 +27,5 @@ export const Link = styled.a<{
   font-weight: ${({ theme, $fontWeight }) => theme.fontWeight[$fontWeight!]};
   font-family: ${({ theme, $fontFamily }) => theme.fontFamily[$fontFamily!]};
   text-transform: ${({ theme, $transform }) => theme.transform[$transform!]};
+  cursor: pointer;
 `;

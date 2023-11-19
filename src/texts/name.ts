@@ -1,2 +1,2 @@
-export const NameCompany = "Название";
+export const NameCompany = "Центр Бурения";
 export const Services = "Услуги бурения";

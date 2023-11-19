@@ -6,4 +6,17 @@ export const UnderHeaderContainer = styled.div`
   padding: 35px;
   justify-content: space-between;
   align-items: center;
+  @media (max-width: 1350px) {
+    & > :nth-child(2) {
+      display: none !important;
+    }
+  }
+  @media (max-width: 620px) {
+    flex-direction: column;
+    & > :nth-child(1) {
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+  }
 `;

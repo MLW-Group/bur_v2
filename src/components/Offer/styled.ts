@@ -20,15 +20,23 @@ export const BlockTitle = styled.div`
 `;
 export const BlockContent = styled.div`
   display: flex;
+  @media (max-width: 950px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 export const Block = styled.div`
   display: flex;
   flex-direction: column;
-  height: 350px;
+  min-height: 350px;
   width: 20%;
   margin: 10px;
   flex: 1;
   // background: red;
+  @media (max-width: 950px) {
+    width: 100%;
+  }
 `;
 export const Number = styled.div`
   display: flex;

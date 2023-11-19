@@ -10,7 +10,8 @@ import { Block } from "../Block/styled";
 import { Text } from "../Text/styled";
 import { Circle } from "../Circle/styled";
 import { Button } from "../Button/styled";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { AppContext } from "@/context/app-context";
 export function MainBottom() {
   const dummy = [
     {
@@ -46,12 +47,23 @@ export function MainBottom() {
       secondColor: "orange",
     },
   ] as const;
-
+  const { width } = useContext(AppContext);
   return (
     <MainBottomContainer>
-      <Block $justifyContent="SA" $marginTop="50">
+      <Block
+        $marginTop="50"
+        $height="80%"
+        $gap="100"
+        $flexDirection={width < 1500 ? "col" : "row"}
+        $justifyContent={width < 1500 ? "FE" : "center"}
+      >
         {dummy.map((el, i) => (
-          <Block $flexDirection="col" $justifyContent="center" key={i}>
+          <Block
+            $flexDirection="col"
+            $justifyContent="center"
+            key={i}
+            $height="100px"
+          >
             <BlockNumber>
               <BlockNumberAbsolute>
                 <Text $size="120" $color="grayNumber" $fontWeight="XXL">
@@ -81,7 +93,7 @@ export function MainBottom() {
                   </Text>
                 </Block>
                 <Text
-                  $size="12"
+                  $size="XS"
                   $color="gray"
                   $textAlign="center"
                   $fontWeight="M"

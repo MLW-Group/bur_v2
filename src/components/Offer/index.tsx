@@ -6,11 +6,14 @@ import {
   Number,
   BlockLeft,
 } from "./styled";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Image from "next/image";
 import { Text } from "../Text/styled";
 import { Button } from "../Button/styled";
+import { AppContext } from "@/context/app-context";
 export function Offer() {
+  const width = useContext(AppContext);
+
   const dummy = [
     {
       number: "01",
@@ -21,22 +24,22 @@ export function Offer() {
     },
     {
       number: "02",
-      img: "/img/bur1.png",
-      title: "бурение на воду",
+      img: "/img/jetpack.png",
+      title: "водоочистка",
       subtitile:
         "Примерное описание. Текст редактируется через систему управления сайтом.",
     },
     {
       number: "03",
-      img: "/img/bur1.png",
-      title: "бурение на воду",
+      img: "/img/stantion.png",
+      title: "Скважины",
       subtitile:
         "Примерное описание. Текст редактируется через систему управления сайтом.",
     },
     {
       number: "04",
-      img: "/img/bur1.png",
-      title: "бурение на воду",
+      img: "/img/machine.png",
+      title: "забивка свай",
       subtitile:
         "Примерное описание. Текст редактируется через систему управления сайтом.",
     },
@@ -44,7 +47,13 @@ export function Offer() {
   return (
     <OfferContainer>
       <BlockTitle>
-        <Text $size="70" $color="white" $transform="upper" $fontWeight="XXL">
+        <Text
+          $size={width < 1150 ? "30" : "70"}
+          $color="white"
+          $transform="upper"
+          $fontWeight="XXL"
+          $textAlign="center"
+        >
           Что мы можем вам предложить
         </Text>
       </BlockTitle>
@@ -64,7 +73,12 @@ export function Offer() {
             </Number>
             <BlockLeft>
               <Image src={el.img} alt="123" width={70} height={70} />
-              <Text $size="L" $color="white" $transform="upper">
+              <Text
+                $size="L"
+                $color="white"
+                $transform="upper"
+                $fontWeight="XXL"
+              >
                 {el.title}
               </Text>
               <Text $size="S" $color="gray" $fontFamily="open">

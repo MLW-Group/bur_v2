@@ -7,6 +7,7 @@ import theme, {
   MarginSize,
   MixSize,
   ThemeColors,
+  BorderRadius,
 } from "@/styles/theme";
 import styled from "styled-components";
 
@@ -24,11 +25,13 @@ export const Button = styled.button<{
   $transform?: Transform;
   $lineHeight?: TextSize;
   $textAlign?: JustifyContent;
+  $borderRadius?: BorderRadius;
 }>`
   display: flex;
   border: none;
   outline: none;
-  border-radius: 250px;
+  border-radius: ${({ theme, $borderRadius }) =>
+    theme.borderRadius[$borderRadius!] || "250px"};
   justify-content: center;
   align-items: center;
   cursor: pointer;
@@ -46,4 +49,10 @@ export const Button = styled.button<{
   font-family: ${({ theme, $fontFamily }) =>
     theme.fontFamily[$fontFamily!] || "Oswald"};
   text-transform: ${({ theme, $transform }) => theme.transform[$transform!]};
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    box-shadow: 20px 18px 0px 0px rgba(163, 161, 161, 0.4);
+    transition: all 0.2s ease-in-out;
+  }
 `;
