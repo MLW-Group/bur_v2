@@ -46,6 +46,7 @@ export default function Home() {
   const [openModalRe, setOpenModalRe] = useState(false);
   return (
     <AppContext.Provider
+      // @ts-ignore
       value={{
         width,
         modal: { openModal, setOpenModal },

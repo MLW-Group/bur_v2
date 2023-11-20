@@ -17,6 +17,7 @@ import { Button } from "../Button/styled";
 import { Block } from "../Block/styled";
 import { AppContext } from "@/context/app-context";
 export function SliderPage() {
+  // @ts-ignore
   const { width, modal } = useContext(AppContext);
 
   const dummy = [
@@ -77,30 +78,19 @@ export function SliderPage() {
             О компании
           </Text>
           <Text
-            $size="S"
+            $size="M"
             $fontFamily="open"
             $fontWeight="M"
             $textAlign="center"
+            $maxWidth="80%"
             $color="grayBlack"
           >
-            В этом блоке мы рекомендуем разместить информацию о Вашей
-            организации, подчеркнуть ее значимость и надежность на рынке
-            оказываемых услуг или предлагаемых товаров.
+            Наша организация - лидер на рынке бурения скважин, предоставляя
+            высококачественные услуги уже более десяти лет. Наш опыт и
+            профессионализм гарантируют надежное освоение водных ресурсов для
+            наших клиентов
           </Text>
-          <Text
-            $size="XS"
-            $fontFamily="open"
-            $fontWeight="M"
-            $textAlign="center"
-            $color="grayBlack"
-          >
-            Примечание. Обращаем Ваше внимание, что текстовая информация на
-            сайте должна быть индивидуальной, не скопированной с других
-            интернет-ресурсов, о чем указано в рекомендациях Яндекса: «Мы
-            стараемся не индексировать или не ранжировать высоко сайты,
-            копирующие информацию с других ресурсов и не создающие оригинального
-            контента или сервиса».
-          </Text>
+
           <Button
             $mix={"21x45"}
             $size="L"
@@ -110,6 +100,7 @@ export function SliderPage() {
             $transform="upper"
             onClick={() => modal.setOpenModal(true)}
           >
+            {/* @ts-ignore */}
             <Text $size="L" $whiteSpace="nowrap">
               Заказать обратный звонок
             </Text>
@@ -129,14 +120,14 @@ export function SliderPage() {
               >
                 СКВАЖИН ПРОБУРЕНО ЗА ГОДЫ РАБОТЫ
               </Text>
-              <Text
+              {/* <Text
                 $size="XS"
                 $textAlign="center"
                 $color="black"
                 $fontFamily="open"
               >
                 Примерное описание
-              </Text>
+              </Text> */}
             </Block>
           </BlockBot>
           <BlockBot>
@@ -162,14 +153,14 @@ export function SliderPage() {
               >
                 ЕДИНИЦ ТЕХНИКИ В АВТОПАРКЕ
               </Text>
-              <Text
+              {/* <Text
                 $size="XS"
                 $textAlign="center"
                 $color="black"
                 $fontFamily="open"
               >
                 Примерное описание
-              </Text>
+              </Text> */}
             </Block>
           </BlockBot>
         </BlockCenterBottom>

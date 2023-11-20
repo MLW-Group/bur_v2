@@ -8,7 +8,6 @@ import { Block } from "../Block/styled";
 import { Link } from "../Link/styled";
 import { Text } from "../Text/styled";
 import { Circle } from "../Circle/styled";
-import Resize from "@/hooks/resize";
 import { AppContext } from "@/context/app-context";
 import { useContext } from "react";
 export function UnderHeader() {

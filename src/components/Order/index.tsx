@@ -9,6 +9,7 @@ import { Block } from "../Block/styled";
 import { AppContext } from "@/context/app-context";
 import { NumberCompany } from "@/texts/number";
 export function Order() {
+  // @ts-ignore
   const { width, modal } = useContext(AppContext);
 
   return (
@@ -33,10 +34,10 @@ export function Order() {
           $fontFamily="open"
         >
           Обратившись к нам, вы можете заказать только работы по бурению
-          скважины в Московской области или воспользоваться услугами ее
-          оборудования под ключ. Позвоните нам прямо сейчас и получите
-          возможность без каких-либо ограничений круглосуточно пользоваться
-          свежей и чистой водой.
+          скважины в Челябинской и Екатеринбургской областях или воспользоваться
+          услугами ее оборудования под ключ. Позвоните нам прямо сейчас и
+          получите возможность без каких-либо ограничений круглосуточно
+          пользоваться свежей и чистой водой.
         </Text>
       </BlockGlassContainer>
       <Block
@@ -60,6 +61,7 @@ export function Order() {
           $fontWeight="XXL"
           onClick={() => modal.setOpenModal(true)}
         >
+          {/* @ts-ignore */}
           <Text $size="XL" $whiteSpace="nowrap">
             рассчитать стоимость
           </Text>

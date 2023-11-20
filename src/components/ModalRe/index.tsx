@@ -22,6 +22,7 @@ const ModalRe = ({
   title?: string;
 }) => {
   const ref = useRef();
+  // @ts-ignore
   function useOutsideClick(ref) {
     useEffect(() => {
       function handleClickOutside(e: any) {
@@ -40,6 +41,7 @@ const ModalRe = ({
     <ModalContainer>
       <Container>
         <RowCenter>
+          {/* @ts-ignore */}
           <ModalBody ref={ref}>
             <ModalHeader>
               <Close onClick={() => setOpenModalRe(false)}>X</Close>

@@ -18,8 +18,9 @@ import { useContext, useState } from "react";
 import { AppContext } from "@/context/app-context";
 import { BannerSlugTitle } from "@/dummy/bannerSlug";
 export function Main() {
+  // @ts-ignore
   const { width, modal, slug } = useContext(AppContext);
-  console.log("🚀 ~ file: index.tsx:22 ~ Main ~ slug:", slug)
+  console.log("🚀 ~ file: index.tsx:22 ~ Main ~ slug:", slug);
   const title = BannerSlugTitle.filter((el) => el.name === slug)[0].title;
   console.log("🚀 ~ file: index.tsx:22 ~ Main ~ title:", title);
   return (
@@ -69,6 +70,7 @@ export function Main() {
               <Image alt="123" src={Bur} width="50" height="50" />
             </Circle>
           </Block>
+          {/* @ts-ignore */}
           <Block $gap="S" $flexDirection={width < 650 && "col"}>
             <Text
               $size="L"
@@ -116,6 +118,7 @@ export function Main() {
                 $fontWeight="XL"
                 onClick={() => modal.setOpenModal(true)}
               >
+                {/* @ts-ignore */}
                 <Text $size="L" $whiteSpace="nowrap">
                   Рассчитать стоимость
                 </Text>

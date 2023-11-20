@@ -17,6 +17,7 @@ import Modal from "@/components/Modal";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { LinkByCitySlug } from "@/dummy/links";
+import ModalRe from "@/components/ModalRe";
 
 const Block = styled.div`
   width: 100vw;
@@ -478,9 +479,11 @@ export default function Home({
   console.log("🚀 ~ file: page.tsx:479 ~ params:", params);
   const { width } = Resize();
   const [openModal, setOpenModal] = useState(false);
+  const [openModalRe, setOpenModalRe] = useState(false);
   if (!shoes.includes(params.slug)) return notFound();
   return (
     <AppContext.Provider
+      // @ts-ignore
       value={{ width, modal: { openModal, setOpenModal }, slug: params.slug }}
     >
       <Block>
@@ -494,7 +497,10 @@ export default function Home({
         <Order />
         <MarqueeBlock />
         <Footer />
-        {openModal && <Modal setOpenModal={setOpenModal} />}
+        {openModal && (
+          <Modal setOpenModal={setOpenModal} setOpenModalRe={setOpenModalRe} />
+        )}
+        {openModalRe && <ModalRe setOpenModalRe={setOpenModalRe} />}
       </Block>
     </AppContext.Provider>
   );

@@ -47,6 +47,7 @@ export function MainBottom() {
       secondColor: "orange",
     },
   ] as const;
+  // @ts-ignore
   const { width } = useContext(AppContext);
   return (
     <MainBottomContainer>

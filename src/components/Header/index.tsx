@@ -13,6 +13,7 @@ export function Header() {
   const width = useContext(AppContext);
   return (
     <HeaderContainer>
+      {/* @ts-ignore */}
       <Block $flexDirection={width < 500 && "col"} $gap={width < 500 && "XS"}>
         <Image alt="123" src={ClockSVG} />
         <Text $size="M" $color="orange" $mix="0x10" $fontFamily="open">
@@ -28,6 +29,7 @@ export function Header() {
           {WorkTime}
         </Text>
       </Block>
+      {/* @ts-ignore */}
       <Block $flexDirection={width < 500 && "col"} $gap={width < 500 && "XS"}>
         <Image alt="123" src={Address} />
         <Text $size="M" $color="orange" $mix="0x10" $fontFamily="open">

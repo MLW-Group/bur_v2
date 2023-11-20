@@ -1,6 +1,4 @@
-// import axios from "axios";
-import Link from "next/link";
-import { useContext, useEffect, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import InputMask from "react-input-mask";
 import {
   ModalContainer,
@@ -14,7 +12,7 @@ import {
 import { Text } from "../Text/styled";
 import { Button } from "../Button/styled";
 import axios from "axios";
-import { AppContext } from "@/context/app-context";
+
 const Modal = ({
   setOpenModal,
   setOpenModalRe,
@@ -32,14 +30,17 @@ const Modal = ({
     if (phone.length == 0 || phone.includes("_")) {
       setError("Заполните номер телефона");
     } else {
-      //   if (process.env.NODE_ENV !== "development") {
-      //     ym(94753079, "reachGoal", "modalPhone1");
-      //   }
+      if (process.env.NODE_ENV !== "development") {
+        // @ts-ignore
+        ym(94753079, "reachGoal", "modalPhone1");
+      }
       await axios.post(`/api`, {
         phone,
       });
-      //   if (process.env.NODE_ENV !== "development") {
-      //     ym(94753079, "reachGoal", "modalPhone2");
+      if (process.env.NODE_ENV !== "development") {
+        // @ts-ignore
+        ym(94753079, "reachGoal", "modalPhone2");
+      }
       setOpenModal(false);
       setOpenModalRe(true);
     }
@@ -64,6 +65,7 @@ const Modal = ({
     <ModalContainer>
       <Container>
         <RowCenter>
+          {/* @ts-ignore */}
           <ModalBody ref={ref}>
             <ModalHeader>
               <Close onClick={() => setOpenModal(false)}>X</Close>
