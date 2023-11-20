@@ -15,8 +15,8 @@ export const Container = styled.div`
     margin-right: 10px;
   }
   & > :nth-child(2) {
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
-    margin-right: 10px;
+    // border-right: 1px solid rgba(255, 255, 255, 0.2);
+    // margin-right: 10px;
   }
   & > :nth-child(3) {
     border-right: none;

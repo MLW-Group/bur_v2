@@ -30,7 +30,7 @@ export function Header() {
         </Text>
       </Block>
       {/* @ts-ignore */}
-      <Block $flexDirection={width < 500 && "col"} $gap={width < 500 && "XS"}>
+      {/* <Block $flexDirection={width < 500 && "col"} $gap={width < 500 && "XS"}>
         <Image alt="123" src={Address} />
         <Text $size="M" $color="orange" $mix="0x10" $fontFamily="open">
           {OurAddressText}
@@ -45,7 +45,7 @@ export function Header() {
         >
           {OurAddress}
         </Link>
-      </Block>
+      </Block> */}
     </HeaderContainer>
   );
 }

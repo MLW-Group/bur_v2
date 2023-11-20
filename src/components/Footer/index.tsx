@@ -95,7 +95,7 @@ export function Footer() {
             ))}
           </BlockInfoChildren>
         </BlockInfoContainer>
-        <BlockInfoContainer>
+        {/* <BlockInfoContainer>
           <BlockInfoChildren
             $alignItems="center"
             $justifyContent="center"
@@ -135,7 +135,7 @@ export function Footer() {
               </Circle>
             </Block>
           </BlockInfoChildren>
-        </BlockInfoContainer>
+        </BlockInfoContainer> */}
         <BlockInfoContainer>
           <BlockInfoChildren
             $gap="S"

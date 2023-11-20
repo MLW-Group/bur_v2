@@ -61,9 +61,9 @@ export default function Home() {
         <MainBottom />
         <SliderPage />
         <Offer />
-        <Receive />
+        {/* <Receive /> */}
         <Order />
-        <MarqueeBlock />
+        {/* <MarqueeBlock /> */}
         <Footer />
         {openModal && (
           <Modal setOpenModal={setOpenModal} setOpenModalRe={setOpenModalRe} />

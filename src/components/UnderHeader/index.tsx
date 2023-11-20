@@ -62,7 +62,7 @@ export function UnderHeader() {
           </Text>
         </Block>
       </Block>
-      <Block $justifyContent="SE" $gap="XL">
+      {/* <Block $justifyContent="SE" $gap="XL">
         {dummy.map((el, i) => (
           <Link
             key={i}
@@ -75,7 +75,7 @@ export function UnderHeader() {
             {el.name}
           </Link>
         ))}
-      </Block>
+      </Block> */}
       <Block>
         <Block
           $flexDirection="col"
