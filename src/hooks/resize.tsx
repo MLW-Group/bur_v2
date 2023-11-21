@@ -16,7 +16,8 @@ function Resize() {
     }
   }, []);
 
-  return { width };
+  
+  return { width }; 
 }
 
 export default Resize;
