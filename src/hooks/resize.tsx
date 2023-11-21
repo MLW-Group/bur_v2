@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 
 function Resize() {
-  const [width, setWidth] = useState(0);
+  const [width, setWidth] = useState(2000);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
