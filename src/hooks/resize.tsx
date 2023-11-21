@@ -15,7 +15,6 @@ function Resize() {
       return () => window.removeEventListener("resize", handleResize);
     }
   }, []);
-
   
   return { width }; 
 }
