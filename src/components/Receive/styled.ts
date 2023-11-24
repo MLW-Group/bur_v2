@@ -43,7 +43,7 @@ export const Quality = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  max-width: 35%;
+  // max-width: 35%;
 `;
 export const ReceiveBlock = styled.div`
   display: flex;

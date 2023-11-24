@@ -46,6 +46,7 @@ export const BlockInfoContainer = styled.div`
   align-items: center;
   @media (max-width: 1050px) {
     min-height: 250px;
+  }
 `;
 export const BlockInfoChildren = styled.div<{
   $alignItems?: JustifyContent;
@@ -65,9 +66,16 @@ export const BlockNew = styled.div<{
   $flexDirection?: FlexDirection;
 }>`
   display: flex;
-  flex-direction: ${({ theme, $flexDirection }) =>
-    theme.flexDirection[$flexDirection!] || "row"};
+  flex-direction: row;
   gap: 10px;
   height: 100%;
+  align-items: center;
   // align-items: center;
+  @media (max-width: 750px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 10px;
+  }
 `;

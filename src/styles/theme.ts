@@ -22,6 +22,7 @@ export const theme = {
     M: "18px",
     L: "20px",
     XL: "22px",
+    "24": "24px",
     XXL: "35px",
     medium: "65px",
     lg: "75px",
@@ -80,6 +81,7 @@ export const theme = {
   },
   flexDirection: {
     row: "row",
+    reverse: "row-reverse",
     col: "column",
   },
   justifyContent: {
@@ -88,6 +90,7 @@ export const theme = {
     SB: "space-between",
     SE: "space-evenly",
     FE: "flex-end",
+    FS: "flex-start",
   },
   blockSize: {
     XS: "30px",
@@ -124,6 +127,9 @@ export const theme = {
     "6px": "6px",
     "10px": "10px",
   },
+  borderBottom: {
+    "2pxGray": "2px solid gray",
+  },
 } as const;
 
 export type ThemeColors = keyof (typeof theme)["colors"];
@@ -137,6 +143,7 @@ export type FontWeight = keyof (typeof theme)["fontWeight"];
 export type FontFamily = keyof (typeof theme)["fontFamily"];
 export type Transform = keyof (typeof theme)["transform"];
 export type JustifyContent = keyof (typeof theme)["justifyContent"];
+export type BorderBottom = keyof (typeof theme)["borderBottom"];
 export type MaxWidth = keyof (typeof theme)["maxWidth"];
 export type FontStyle = keyof (typeof theme)["fontStyle"];
 export type WhiteSpace = keyof (typeof theme)["whiteSpace"];

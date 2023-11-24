@@ -7,12 +7,13 @@ export const UnderHeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   @media (max-width: 1350px) {
-    & > :nth-child(2) {
-      display: none !important;
-    }
+    // & > :nth-child(2) {
+    //   display: none !important;
+    // }
   }
   @media (max-width: 620px) {
     flex-direction: column;
+    gap: 30px;
     & > :nth-child(1) {
       justify-content: center;
       align-items: center;

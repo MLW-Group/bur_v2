@@ -11,7 +11,8 @@ import Image from "next/image";
 import { Text } from "../Text/styled";
 import { AppContext } from "@/context/app-context";
 export function Offer() {
-  const width = useContext(AppContext);
+  // @ts-ignore
+  const { width } = useContext(AppContext);
 
   const dummy = [
     {

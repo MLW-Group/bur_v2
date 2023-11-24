@@ -12,6 +12,7 @@ export const OfferContainer = styled.div`
   padding-top: 70px;
   display: flex;
   flex-direction: column;
+  padding-bottom: 20px;
 `;
 export const BlockTitle = styled.div`
   display: flex;

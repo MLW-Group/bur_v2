@@ -19,7 +19,8 @@ import { Circle } from "../Circle/styled";
 import { Block } from "../Block/styled";
 import { AppContext } from "@/context/app-context";
 export function Receive() {
-  const width = useContext(AppContext);
+  // @ts-ignore
+  const { width } = useContext(AppContext);
 
   return (
     <ReceiveContainer>
@@ -44,8 +45,8 @@ export function Receive() {
               color="gray"
               $textAlign="center"
             >
-              За 15 лет пробурили свыше 2500 скважин по Москве и Московской
-              области!
+              За 15 лет пробурили свыше 500 скважин по Челябинской и
+              Свердловской области!
               <br />
               Обеспечиваем доступность услуг, гарантируя высокое качество!
             </Text>
@@ -65,7 +66,7 @@ export function Receive() {
               $fontWeight="XXL"
               $textAlign="center"
             >
-              ВЫПОЛНЯЕМ УСЛУГИ КАЧЕСТВЕННО И УДОБНО
+              ВЫПОЛНЯЕМ УСЛУГИ КАЧЕСТВЕННО
             </Text>
           </Quality>
           <Quality>
@@ -81,7 +82,7 @@ export function Receive() {
               $fontWeight="XXL"
               $textAlign="center"
             >
-              ДЕЛАЕМ АНАЛИЗЫ В СОБСТВЕННЫХ ЛАБОРАТОРИЯХ
+              Бурение скважины с продувкой до чистой воды
             </Text>
           </Quality>
         </BlockQuality>
@@ -89,26 +90,8 @@ export function Receive() {
       <BlockHalf>
         <ReceiveBlock>
           <Receive1>
-            <BlockAbsolute>
-              <Image
-                alt="123"
-                src={"/svg/Subtract.svg"}
-                width={28}
-                height={105}
-              />
-              <Image
-                alt="123"
-                src={"/img/vadim.webp"}
-                width={100}
-                height={100}
-                style={{
-                  objectFit: "cover",
-                  borderRadius: "2500px",
-                }}
-              />
-            </BlockAbsolute>
             <Text $size="L" $transform="upper" $fontWeight="XXL">
-              вадим немков
+              максим
             </Text>
             <Text
               $size="S"
@@ -119,8 +102,8 @@ export function Receive() {
               $fontStyle="italic"
               $maxWidth={width < 1250 ? "90%" : "70%"}
             >
-              Сайт просто супер. Ребята молодцы, делают свою работу на высоком
-              уровне. Буду рекомендовать всем друзьям и близким.
+              Две недели назад бурили скважину. Все работы провели аккуратно,
+              хочу поблагодарить Дмитрия за помощь и консультацию.
             </Text>
             <Absolute>
               <Image
@@ -132,26 +115,8 @@ export function Receive() {
             </Absolute>
           </Receive1>
           <Receive1>
-            <BlockAbsolute>
-              <Image
-                alt="123"
-                src={"/svg/Subtract.svg"}
-                width={28}
-                height={105}
-              />
-              <Image
-                alt="123"
-                src={"/img/evg.webp"}
-                width={100}
-                height={100}
-                style={{
-                  objectFit: "cover",
-                  borderRadius: "2500px",
-                }}
-              />
-            </BlockAbsolute>
             <Text $size="L" $transform="upper" $fontWeight="XXL">
-              ЕВГЕНИЯ ОРЛОВА
+              Маргарита
             </Text>
             <Text
               $size="S"
@@ -162,8 +127,10 @@ export function Receive() {
               $fontStyle="italic"
               $maxWidth="70%"
             >
-              Сайт просто супер. Ребята молодцы, делают свою работу на высоком
-              уровне. Буду рекомендовать всем друзьям и близким.
+              Всем привет! Компания с большим опытом, все посчитали быстро,
+              предлагали разные варианты по материалам со своими комментариями.
+              Наша семья осталась довольна, питьевая вода в доме – это
+              прекрасно, спасибо!
             </Text>
             <Absolute>
               <Image

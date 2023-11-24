@@ -17,6 +17,7 @@ import { useState } from "react";
 import Modal from "@/components/Modal";
 import { LinkByCitySlug } from "@/dummy/links";
 import ModalRe from "@/components/ModalRe";
+import { InCost } from "@/components/InCost";
 const Block = styled.div`
   width: 100vw;
   background-image: linear-gradient(
@@ -33,7 +34,7 @@ const Block = styled.div`
       rgba(255, 255, 255, 0) 100%
     ),
     url("/img/back1.webp");
-  background-repeat: round;
+  // background-repeat: round;
   background-size: auto, 1322px, auto, auto, auto, cover;
   // background-attachment: scroll, scroll, scroll, scroll, scroll;
   // padding-top: 0px;
@@ -61,7 +62,8 @@ export default function Home() {
         <MainBottom />
         <SliderPage />
         <Offer />
-        {/* <Receive /> */}
+        <InCost />
+        <Receive />
         <Order />
         {/* <MarqueeBlock /> */}
         <Footer />

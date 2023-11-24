@@ -7,7 +7,7 @@ import { Button } from "../Button/styled";
 import { Circle } from "../Circle/styled";
 import { Block } from "../Block/styled";
 import { AppContext } from "@/context/app-context";
-import { NumberCompany } from "@/texts/number";
+import { NumberCompany, NumberCompanySecond } from "@/texts/number";
 export function Order() {
   // @ts-ignore
   const { width, modal } = useContext(AppContext);
@@ -34,7 +34,7 @@ export function Order() {
           $fontFamily="open"
         >
           Обратившись к нам, вы можете заказать только работы по бурению
-          скважины в Челябинской и Екатеринбургской областях или воспользоваться
+          скважины в Челябинской и Свердловской областях или воспользоваться
           услугами ее оборудования под ключ. Позвоните нам прямо сейчас и
           получите возможность без каких-либо ограничений круглосуточно
           пользоваться свежей и чистой водой.
@@ -49,7 +49,7 @@ export function Order() {
             {NumberCompany}
           </Text>
           <Text $size="40" $transform="upper" $fontWeight="XXL" $color="orange">
-            {NumberCompany}
+            {NumberCompanySecond}
           </Text>
         </Block>
         <Button

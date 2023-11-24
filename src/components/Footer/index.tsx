@@ -16,6 +16,7 @@ import { Circle } from "../Circle/styled";
 import { Block } from "../Block/styled";
 import { Link } from "../Link/styled";
 import { NumberCompany } from "@/texts/number";
+import { OurAddress } from "@/texts/addresses";
 export function Footer() {
   const dummy = [
     {
@@ -26,12 +27,12 @@ export function Footer() {
     {
       img: "/svg/email.svg",
       title: "Наш почтовый адрес:",
-      subTitle: "TEST@EXAMPLE.COM",
+      subTitle: "flooring-decor@mail.ru",
     },
     {
       img: "/svg/map.svg",
       title: "Мы находимся по адресу:",
-      subTitle: "МОСКВА, УЛ. ЮЖНАЯ, Д.8",
+      subTitle: OurAddress,
     },
   ];
   // const dummy1 = [
@@ -87,7 +88,12 @@ export function Footer() {
                   <Text $size="M" $color="gray" $fontFamily="open">
                     {el.title}
                   </Text>
-                  <Text $size="XL" $color="white" $fontWeight="XXL">
+                  <Text
+                    $size="XL"
+                    $color="white"
+                    $fontWeight="XXL"
+                    $transform="upper"
+                  >
                     {el.subTitle}
                   </Text>
                 </BlockNew>

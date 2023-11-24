@@ -18,6 +18,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { LinkByCitySlug } from "@/dummy/links";
 import ModalRe from "@/components/ModalRe";
+import { InCost } from "@/components/InCost";
 
 const Block = styled.div`
   width: 100vw;
@@ -493,9 +494,10 @@ export default function Home({
         <MainBottom />
         <SliderPage />
         <Offer />
+        <InCost />
         <Receive />
         <Order />
-        <MarqueeBlock />
+        {/* <MarqueeBlock /> */}
         <Footer />
         {openModal && (
           <Modal setOpenModal={setOpenModal} setOpenModalRe={setOpenModalRe} />

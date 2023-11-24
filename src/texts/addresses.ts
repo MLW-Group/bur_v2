@@ -1,2 +1,2 @@
 export const OurAddressText = "Наш адрес:";
-export const OurAddress = "Москва, ул. Южная Д.8";
+export const OurAddress = "Г. ЗЛАТОУСТ, УЛ. КАРЛА МАРКСА, Д.11";

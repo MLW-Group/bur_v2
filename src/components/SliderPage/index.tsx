@@ -71,7 +71,7 @@ export function SliderPage() {
       <BlockHalf>
         <BlockCenterRight>
           <Text
-            $size={width < 700 ? "50" : "80"}
+            $size={width < 700 ? "40" : "80"}
             $transform="upper"
             $fontWeight="XXL"
           >
@@ -85,7 +85,7 @@ export function SliderPage() {
             $maxWidth="80%"
             $color="grayBlack"
           >
-            Наша организация - лидер на рынке бурения скважин, предоставляя
+            Наша организация - лидер на рынке бурения скважин в своем регионе, предоставляя
             высококачественные услуги уже более десяти лет. Наш опыт и
             профессионализм гарантируют надежное освоение водных ресурсов для
             наших клиентов
@@ -110,7 +110,7 @@ export function SliderPage() {
           <BlockBot>
             <Block $flexDirection="col" $gap="S">
               <Text $size="medium" $fontWeight="XXL" $color="orange">
-                1000+
+                500+
               </Text>
               <Text
                 $size="L"
@@ -142,7 +142,7 @@ export function SliderPage() {
                   более
                 </Text>
                 <Text $size="medium" $fontWeight="XXL" $color="orange">
-                  70
+                  30
                 </Text>
               </Block>
               <Text

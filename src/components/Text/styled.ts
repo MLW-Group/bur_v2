@@ -16,6 +16,7 @@ import styled from "styled-components";
 export const Text = styled.p<{
   $size: TextSize;
   $marginLeft?: MarginSize;
+  $marginRight?: MarginSize;
   $mix?: MixSize;
   $margin?: MarginSize;
   $color?: ThemeColors;
@@ -38,6 +39,7 @@ export const Text = styled.p<{
   line-height: ${({ theme, $lineHeight }) =>
     theme.textSize[$lineHeight!] || "100%"};
   margin-left: ${({ theme, $marginLeft }) => theme.margin[$marginLeft!]};
+  margin-right: ${({ theme, $marginRight }) => theme.margin[$marginRight!]};
   margin: ${({ theme, $mix, $margin }) =>
     theme.margin[$margin!] || theme.margin.mix[$mix!]};
   font-weight: ${({ theme, $fontWeight }) => theme.fontWeight[$fontWeight!]};
@@ -49,5 +51,5 @@ export const Text = styled.p<{
   -webkit-text-fill-color: ${({ theme, $textFill }) =>
     theme.colors[$textFill!]};
   -webkit-text-stroke: ${({ theme, $textStroke }) =>
-    $textStroke && theme.colors[$textStroke!] + ` 1px`};
+    $textStroke && theme.colors[$textStroke!] + ` 2px`};
 `;

@@ -10,11 +10,12 @@ import { Text } from "../Text/styled";
 import { AppContext } from "@/context/app-context";
 import { useContext } from "react";
 export function Header() {
-  const width = useContext(AppContext);
+  // @ts-ignore
+  const { width } = useContext(AppContext);
   return (
     <HeaderContainer>
       {/* @ts-ignore */}
-      <Block $flexDirection={width < 500 && "col"} $gap={width < 500 && "XS"}>
+      <Block $flexDirection={width < 540 && "col"} $gap={width < 500 && "XS"}>
         <Image alt="123" src={ClockSVG} />
         <Text $size="M" $color="orange" $mix="0x10" $fontFamily="open">
           {WorkTimePreText}:
@@ -30,14 +31,14 @@ export function Header() {
         </Text>
       </Block>
       {/* @ts-ignore */}
-      {/* <Block $flexDirection={width < 500 && "col"} $gap={width < 500 && "XS"}>
+      <Block $flexDirection={width < 500 && "col"} $gap={width < 500 && "XS"}>
         <Image alt="123" src={Address} />
         <Text $size="M" $color="orange" $mix="0x10" $fontFamily="open">
           {OurAddressText}
         </Text>
         <Link
           href="/#addresses"
-          $size="L"
+          $size="M"
           $color="white"
           $fontWeight="XXL"
           $transform="upper"
@@ -45,7 +46,7 @@ export function Header() {
         >
           {OurAddress}
         </Link>
-      </Block> */}
+      </Block>
     </HeaderContainer>
   );
 }

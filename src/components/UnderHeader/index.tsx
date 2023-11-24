@@ -3,7 +3,7 @@ import Image from "next/image";
 import Logo from "@svg/logo.svg";
 import Phone from "@svg/phoneWhite.svg";
 import { NameCompany, Services } from "@/texts/name";
-import { NumberCompany } from "@/texts/number";
+import { NumberCompany, NumberCompanySecond } from "@/texts/number";
 import { Block } from "../Block/styled";
 import { Link } from "../Link/styled";
 import { Text } from "../Text/styled";
@@ -11,7 +11,8 @@ import { Circle } from "../Circle/styled";
 import { AppContext } from "@/context/app-context";
 import { useContext } from "react";
 export function UnderHeader() {
-  const width = useContext(AppContext);
+  // @ts-ignore
+  const { width } = useContext(AppContext);
 
   const dummy = [
     {
@@ -87,7 +88,7 @@ export function UnderHeader() {
             {NumberCompany}
           </Text>
           <Text $size="L" $color="white" $fontWeight="XXL" $transform="upper">
-            {NumberCompany}
+            {NumberCompanySecond}
           </Text>
         </Block>
         <Circle $width="S" $height="S" $background="orange">
