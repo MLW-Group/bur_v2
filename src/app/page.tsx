@@ -35,7 +35,10 @@ const Block = styled.div`
     ),
     url("/img/back1.webp");
   // background-repeat: round;
-  background-size: auto, 1322px, auto, auto, auto, cover;
+  background-size: contain;
+  @media (max-width: 1500px) {
+    background-size:auto, 1322px, auto, auto, auto, cover
+  }
   // background-attachment: scroll, scroll, scroll, scroll, scroll;
   // padding-top: 0px;
   background-color: rgba(0, 0, 0, 0.6);
