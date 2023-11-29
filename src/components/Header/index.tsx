@@ -9,9 +9,11 @@ import { Link } from "../Link/styled";
 import { Text } from "../Text/styled";
 import { AppContext } from "@/context/app-context";
 import { useContext } from "react";
+import { LinkByCitySlug } from "@/dummy/links";
 export function Header() {
   // @ts-ignore
-  const { width } = useContext(AppContext);
+  const { width, slug } = useContext(AppContext);
+  const arr = LinkByCitySlug[slug].slice(0, 4);
   return (
     <HeaderContainer>
       {/* @ts-ignore */}
@@ -29,6 +31,20 @@ export function Header() {
         >
           {WorkTime}
         </Text>
+      </Block>
+      {/* @ts-ignore */}
+      <Block $gap="M">
+        {arr.map((el) => (
+          <Link
+            href={el.url}
+            $size="XL"
+            $transform="upper"
+            $color="orange"
+            $fontWeight="XXL"
+          >
+            {el.name}
+          </Link>
+        ))}
       </Block>
       {/* @ts-ignore */}
       <Block $flexDirection={width < 500 && "col"} $gap={width < 500 && "XS"}>

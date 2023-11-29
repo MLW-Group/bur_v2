@@ -19,6 +19,7 @@ import { notFound } from "next/navigation";
 import { LinkByCitySlug } from "@/dummy/links";
 import ModalRe from "@/components/ModalRe";
 import { InCost } from "@/components/InCost";
+import { OurWorks } from "@/components/OurWorks";
 
 const Block = styled.div`
   width: 100vw;
@@ -94,7 +95,6 @@ export default function Home({
 }: {
   params: { slug: keyof typeof LinkByCitySlug };
 }) {
-  console.log("🚀 ~ file: page.tsx:479 ~ params:", params);
   const { width } = Resize();
   const [openModal, setOpenModal] = useState(false);
   const [openModalRe, setOpenModalRe] = useState(false);
@@ -111,8 +111,9 @@ export default function Home({
         <MainBottom />
         <SliderPage />
         <Offer />
-        <InCost />
         <Receive />
+        <InCost />
+        <OurWorks />
         <Order />
         {/* <MarqueeBlock /> */}
         <Footer />

@@ -17,7 +17,11 @@ import { Block } from "../Block/styled";
 import { Link } from "../Link/styled";
 import { NumberCompany } from "@/texts/number";
 import { OurAddress } from "@/texts/addresses";
+import { LinkByCitySlug } from "@/dummy/links";
+import { useContext } from "react";
+import { AppContext } from "@/context/app-context";
 export function Footer() {
+  const { width, slug } = useContext(AppContext);
   const dummy = [
     {
       img: "/svg/phoneWhite.svg",
@@ -35,45 +39,7 @@ export function Footer() {
       subTitle: OurAddress,
     },
   ];
-  // const dummy1 = [
-  //   {
-  //     name: "Меню",
-  //     fw: "XXL",
-  //     ff: "oswald",
-  //     color: "white",
-  //     transform: "upper",
-  //   },
-  //   {
-  //     name: "Главная",
-  //     fw: "S",
-  //     color: "gray",
-  //     ff: "open",
-  //   },
-  //   {
-  //     name: "О компании",
-  //     fw: "S",
-  //     color: "gray",
-  //     ff: "open",
-  //   },
-  //   {
-  //     name: "Новости",
-  //     fw: "S",
-  //     color: "gray",
-  //     ff: "open",
-  //   },
-  //   {
-  //     name: "Отзывы о нас",
-  //     fw: "S",
-  //     color: "gray",
-  //     ff: "open",
-  //   },
-  //   {
-  //     name: "Контакты",
-  //     fw: "S",
-  //     color: "gray",
-  //     ff: "open",
-  //   },
-  // ];
+  const arr = LinkByCitySlug[slug].slice(4);
   return (
     <FooterContainer>
       <Container>
@@ -89,7 +55,7 @@ export function Footer() {
                     {el.title}
                   </Text>
                   <Text
-                    $size="XL"
+                    $size="M"
                     $color="white"
                     $fontWeight="XXL"
                     $transform="upper"
@@ -101,47 +67,25 @@ export function Footer() {
             ))}
           </BlockInfoChildren>
         </BlockInfoContainer>
-        {/* <BlockInfoContainer>
+        <BlockInfoContainer>
           <BlockInfoChildren
             $alignItems="center"
             $justifyContent="center"
             $gap="M"
           >
-            <Image src={"/svg/logo.svg"} alt="123" width={75} height={75} />
-            <Text $size="M" $fontWeight="XXL" $color="white" $transform="upper">
-              Центр бурения
-            </Text>
-            <Text $size="S" $fontFamily="open" $color="gray">
-              Услуги бурения
-            </Text>
-            <Block $flexDirection="row" $gap="S">
-              <Circle $background="gray" $width="S" $height="S">
-                <Image
-                  src={"/svg/telegram.svg"}
-                  alt="123"
-                  width={18}
-                  height={15}
-                />
-              </Circle>
-              <Circle $background="gray" $width="S" $height="S">
-                <Image
-                  src={"/svg/email.svg"}
-                  alt="123"
-                  width={20}
-                  height={20}
-                />
-              </Circle>
-              <Circle $background="gray" $width="S" $height="S">
-                <Image
-                  src={"/svg/phoneWhite.svg"}
-                  alt="123"
-                  width={20}
-                  height={20}
-                />
-              </Circle>
-            </Block>
+            {arr.map((el) => (
+              <Link
+                href={el.url}
+                $size="XL"
+                $color="white"
+                $transform="upper"
+                $fontWeight="XXL"
+              >
+                {el.name}
+              </Link>
+            ))}
           </BlockInfoChildren>
-        </BlockInfoContainer> */}
+        </BlockInfoContainer>
         <BlockInfoContainer>
           <BlockInfoChildren
             $gap="S"

@@ -11,7 +11,6 @@ export async function POST(request: Request) {
       `Номер телефона - ${body?.phone}`
     );
   } catch (error) {
-    console.log(error);
   }
 
   return Response.json({});

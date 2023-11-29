@@ -18,6 +18,7 @@ import Modal from "@/components/Modal";
 import { LinkByCitySlug } from "@/dummy/links";
 import ModalRe from "@/components/ModalRe";
 import { InCost } from "@/components/InCost";
+import { OurWorks } from "@/components/OurWorks";
 const Block = styled.div`
   width: 100vw;
   background-image: linear-gradient(
@@ -37,7 +38,7 @@ const Block = styled.div`
   // background-repeat: round;
   background-size: contain;
   @media (max-width: 1500px) {
-    background-size:auto, 1322px, auto, auto, auto, cover
+    background-size: auto, 1322px, auto, auto, auto, cover;
   }
   // background-attachment: scroll, scroll, scroll, scroll, scroll;
   // padding-top: 0px;
@@ -50,7 +51,6 @@ export default function Home() {
   const [openModalRe, setOpenModalRe] = useState(false);
   return (
     <AppContext.Provider
-      // @ts-ignore
       value={{
         width,
         modal: { openModal, setOpenModal },
@@ -65,8 +65,9 @@ export default function Home() {
         <MainBottom />
         <SliderPage />
         <Offer />
-        <InCost />
         <Receive />
+        <InCost />
+        <OurWorks />
         <Order />
         {/* <MarqueeBlock /> */}
         <Footer />

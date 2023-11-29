@@ -42,7 +42,7 @@ export function Order() {
       </BlockGlassContainer>
       <Block
         $justifyContent="center"
-        $flexDirection={width < 900 ? "col" : "row"}
+        $flexDirection={width && width < 900 ? "col" : "row"}
       >
         <Block $flexDirection="col" $gap="S" $justifyContent="center">
           <Text $size="40" $transform="upper" $fontWeight="XXL" $color="orange">

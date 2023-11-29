@@ -20,16 +20,14 @@ import { BannerSlugTitle } from "@/dummy/bannerSlug";
 export function Main() {
   // @ts-ignore
   const { width, modal, slug } = useContext(AppContext);
-  console.log("🚀 ~ file: index.tsx:22 ~ Main ~ slug:", slug);
   const title = BannerSlugTitle.filter((el) => el.name === slug)[0].title;
-  console.log("🚀 ~ file: index.tsx:22 ~ Main ~ title:", title);
   return (
     <MainContainer>
       <BlockTitle>
         <BlockCenter>
           <Block $justifyContent="center" $flexDirection="col" $gap="medium">
             <Text
-              $size={width < 650 ? "70" : "biggest"}
+              $size={width && width < 650 ? "70" : "biggest"}
               $color="white"
               $fontFamily="oswald"
               $transform="upper"
@@ -39,7 +37,7 @@ export function Main() {
               бурение
             </Text>
             <Text
-              $size={width < 650 ? "XXL" : "medium"}
+              $size={width && width < 650 ? "XXL" : "medium"}
               $color="white"
               $fontFamily="oswald"
               $transform="upper"
@@ -49,7 +47,7 @@ export function Main() {
               скважин на воду
             </Text>
             <Text
-              $size={width < 650 ? "40" : "lg"}
+              $size={width && width < 650 ? "40" : "lg"}
               $color="orange"
               $fontFamily="oswald"
               $transform="upper"
@@ -114,7 +112,7 @@ export function Main() {
                 $background="orange"
                 $mix={"17x52"}
                 $color="white"
-                $size={width < 480 ? "XS" : "L"}
+                $size={width && width < 480 ? "XS" : "L"}
                 $transform="upper"
                 $fontWeight="XL"
                 onClick={() => modal.setOpenModal(true)}

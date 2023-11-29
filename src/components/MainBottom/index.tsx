@@ -55,8 +55,8 @@ export function MainBottom() {
         $marginTop="50"
         $height="80%"
         $gap="100"
-        $flexDirection={width < 1500 ? "col" : "row"}
-        $justifyContent={width < 1500 ? "FE" : "center"}
+        $flexDirection={width && width < 1500 ? "col" : "row"}
+        $justifyContent={width && width < 1500 ? "FE" : "center"}
       >
         {dummy.map((el, i) => (
           <Block

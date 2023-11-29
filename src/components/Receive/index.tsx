@@ -31,6 +31,7 @@ export function Receive() {
               $size="80"
               $transform="upper"
               $fontWeight="XXL"
+              // @ts-ignore
               $maxWidth={width < 900 ? "100%" : "50%"}
               $textAlign="center"
             >
@@ -100,7 +101,7 @@ export function Receive() {
               $color="grayBlackNo"
               $textAlign="center"
               $fontStyle="italic"
-              $maxWidth={width < 1250 ? "90%" : "70%"}
+              $maxWidth={width && width < 1250 ? "90%" : "70%"}
             >
               Две недели назад бурили скважину. Все работы провели аккуратно,
               хочу поблагодарить Дмитрия за помощь и консультацию.

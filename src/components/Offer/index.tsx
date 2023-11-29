@@ -49,7 +49,7 @@ export function Offer() {
     <OfferContainer>
       <BlockTitle>
         <Text
-          $size={width < 1150 ? "30" : "70"}
+          $size={width && width < 1150 ? "30" : "70"}
           $color="white"
           $transform="upper"
           $fontWeight="XXL"
