@@ -1,16 +1,12 @@
-"use client";
-
 import GlobalStyle from "@/styles/globalstyles";
-import StyledComponentsRegistry from "../lib/registry";
-import { ThemeProvider } from "styled-components";
-import { theme } from "@/styles/theme";
-import { Open_Sans, Oswald } from "next/font/google";
 import Script from "next/script";
+import { Metadata } from "next";
+import Providers from "@/Providers/Providers";
 
-// const open = Open_Sans({
-//   weight: ["300", "400", "500", "700"],
-//   subsets: ["cyrillic"],
-// });
+export const metadata: Metadata = {
+  title: "Бурение скважин на воду в Челябинской области",
+  description: "Бурение скважин на воду",
+};
 
 export default function RootLayout({
   children,
@@ -45,12 +41,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <StyledComponentsRegistry>
-          <ThemeProvider theme={theme}>
-            <GlobalStyle />
-            {children}
-          </ThemeProvider>
-        </StyledComponentsRegistry>
+        <Providers>{children}</Providers>
         <Script id="yandex-metrica" type="text/javascript">
           {`
     (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};

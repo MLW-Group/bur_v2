@@ -47,12 +47,13 @@ export function InCost() {
     <InCostContainer>
       {dummy.map((el, i) => (
         <BlockContainer
+          key={i}
           $borderBottom="2pxGray"
           $alignItems="center"
           $justifyContent={el.align == "left" ? "FS" : "FS"}
           $flexDirection={el.align == "left" ? "reverse" : "row"}
         >
-          <BlockNumber key={i}>
+          <BlockNumber>
             <Block $flexDirection="col">
               <Text
                 $size="200"
