@@ -72,7 +72,7 @@ export function InCost() {
             $gap="M"
             $alignItems={el.align == "left" ? "FE" : "FS"}
           >
-            <Text
+            {/* <Text
               $size="40"
               $fontStyle="italic"
               $color="white"
@@ -81,7 +81,19 @@ export function InCost() {
               $textAlign="center"
             >
               {el.title}
-            </Text>
+            </Text> */}
+            <h2
+              style={{
+                fontSize: 40,
+                fontStyle: "italic",
+                fontFamily: "oswald",
+                textTransform: "uppercase",
+                textAlign: "center",
+                color: "white",
+              }}
+            >
+              {el.title}
+            </h2>
             <Text $size="24" $color="white" $textAlign="center">
               {el.subTitle}
             </Text>

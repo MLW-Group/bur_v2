@@ -70,13 +70,19 @@ export function SliderPage() {
       </BlockHalf>
       <BlockHalf>
         <BlockCenterRight>
-          <Text
-            $size={width && width < 700 ? "40" : "80"}
-            $transform="upper"
-            $fontWeight="XXL"
+          <h3
+            style={{
+              fontSize: width && width < 700 ? 40 : 80,
+              textTransform: "uppercase",
+              fontWeight: "700",
+              fontFamily: "oswald",
+            }}
+            // $size={width && width < 700 ? "40" : "80"}
+            // $transform="upper"
+            // $fontWeight="XXL"
           >
             О компании
-          </Text>
+          </h3>
           <Text
             $size="M"
             $fontFamily="open"
@@ -109,7 +115,35 @@ export function SliderPage() {
         <BlockCenterBottom>
           <BlockBot>
             <Block $flexDirection="col" $gap="S">
-              <Text $size="medium" $fontWeight="XXL" $color="orange">
+              <h3
+                style={{
+                  fontFamily: "oswald",
+                  display: "flex",
+                  flexDirection: "column",
+                  textAlign: "center",
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: 65,
+                    fontWeight: "700",
+                    color: "#FF5F1E",
+                  }}
+                >
+                  500+
+                </span>
+                <span
+                  style={{
+                    fontSize: 20,
+                    fontWeight: 700,
+                    textAlign: "center",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  СКВАЖИН ПРОБУРЕНО ЗА ГОДЫ РАБОТЫ
+                </span>
+              </h3>
+              {/* <Text $size="medium" $fontWeight="XXL" $color="orange">
                 500+
               </Text>
               <Text
@@ -119,48 +153,52 @@ export function SliderPage() {
                 $textAlign="center"
               >
                 СКВАЖИН ПРОБУРЕНО ЗА ГОДЫ РАБОТЫ
-              </Text>
-              {/* <Text
-                $size="XS"
-                $textAlign="center"
-                $color="black"
-                $fontFamily="open"
-              >
-                Примерное описание
               </Text> */}
             </Block>
           </BlockBot>
           <BlockBot>
             <Block $flexDirection="col" $gap="S">
-              <Block>
-                <Text
-                  $size="40"
-                  $fontWeight="XXL"
-                  $color="orange"
-                  $transform="upper"
+              <h3
+                style={{
+                  fontFamily: "oswald",
+                  display: "flex",
+                  flexDirection: "column",
+                  textAlign: "center",
+                }}
+              >
+                <div>
+                  <span
+                    style={{
+                      fontSize: 45,
+                      fontWeight: "700",
+                      color: "#FF5F1E",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    более
+                  </span>
+                  <span
+                    style={{
+                      fontSize: 65,
+                      fontWeight: "700",
+                      color: "#FF5F1E",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    30
+                  </span>
+                </div>
+                <span
+                  style={{
+                    fontSize: 20,
+                    fontWeight: 700,
+                    textAlign: "center",
+                    textTransform: "uppercase",
+                  }}
                 >
-                  более
-                </Text>
-                <Text $size="medium" $fontWeight="XXL" $color="orange">
-                  30
-                </Text>
-              </Block>
-              <Text
-                $size="L"
-                $fontWeight="XXL"
-                $transform="upper"
-                $textAlign="center"
-              >
-                ЕДИНИЦ ТЕХНИКИ В АВТОПАРКЕ
-              </Text>
-              {/* <Text
-                $size="XS"
-                $textAlign="center"
-                $color="black"
-                $fontFamily="open"
-              >
-                Примерное описание
-              </Text> */}
+                  ЕДИНИЦ ТЕХНИКИ В АВТОПАРКЕ
+                </span>
+              </h3>
             </Block>
           </BlockBot>
         </BlockCenterBottom>

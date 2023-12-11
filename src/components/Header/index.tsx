@@ -14,6 +14,7 @@ export function Header() {
   // @ts-ignore
   const { width, slug } = useContext(AppContext);
   const arr = LinkByCitySlug[slug].slice(0, 4);
+
   return (
     <HeaderContainer>
       {/* @ts-ignore */}
@@ -33,13 +34,14 @@ export function Header() {
         </Text>
       </Block>
       {/* @ts-ignore */}
-      <Block $gap="M">
+      <Block $gap="M" $flexDirection={width && width < 500 ? "col" : "row"}>
         {arr.map((el) => (
           <Link
             href={el.url}
             $size="XL"
             $transform="upper"
             $color="orange"
+            title={`Бурение скважин в ${el.name}`}
             $fontWeight="XXL"
           >
             {el.name}

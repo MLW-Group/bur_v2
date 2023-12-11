@@ -63,20 +63,6 @@ export function UnderHeader() {
           </Text>
         </Block>
       </Block>
-      {/* <Block $justifyContent="SE" $gap="XL">
-        {dummy.map((el, i) => (
-          <Link
-            key={i}
-            $size="XS"
-            $fontFamily="open"
-            $color="white"
-            $transform="upper"
-            $fontWeight="XL"
-          >
-            {el.name}
-          </Link>
-        ))}
-      </Block> */}
       <Block>
         <Block
           $flexDirection="col"

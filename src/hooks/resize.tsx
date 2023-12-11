@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 
 function Resize() {
-  const [width, setWidth] = useState(2000);
+  const [width, setWidth] = useState<number>();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -15,8 +15,8 @@ function Resize() {
       return () => window.removeEventListener("resize", handleResize);
     }
   }, []);
-  
-  return { width }; 
+
+  return { width };
 }
 
 export default Resize;

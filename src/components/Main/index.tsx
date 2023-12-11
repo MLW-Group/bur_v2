@@ -17,6 +17,7 @@ import { Button } from "../Button/styled";
 import { useContext, useState } from "react";
 import { AppContext } from "@/context/app-context";
 import { BannerSlugTitle } from "@/dummy/bannerSlug";
+import { H1 } from "../H1/styled";
 export function Main() {
   // @ts-ignore
   const { width, modal, slug } = useContext(AppContext);
@@ -25,8 +26,8 @@ export function Main() {
     <MainContainer>
       <BlockTitle>
         <BlockCenter>
-          <Block $justifyContent="center" $flexDirection="col" $gap="medium">
-            <Text
+          <Block $justifyContent="center" $flexDirection="col">
+            {/* <Text
               $size={width && width < 650 ? "70" : "biggest"}
               $color="white"
               $fontFamily="oswald"
@@ -34,8 +35,9 @@ export function Main() {
               $fontWeight="XXL"
               $textAlign="center"
             >
-              бурение
+              <span>бурение</span>
             </Text>
+
             <Text
               $size={width && width < 650 ? "XXL" : "medium"}
               $color="white"
@@ -54,9 +56,39 @@ export function Main() {
               $fontWeight="XXL"
               $textAlign="center"
             >
-              {/* от 1000 руб./м */}
-              {title}
-            </Text>
+              <span>{title}</span>
+            </Text> */}
+            <H1
+              $size={width && width < 650 ? "XXL" : "medium"}
+              $textAlign="center"
+              $fontWeight="small"
+              $transform="upper"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                color: "white",
+              }}
+            >
+              <span
+                style={{
+                  fontSize: width && width < 650 ? 70 : 130,
+                  textTransform: "uppercase",
+                  fontWeight: "700",
+                }}
+              >
+                Бурение
+              </span>
+              скважин на воду
+              <span
+                style={{
+                  color: "#FF5F1E",
+                  fontWeight: "700",
+                  fontSize: width && width < 650 ? 40 : 75,
+                }}
+              >
+                {title}
+              </span>
+            </H1>
           </Block>
         </BlockCenter>
       </BlockTitle>

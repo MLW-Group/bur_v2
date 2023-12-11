@@ -73,13 +73,15 @@ export function Footer() {
             $justifyContent="center"
             $gap="M"
           >
-            {arr.map((el) => (
+            {arr.map((el, i) => (
               <Link
+                key={i}
                 href={el.url}
                 $size="XL"
                 $color="white"
                 $transform="upper"
                 $fontWeight="XXL"
+                title={`Бурение скважин в ${el.name}`}
               >
                 {el.name}
               </Link>
