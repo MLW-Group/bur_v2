@@ -89,6 +89,7 @@ const shoes = [
   "kusa",
   "karabash",
   "ust-katav",
+  
 ];
 export default function Home({
   params,
@@ -98,7 +99,7 @@ export default function Home({
   const { width } = Resize();
   const [openModal, setOpenModal] = useState(false);
   const [openModalRe, setOpenModalRe] = useState(false);
-  if (!shoes.includes(params.slug)) return notFound();
+  // if (!shoes.includes(params.slug)) return notFound();
   return (
     <AppContext.Provider
       // @ts-ignore

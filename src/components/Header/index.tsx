@@ -33,7 +33,6 @@ export function Header() {
           {WorkTime}
         </Text>
       </Block>
-      {/* @ts-ignore */}
       <Block $gap="M" $flexDirection={width && width < 500 ? "col" : "row"}>
         {arr.map((el) => (
           <Link
