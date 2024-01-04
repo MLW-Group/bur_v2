@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { YMaps, Placemark, Map, Clusterer } from "@pbe/react-yandex-maps";
 import { Button, Input, Modal } from "antd";
+import { Text } from "@/components/Text/styled";
+import { EditOutlined, DeleteFilled } from '@ant-design/icons';
 
 const Block = styled.div``;
 
@@ -14,12 +16,11 @@ export default function Main() {
       name: "Скважина 20м, радиус 30м",
     },
   ]);
-
+  const [nameMark, setNameMark] = useState('');
+  const [editingId, setEditingId] = useState<number | null>(null);
   const [openModal, setOpenModal] = useState(false)
 
   const [data, setData] = useState({})
-
-  const [nameMark, setNameMark] = useState('')
 
   const handleAddMark = (event: any) => {
     setOpenModal(true)
@@ -38,7 +39,10 @@ export default function Main() {
     // @ts-ignore
     setMarks((prevMarks) => [
       ...prevMarks,
-      data
+      {
+        ...data,
+        name: nameMark
+      }
     ]);
     setOpenModal(false)
   }
@@ -53,7 +57,25 @@ export default function Main() {
       )
     );
   };
+  const saveEditedName = () => {
+    setMarks((prevMarks) =>
+      prevMarks.map((mark) =>
+        mark.id === editingId
+          ? { ...mark, name: nameMark }
+          : mark
+      )
+    );
+    setEditingId(null);
+  };
 
+  const cancelEditing = () => {
+    setEditingId(null);
+    setNameMark('');
+  };
+
+  const deleteMark = (id: number) => {
+    setMarks((prevMarks) => prevMarks.filter((mark) => mark.id !== id));
+  };
   return (
     <Block>
       <Modal
@@ -101,7 +123,7 @@ export default function Main() {
                   openEmptyHint: true,
                   draggable: true,
                 }}
-                onDragEnd={(event) => handlePlacemarkDrag(event, el.id)}
+                onDragEnd={(event: any) => handlePlacemarkDrag(event, el.id)}
                 properties={{
                   hintContent: el.name,
                 }}
@@ -110,13 +132,60 @@ export default function Main() {
           </Clusterer>
         </Map>
       </YMaps>
-      <div>
-        {marks.map((el) => (
-          <div style={{
-            display: 'flex', gap: 10
-          }}>
-            <p style={{ color: 'white' }}>{el.name}</p>
-            <p style={{ color: 'white' }}>{el.lat},{el.long}</p>
+      <div style={{ overflow: 'auto', maxHeight: 500, }}>
+        {marks.map((el, index) => (
+          <div
+            key={index}
+            style={{
+              display: 'flex',
+              gap: 30,
+              borderWidth: 1,
+              borderColor: '#FF5F1E',
+              alignItems: 'center',
+              padding: '15px 10px',
+            }}
+          >
+            <Text $size="XL" $transform="upper" $color="orange" $fontWeight="XL">
+              {el.id}
+            </Text>
+            {el.id !== editingId ? (
+              <div
+                style={{
+                  minWidth: '400px',
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                }}
+              >
+                <Text $size="XL" $transform="upper" $color="white" $fontWeight="XL" style={{ minWidth: 400 }}>
+                  {el.name}
+                </Text>
+              </div>
+            ) : (
+              <div style={{ minWidth: '400px', display: 'flex', flexWrap: 'wrap' }}>
+                <Input
+                  value={nameMark}
+                  placeholder="Введите название метки"
+                  onChange={(e) => setNameMark(e.target.value)}
+                  onPressEnter={saveEditedName}
+                // onBlur={cancelEditing}
+                />
+              </div>
+            )}
+            <Text $size="XL" $transform="upper" $color="white" $fontWeight="XL" style={{minWidth:500}}>
+              {el.lat},{el.long}
+            </Text>
+            <EditOutlined onClick={() => setEditingId(el.id)} style={{ color: 'white', fontSize: 30 }} />
+            <DeleteFilled onClick={() => deleteMark(el.id)} style={{ color: 'red', fontSize: 30 }} />
+            {el.id == editingId &&
+              <div style={{
+                display: 'flex',
+                transition: '0.3s ease-in-out',
+                gap: 10
+              }}>
+                <Button type="primary" onClick={saveEditedName}>Сохранить</Button>
+                <Button onClick={cancelEditing}>Отменить</Button>
+              </div>
+            }
           </div>
         ))}
       </div>

@@ -29,6 +29,20 @@ export default function MapPage() {
     acc[firstLetter].push(item);
     return acc;
   }, {});
+  const marks = [
+    {
+      id: 0,
+      lat: 55.177884,
+      long: 59.668194,
+      name: "Скважина 20м, радиус 30м",
+    },
+    {
+      id: 1,
+      lat: 55.176729671293785,
+      long: 59.66639155554139,
+      name: "Скважина 30м, радиус 40м",
+    }
+  ]
   const letters = Object.keys(groupedByLetter).sort();
   return (
     <Block>
@@ -70,6 +84,7 @@ export default function MapPage() {
                   flexDirection: "column",
                 }}
               >
+                {/* @ts-ignore */}
                 {groupedByLetter[letter].map(
                   (
                     word: {
@@ -108,7 +123,7 @@ export default function MapPage() {
         <Map
           width={"100%"}
           height={"55%"}
-          defaultState={{ center: [55.177884, 59.668194], zoom: 15 }}
+          defaultState={{ center: [55.177884, 59.668194], zoom: 12 }}
         >
           <Clusterer
             options={{
@@ -116,23 +131,23 @@ export default function MapPage() {
               groupByCoordinates: false,
             }}
           >
-            <Placemark
-              defaultGeometry={[55.177884, 59.668194]}
-              options={{
-                preset: "islands#circleIcon",
-                iconColor: "orange",
-                hideIconOnBalloonOpen: false,
-                openEmptyHint: true,
-                draggable: true
-              }}
-              properties={{
-                hintContent: "Скважина 20м, радиус 30м",
-              }}
-            />
+            {marks.map((el) => (
+              <Placemark
+                defaultGeometry={[el.lat, el.long]}
+                options={{
+                  preset: "islands#circleIcon",
+                  iconColor: "orange",
+                  hideIconOnBalloonOpen: false,
+                  openEmptyHint: true,
+                }}
+                properties={{
+                  hintContent: el.name,
+                }}
+              />
+            ))}
           </Clusterer>
         </Map>
       </YMaps>
-      <Image src={Bur} alt="" width={24} height={24} />
     </Block>
   );
 }
