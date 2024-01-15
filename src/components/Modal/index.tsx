@@ -1,9 +1,17 @@
-//@ts-nocheck
-import styles from "@/styles/Home.module.css";
-import axios from "axios";
-import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import InputMask from "react-input-mask";
+import {
+  ModalContainer,
+  Container,
+  RowCenter,
+  ModalBody,
+  ModalHeader,
+  Close,
+  BodyModal,
+} from "./styled";
+import { Text } from "../Text/styled";
+import { Button } from "../Button/styled";
+import axios from "axios";
 
 const Modal = ({
   setOpenModal,
@@ -17,25 +25,29 @@ const Modal = ({
   const [error, setError] = useState("");
 
   const [phone, setPhone] = useState("");
+
   const sendForm = async () => {
     if (phone.length == 0 || phone.includes("_")) {
       setError("Заполните номер телефона");
     } else {
       if (process.env.NODE_ENV !== "development") {
+        // @ts-ignore
         ym(94753079, "reachGoal", "modalPhone1");
       }
       await axios.post(`/api`, {
         phone,
       });
       if (process.env.NODE_ENV !== "development") {
+        // @ts-ignore
         ym(94753079, "reachGoal", "modalPhone2");
       }
       setOpenModal(false);
       setOpenModalRe(true);
     }
+    // }
   };
   const ref = useRef();
-  function useOutsideClick(ref) {
+  function useOutsideClick(ref: any) {
     useEffect(() => {
       function handleClickOutside(e: any) {
         if (ref.current && !ref.current.contains(e.target)) {
@@ -50,18 +62,21 @@ const Modal = ({
   }
   useOutsideClick(ref);
   return (
-    <div className={styles.modal}>
-      <div className={styles.container}>
-        <div className={styles.rowCenter}>
-          <div className={styles.modalBody} ref={ref}>
-            <div className={styles.modalHeader}>
-              <p className={styles.close} onClick={() => setOpenModal(false)}>
-                X
-              </p>
-            </div>
-            <div className={styles.bodyModal}>
-              <h2>{title}</h2>
-              <p>Наш специалист свяжется с вами в течение 15 минут</p>
+    <ModalContainer>
+      <Container>
+        <RowCenter>
+          {/* @ts-ignore */}
+          <ModalBody ref={ref}>
+            <ModalHeader>
+              <Close onClick={() => setOpenModal(false)}>X</Close>
+            </ModalHeader>
+            <BodyModal>
+              <Text $size="26" $fontWeight="XXL">
+                {title}
+              </Text>
+              <Text $size="S" $fontFamily="open">
+                Наш специалист свяжется с вами в течение 15 минут
+              </Text>
               <InputMask
                 alwaysShowMask={true}
                 onChange={(e: ChangeEvent<HTMLInputElement>) => {
@@ -69,30 +84,52 @@ const Modal = ({
                 }}
                 mask="+7 999 999 99 99"
                 placeholder="Телефон*"
-              ></InputMask>
+                style={{
+                  padding: "10px 20px",
+                  outline: "none",
+                  border: "1px solid #ccc",
+                  borderRadius: 4,
+                  backgroundColor: "#FFF",
+                  color: "#bab1b1",
+                  fontSize: 20,
+                }}
+              />
               {error && (
-                <p
-                  style={{
-                    // textAlign: "center",
-                    color: "red",
-                    fontWeight: 500,
-                    fontSize: "20px",
-                  }}
+                <Text
+                  $size="M"
+                  $fontWeight="L"
+                  $color="error"
+                  $fontFamily="open"
                 >
                   {error}
-                </p>
+                </Text>
               )}
-              <button onClick={sendForm}>Отправить</button>
-              <p className={styles.soglashenie}>
+              <Button
+                $size="L"
+                $mix="10x6"
+                $borderRadius="4px"
+                onClick={sendForm}
+                $background="yellow"
+                $fontFamily="open"
+              >
+                Отправить
+              </Button>
+              {/* <Text $size="XS" $fontFamily="open" $textAlign="FE">
                 Нажимая на кнопку, вы принимаете
-                <Link href="/">Положение</Link>и<Link href="/">Согласие</Link>
+                <Link href="/" style={{ margin: "0 5px", color: "blue" }}>
+                  Положение
+                </Link>
+                и
+                <Link href="/" style={{ margin: "0 5px", color: "blue" }}>
+                  Согласие
+                </Link>
                 на обработку персональных данных.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+              </Text> */}
+            </BodyModal>
+          </ModalBody>
+        </RowCenter>
+      </Container>
+    </ModalContainer>
   );
 };
 

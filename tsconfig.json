@@ -5,18 +5,14 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "strictNullChecks": false,
-"noImplicitAny": false
-,
     "plugins": [
       {
         "name": "next"
@@ -24,7 +20,13 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@/public/*": ["./public/*"]
+      "@const/*": ["./src/const/*"],
+      "@comp/*": ["./src/components/*"],
+      "@lib/*": ["./src/lib/*"],
+      "@types/*": ["./src/types/*"],
+      "@texts/*": ["./src/texts/*"],
+      "@svg/*": ["./public/svg/*"],
+      "@img/*": ["./public/img/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

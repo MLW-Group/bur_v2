@@ -1,5 +1,5 @@
 export const LinkByCitySlug = {
-  main: [
+  chelyabinsk: [
     {
       title: "Скважины на воду в Кусе",
       name: "Куса",
@@ -797,7 +797,7 @@ export const LinkByCitySlug = {
       url: "/ekb",
     },
   ],
-  "zlatoust": [
+  zlatoust: [
     {
       title: "Скважины на воду в Кусе",
       name: "Куса",

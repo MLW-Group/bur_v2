@@ -1,54 +1,69 @@
-import { LinkByCitySlug } from "@/dummy/links";
-import LogoBur from "@/public/logo.svg";
-import Phone from "@/public/phone.svg";
-import styles from "@/styles/Home.module.css";
+import { HeaderContainer } from "./styled";
 import Image from "next/image";
-import Link from "next/link";
+import { Block } from "../Block/styled";
+import ClockSVG from "@svg/time.svg";
+import Address from "@svg/address.svg";
+import { WorkTime, WorkTimePreText } from "@/texts/works";
+import { OurAddress, OurAddressText } from "@/texts/addresses";
+import { Link } from "../Link/styled";
+import { Text } from "../Text/styled";
+import { AppContext } from "@/context/app-context";
+import { useContext } from "react";
+import { LinkByCitySlug } from "@/dummy/links";
+export function Header() {
+  // @ts-ignore
+  const { width, slug } = useContext(AppContext);
+  const arr = LinkByCitySlug[slug].slice(0, 4);
 
-export default function Header({
-  slug,
-}: {
-  slug: keyof typeof LinkByCitySlug;
-}) {
   return (
-    <header className={styles.header}>
-      <div className={styles.headerCenter}>
-        <div className={styles.logo}>
-          <Image
-            src={LogoBur}
-            priority
-            width={60}
-            height={60}
-            alt="Центр Бурения"
-          />
-          <p>Центр Бурения</p>
-        </div>
-        <div className={styles.cities}>
-          {LinkByCitySlug[slug].map((el, idx) => (
-            <div key={idx} className={styles.citiesRow}>
-              <Link title={el.title} href={el.url}>
-                {el.name}
-                {LinkByCitySlug[slug].length - 1 !== idx && ","}
-              </Link>
-            </div>
-          ))}
-        </div>
-        <div className={styles.phone}>
-          <div className={styles.phoneColumn}>
-            <Link style={{ color: "#FFF" }} href={`tel:8(904) 974-60-60}>`}>
-              8 (904) 974-60-60
-            </Link>
-            <p>Звоните сейчас</p>
-          </div>
-          <Image
-            loading="lazy"
-            src={Phone}
-            width={60}
-            height={60}
-            alt="Телефон"
-          />
-        </div>
-      </div>
-    </header>
+    <HeaderContainer>
+      {/* @ts-ignore */}
+      <Block $flexDirection={width < 540 && "col"} $gap={width < 500 && "XS"}>
+        <Image alt="123" src={ClockSVG} />
+        <Text $size="M" $color="orange" $mix="0x10" $fontFamily="open">
+          {WorkTimePreText}:
+        </Text>
+        <Text
+          $size="L"
+          $color="white"
+          $fontWeight="XXL"
+          $transform="upper"
+          $fontFamily="oswald"
+        >
+          {WorkTime}
+        </Text>
+      </Block>
+      <Block $gap="M" $flexDirection={width && width < 500 ? "col" : "row"}>
+        {arr.map((el) => (
+          <Link
+            href={el.url}
+            $size="XL"
+            $transform="upper"
+            $color="orange"
+            title={`Бурение скважин в ${el.name}`}
+            $fontWeight="XXL"
+          >
+            {el.name}
+          </Link>
+        ))}
+      </Block>
+      {/* @ts-ignore */}
+      <Block $flexDirection={width < 500 && "col"} $gap={width < 500 && "XS"}>
+        <Image alt="123" src={Address} />
+        <Text $size="M" $color="orange" $mix="0x10" $fontFamily="open">
+          {OurAddressText}
+        </Text>
+        <Link
+          href="/#addresses"
+          $size="M"
+          $color="white"
+          $fontWeight="XXL"
+          $transform="upper"
+          $fontFamily="oswald"
+        >
+          {OurAddress}
+        </Link>
+      </Block>
+    </HeaderContainer>
   );
 }

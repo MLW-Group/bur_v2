@@ -1,35 +1,105 @@
-import { thrinagle } from '@/dummy/thriangle/thriangle';
-import styles from '@/styles/Home.module.css';
-import Image from 'next/image';
-import Thriangle from '../../../public/thriangle.svg';
-export default function InCost() {
+import { InCostContainer, BlockNumber, BlockContainer } from "./styled";
+import { useContext } from "react";
+import { AppContext } from "@/context/app-context";
+import { Text } from "../Text/styled";
+import { Block } from "../Block/styled";
+export function InCost() {
+  // @ts-ignore
+  const { width } = useContext(AppContext);
+  const dummy = [
+    {
+      number: "01",
+      title: "Выезд буровой машины до места работы",
+      subTitle:
+        "Буровая машина с выездом на место работы. Эффективное бурение скважин для надежного водоснабжения.",
+      align: "left",
+    },
+    {
+      number: "02",
+      title: "Бурение скважин",
+      subTitle:
+        "Профессиональное бурение скважин – надежное водоснабжение для вашего объекта.",
+      align: "right",
+    },
+    {
+      number: "03",
+      title: "Обсадка скважины",
+      subTitle:
+        "Экспертная обсадка скважин для долгосрочной и безопасной работы вашего водоснабжения.",
+      align: "left",
+    },
+    {
+      number: "04",
+      title: "Продувка скважины до визуально чистой воды",
+      subTitle:
+        "Продувка скважин до кристально чистой воды – ваш надежный путь к безупречному водоснабжению.",
+      align: "right",
+    },
+    {
+      number: "05",
+      title: "Выдача паспорта скважины",
+      subTitle:
+        "Полная документация: выдача паспорта скважины для прозрачного контроля и управления вашим водоснабжением.",
+      align: "left",
+    },
+  ];
   return (
-    <section className={styles.wrapper} style={{ backgroundColor: '#2c2c2c' }}>
-      <div className={`${styles.container}`}>
-        <div className={styles.content} style={{ gap: 20, marginTop: 20 }}>
-          <h2 style={{ color: 'white' }}>В стоимость бурения входит</h2>
-          <div className={styles.shape} />
-          <div className={styles.row}>
-            <div className={styles.thrinagleRow}>
-              {thrinagle.map((el) => (
-                <article
-                  key={el.number}
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    width: '50%',
-                  }}>
-                  <div className={styles.thriangleNumber}>
-                    <Image loading="lazy" src={Thriangle} alt="" width={90} height={90} />
-                    <div className={styles.number}>{el.number}</div>
-                  </div>
-                  <p className={styles.thriangleName}>{el.name}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <InCostContainer>
+      {dummy.map((el, i) => (
+        <BlockContainer
+          key={i}
+          $borderBottom="2pxGray"
+          $alignItems="center"
+          $justifyContent={el.align == "left" ? "FS" : "FS"}
+          $flexDirection={el.align == "left" ? "reverse" : "row"}
+        >
+          <BlockNumber>
+            <Block $flexDirection="col">
+              <Text
+                $size="200"
+                $color="white"
+                $textFill="transparent"
+                $textStroke="white"
+                $fontWeight="XXL"
+              >
+                {el.number}
+              </Text>
+            </Block>
+          </BlockNumber>
+          <BlockContainer
+            $flexDirection="col"
+            $height="100%"
+            $gap="M"
+            $alignItems={el.align == "left" ? "FE" : "FS"}
+          >
+            {/* <Text
+              $size="40"
+              $fontStyle="italic"
+              $color="white"
+              $fontWeight="XXL"
+              $transform="upper"
+              $textAlign="center"
+            >
+              {el.title}
+            </Text> */}
+            <h2
+              style={{
+                fontSize: 40,
+                fontStyle: "italic",
+                fontFamily: "oswald",
+                textTransform: "uppercase",
+                textAlign: "center",
+                color: "white",
+              }}
+            >
+              {el.title}
+            </h2>
+            <Text $size="24" $color="white" $textAlign="center">
+              {el.subTitle}
+            </Text>
+          </BlockContainer>
+        </BlockContainer>
+      ))}
+    </InCostContainer>
   );
 }
