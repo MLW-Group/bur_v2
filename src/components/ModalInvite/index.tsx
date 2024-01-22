@@ -13,10 +13,10 @@ import { Text } from "../Text/styled";
 import { Button } from "../Button/styled";
 import axios from "axios";
 
-const Modal = ({
+const ModalInvite = ({
   setOpenModal,
   setOpenModalRe,
-  title = "Рассчитать стоимость",
+  title = "Приглашаем к сотрудничеству",
 }: {
   setOpenModal: (value: boolean) => void;
   setOpenModalRe: (value: boolean) => void;
@@ -117,17 +117,7 @@ const Modal = ({
                   Отправить
                 </Text>
               </Button>
-              {/* <Text $size="XS" $fontFamily="open" $textAlign="FE">
-                Нажимая на кнопку, вы принимаете
-                <Link href="/" style={{ margin: "0 5px", color: "blue" }}>
-                  Положение
-                </Link>
-                и
-                <Link href="/" style={{ margin: "0 5px", color: "blue" }}>
-                  Согласие
-                </Link>
-                на обработку персональных данных.
-              </Text> */}
+
             </BodyModal>
           </ModalBody>
         </RowCenter>
@@ -136,4 +126,4 @@ const Modal = ({
   );
 };
 
-export default Modal;
+export default ModalInvite;

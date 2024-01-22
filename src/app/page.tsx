@@ -19,6 +19,8 @@ import { LinkByCitySlug } from "@/dummy/links";
 import ModalRe from "@/components/ModalRe";
 import { InCost } from "@/components/InCost";
 import { OurWorks } from "@/components/OurWorks";
+import { Trust } from "@/components/Trust";
+import ModalInvite from "@/components/ModalInvite";
 const Block = styled.div`
   width: 100vw;
   background-image: linear-gradient(
@@ -49,12 +51,15 @@ export default function Home() {
   const { width } = Resize();
   const [openModal, setOpenModal] = useState(false);
   const [openModalRe, setOpenModalRe] = useState(false);
+  const [openInvite, setOpenInvite] = useState(false);
   return (
     <AppContext.Provider
       value={{
         width,
         modal: { openModal, setOpenModal },
         setOpenModalRe,
+        openInvite,
+        setOpenInvite,
         slug: "chelyabinsk",
       }}
     >
@@ -66,6 +71,7 @@ export default function Home() {
         <SliderPage />
         <Offer />
         <Receive />
+        <Trust />
         <InCost />
         <OurWorks />
         <Order />
@@ -73,6 +79,9 @@ export default function Home() {
         <Footer />
         {openModal && (
           <Modal setOpenModal={setOpenModal} setOpenModalRe={setOpenModalRe} />
+        )}
+        {openInvite && (
+          <ModalInvite setOpenModal={setOpenInvite} setOpenModalRe={setOpenModalRe} />
         )}
         {openModalRe && <ModalRe setOpenModalRe={setOpenModalRe} />}
       </Block>
