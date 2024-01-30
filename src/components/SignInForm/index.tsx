@@ -27,12 +27,10 @@ function SignInForm() {
                 email,
                 password,
             })
-            console.log("🚀 ~ handleOnSubmit ~ data:", data)
             localStorage.setItem('Token', data.accessToken)
             router.push(`/admin/panel`)
 
         } catch (error: any) {
-            console.log("🚀 ~ handleOnSubmit ~ error:", error)
             alert(`Ошибка авторизации: ${error.response.data.message}`);
 
         }

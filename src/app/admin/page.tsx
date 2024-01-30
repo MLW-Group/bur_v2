@@ -2,9 +2,9 @@
 import Main from "@/components/Admin/Main";
 import Sidebar from "@/components/Admin/Sidebar";
 import { Header } from "@/components/Header";
-import '../global.css'
+import "../global.css";
 import SignInForm from "@/components/SignInForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { AppContext } from "@/context/app-context";
 const Block = styled.div`
@@ -16,19 +16,19 @@ const Block = styled.div`
     ),
     url(/img/grid.png), black 50% / cover no-repeat;
   height: 100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 export default function AdminPage() {
-  const token = localStorage.getItem('Token')
-
+  const [token, setToken] = useState<null | string>();
+  useEffect(() => {
+    setToken(localStorage.getItem("Token")! as string);
+  }, []);
   return (
-    <AppContext.Provider
-      value={{ token }}
-    >
+    <AppContext.Provider value={{ token }}>
       <Block>
-        <div className={'container'} id="container">
+        <div className={"container"} id="container">
           <SignInForm />
           <div className="overlay-container">
             <div className="overlay">
@@ -39,7 +39,7 @@ export default function AdminPage() {
             </div>
           </div>
         </div>
-      </Block >
+      </Block>
     </AppContext.Provider>
   );
 }

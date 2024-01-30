@@ -1,5 +1,4 @@
 "use client";
-import YouTube from "react-youtube";
 import { dummyVideo } from "@/dummy/video/video";
 import styles from "@/styles/Home.module.css";
 import { useState } from "react";

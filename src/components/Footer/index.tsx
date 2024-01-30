@@ -39,6 +39,7 @@ export function Footer() {
       subTitle: OurAddress,
     },
   ];
+  // @ts-ignore
   const arr = LinkByCitySlug[slug].slice(4);
   return (
     <FooterContainer>
@@ -73,6 +74,7 @@ export function Footer() {
             $justifyContent="center"
             $gap="M"
           >
+            {/* @ts-ignore */}
             {arr.map((el, i) => (
               <Link
                 key={i}

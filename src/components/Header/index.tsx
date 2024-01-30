@@ -13,6 +13,7 @@ import { LinkByCitySlug } from "@/dummy/links";
 export function Header() {
   // @ts-ignore
   const { width, slug } = useContext(AppContext);
+  // @ts-ignore
   const arr = LinkByCitySlug[slug].slice(0, 4);
 
   return (
@@ -34,6 +35,7 @@ export function Header() {
         </Text>
       </Block>
       <Block $gap="M" $flexDirection={width && width < 500 ? "col" : "row"}>
+         {/* @ts-ignore */}
         {arr.map((el) => (
           <Link
             href={el.url}

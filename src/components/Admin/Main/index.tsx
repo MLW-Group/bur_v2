@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { YMaps, Placemark, Map, Clusterer } from "@pbe/react-yandex-maps";
 import { Button, Input, Modal } from "antd";
 import { Text } from "@/components/Text/styled";
-import { EditOutlined, DeleteFilled } from '@ant-design/icons';
+import { EditOutlined, DeleteFilled } from "@ant-design/icons";
 import axios from "axios";
 import { AppContext } from "@/context/app-context";
 
@@ -13,57 +13,66 @@ type Marks = {
   name: string;
   description: string | null;
   latitude: number;
-  longitude: number
-}[]
+  longitude: number;
+}[];
 export default function Main() {
-  const token = localStorage.getItem('Token');
+  const [token, setToken] = useState<null | string>();
 
   const [marks, setMarks] = useState<Marks>([]);
-  const [nameMark, setNameMark] = useState('');
+  const [nameMark, setNameMark] = useState("");
   const [editingId, setEditingId] = useState<string | null>(null);
-  const [openModal, setOpenModal] = useState(false)
-  const [data, setData] = useState({})
-  const [coords, setCoords] = useState<number[]>([])
+  const [openModal, setOpenModal] = useState(false);
+  const [data, setData] = useState({});
+  const [coords, setCoords] = useState<number[]>([]);
 
   const getAllMarks = async () => {
     try {
-      const { data } = await axios.get(`https://bur-api.macwel.app/api/v1/marker/`, {
-        withCredentials: true,
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      console.log("🚀 ~ getAllMarks ~ data:", data)
-      setMarks(data)
-
+      const { data } = await axios.get(
+        `https://bur-api.macwel.app/api/v1/marker`,
+        {
+          // withCredentials: true,
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      setMarks(data);
     } catch (error) {
-      console.log("🚀 ~ getAllMarks ~ error:", error)
+      console.log("🚀 ~ getAllMarks ~ error:", error);
     }
-  }
+  };
+
   useEffect(() => {
-    getAllMarks()
-  }, [])
+    setToken(localStorage.getItem("Token")! as string);
+  }, []);
+
+  useEffect(() => {
+    getAllMarks();
+  }, [token]);
 
   const handleAddMark = async (event: any) => {
-    setOpenModal(true)
+    setOpenModal(true);
     const clickedCoordinates = event.get("coords");
-    setCoords([clickedCoordinates[0], clickedCoordinates[1]])
+    setCoords([clickedCoordinates[0], clickedCoordinates[1]]);
   };
 
   const saveMark = async () => {
     try {
-      const { data } = await axios.post(`https://bur-api.macwel.app/api/v1/marker/create`, {
-        latitude: coords[0],
-        longitude: coords[1],
-        name: nameMark
-      }, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      console.log("🚀 ~ handleAddMark ~ data:", data)
-      getAllMarks()
+      const { data } = await axios.post(
+        `https://bur-api.macwel.app/api/v1/marker/create`,
+        {
+          latitude: coords[0],
+          longitude: coords[1],
+          name: nameMark,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      getAllMarks();
     } catch (error) {
-      console.log("🚀 ~ handleAddMark ~ error:", error)
+      console.log("🚀 ~ handleAddMark ~ error:", error);
     }
-    setOpenModal(false)
-  }
+    setOpenModal(false);
+  };
 
   const handlePlacemarkDrag = async (event: any, markId: string) => {
     const newCoords = event.get("target").geometry.getCoordinates();
@@ -75,17 +84,20 @@ export default function Main() {
     //   )
     // );
     try {
-      const { data } = await axios.post(`https://bur-api.macwel.app/api/v1/marker/update`, {
-        id: markId,
-        latitude: newCoords[0],
-        longitude: newCoords[1]
-      }, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      console.log("🚀 ~ handleAddMark ~ data:", data)
-      getAllMarks()
+      const { data } = await axios.post(
+        `https://bur-api.macwel.app/api/v1/marker/update`,
+        {
+          id: markId,
+          latitude: newCoords[0],
+          longitude: newCoords[1],
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      getAllMarks();
     } catch (error) {
-      console.log("🚀 ~ handleAddMark ~ error:", error)
+      console.log("🚀 ~ handleAddMark ~ error:", error);
     }
   };
   const saveEditedName = async () => {
@@ -97,37 +109,43 @@ export default function Main() {
     //   )
     // );
     try {
-      const { data } = await axios.post(`https://bur-api.macwel.app/api/v1/marker/update`, {
-        id: editingId,
-        name: nameMark
-      }, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      console.log("🚀 ~ handleAddMark ~ data:", data)
-      getAllMarks()
+      const { data } = await axios.post(
+        `https://bur-api.macwel.app/api/v1/marker/update`,
+        {
+          id: editingId,
+          name: nameMark,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      getAllMarks();
     } catch (error) {
-      console.log("🚀 ~ handleAddMark ~ error:", error)
+      console.log("🚀 ~ handleAddMark ~ error:", error);
     }
     setEditingId(null);
   };
 
   const cancelEditing = () => {
     setEditingId(null);
-    setNameMark('');
+    setNameMark("");
   };
 
   const deleteMark = async (id: string) => {
     try {
-      const { data } = await axios.post(`https://bur-api.macwel.app/api/v1/marker/delete`, {
-        id
-      }, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      getAllMarks()
-      console.log("🚀 ~ deleteMark ~ data:", data)
+      const { data } = await axios.post(
+        `https://bur-api.macwel.app/api/v1/marker/delete`,
+        {
+          id,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      getAllMarks();
+      console.log("🚀 ~ deleteMark ~ data:", data);
     } catch (error) {
-      console.log("🚀 ~ deleteMark ~ error:", error)
-
+      console.log("🚀 ~ deleteMark ~ error:", error);
     }
     // setMarks((prevMarks) => prevMarks.filter((mark) => mark.id !== id));
   };
@@ -137,18 +155,22 @@ export default function Main() {
       <Modal
         open={openModal}
         centered
-        title={'Добавить новую метку'}
+        title={"Добавить новую метку"}
         onCancel={() => setOpenModal(false)}
         footer={
           <>
             <Button onClick={() => setOpenModal(false)}>Cancel</Button>
-            <Button className="bg-sky-500" type="primary" onClick={saveMark} >
+            <Button className="bg-sky-500" type="primary" onClick={saveMark}>
               Save
             </Button>
           </>
         }
       >
-        <Input style={{ marginTop: 20 }} onChange={(e) => setNameMark(e.target.value)} placeholder="Название метки" />
+        <Input
+          style={{ marginTop: 20 }}
+          onChange={(e) => setNameMark(e.target.value)}
+          placeholder="Название метки"
+        />
       </Modal>
       <YMaps
         query={{
@@ -160,9 +182,8 @@ export default function Main() {
           width={"100%"}
           height={600}
           onClick={handleAddMark}
-
           defaultState={{ center: [55.177884, 59.668194], zoom: 15 }}
-        // defaultState={{ center: [20.7715239, 28.38564], zoom: 15 }}
+          // defaultState={{ center: [20.7715239, 28.38564], zoom: 15 }}
         >
           <Clusterer
             options={{
@@ -174,7 +195,6 @@ export default function Main() {
               <Placemark
                 key={i}
                 defaultGeometry={[el.latitude, el.longitude]}
-
                 options={{
                   preset: "islands#circleIcon",
                   iconColor: "orange",
@@ -191,57 +211,72 @@ export default function Main() {
           </Clusterer>
         </Map>
       </YMaps>
-      <div style={{ overflow: 'auto', maxHeight: 500, }}>
+      <div style={{ overflow: "auto", maxHeight: 500 }}>
         {marks.map((el, index) => (
           <div
             key={index}
             style={{
-              display: 'flex',
+              display: "flex",
               gap: 30,
-              flexWrap: 'wrap',
+              flexWrap: "wrap",
               borderWidth: 1,
-              borderColor: '#FF5F1E',
-              alignItems: 'center',
-              padding: '15px 10px',
+              borderColor: "#FF5F1E",
+              alignItems: "center",
+              padding: "15px 10px",
             }}
           >
             {el.id !== editingId ? (
               <div
                 style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
+                  display: "flex",
+                  flexWrap: "wrap",
                 }}
               >
-                <Text $size="XL" $transform="upper" $color="white" $fontWeight="XL" >
+                <Text
+                  $size="XL"
+                  $transform="upper"
+                  $color="white"
+                  $fontWeight="XL"
+                >
                   {el.name}
                 </Text>
               </div>
             ) : (
-              <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+              <div style={{ display: "flex", flexWrap: "wrap" }}>
                 <Input
                   value={nameMark}
                   placeholder="Введите название метки"
                   onChange={(e) => setNameMark(e.target.value)}
                   onPressEnter={saveEditedName}
-                // onBlur={cancelEditing}
+                  // onBlur={cancelEditing}
                 />
               </div>
             )}
             <Text $size="XL" $transform="upper" $color="white" $fontWeight="XL">
               {el.latitude},{el.longitude}
             </Text>
-            <EditOutlined onClick={() => setEditingId(el.id)} style={{ color: 'white', fontSize: 30 }} />
-            <DeleteFilled onClick={() => deleteMark(el.id)} style={{ color: 'red', fontSize: 30 }} />
-            {el.id == editingId &&
-              <div style={{
-                display: 'flex',
-                transition: '0.3s ease-in-out',
-                gap: 10
-              }}>
-                <Button type="primary" onClick={saveEditedName}>Сохранить</Button>
+            <EditOutlined
+              onClick={() => setEditingId(el.id)}
+              style={{ color: "white", fontSize: 30 }}
+            />
+            <DeleteFilled
+              onClick={() => deleteMark(el.id)}
+              style={{ color: "red", fontSize: 30 }}
+            />
+            {el.id == editingId && (
+              <div
+                style={{
+                  display: "flex",
+                  transition: "0.3s ease-in-out",
+                  gap: 10,
+                }}
+              >
+                <Button type="primary" onClick={saveEditedName}>
+                  Сохранить
+                </Button>
                 <Button onClick={cancelEditing}>Отменить</Button>
               </div>
-            }
+            )}
           </div>
         ))}
       </div>
