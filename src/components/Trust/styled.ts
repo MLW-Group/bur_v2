@@ -32,7 +32,6 @@ export const TrustWrapper = styled.div`
   align-items:center;
   gap:30px;
   flex-wrap:wrap;
-  max-width:60%;
 `;
 export const TrustBlock = styled.div`
  display:flex;
