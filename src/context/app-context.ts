@@ -6,5 +6,6 @@ export const AppContext = createContext<{
   openInvite?: any,
   setOpenInvite?: any;
   setOpenModalRe?: any;
-  slug: keyof typeof LinkByCitySlug;
+  token?: string | null;
+  slug?: keyof typeof LinkByCitySlug;
 }>({ slug: "chelyabinsk" });

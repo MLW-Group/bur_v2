@@ -89,7 +89,7 @@ const shoes = [
   "kusa",
   "karabash",
   "ust-katav",
-  
+
 ];
 export default function Home({
   params,
@@ -102,7 +102,6 @@ export default function Home({
   // if (!shoes.includes(params.slug)) return notFound();
   return (
     <AppContext.Provider
-      // @ts-ignore
       value={{ width, modal: { openModal, setOpenModal }, slug: params.slug }}
     >
       <Block>

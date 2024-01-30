@@ -1,70 +1,113 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { YMaps, Placemark, Map, Clusterer } from "@pbe/react-yandex-maps";
 import { Button, Input, Modal } from "antd";
 import { Text } from "@/components/Text/styled";
 import { EditOutlined, DeleteFilled } from '@ant-design/icons';
+import axios from "axios";
+import { AppContext } from "@/context/app-context";
 
 const Block = styled.div``;
-
+type Marks = {
+  id: string;
+  name: string;
+  description: string | null;
+  latitude: number;
+  longitude: number
+}[]
 export default function Main() {
-  const [marks, setMarks] = useState([
-    {
-      id: 0,
-      lat: 55.177884,
-      long: 59.668194,
-      name: "Скважина 20м, радиус 30м",
-    },
-  ]);
+  const token = localStorage.getItem('Token');
+
+  const [marks, setMarks] = useState<Marks>([]);
   const [nameMark, setNameMark] = useState('');
-  const [editingId, setEditingId] = useState<number | null>(null);
+  const [editingId, setEditingId] = useState<string | null>(null);
   const [openModal, setOpenModal] = useState(false)
-
   const [data, setData] = useState({})
+  const [coords, setCoords] = useState<number[]>([])
 
-  const handleAddMark = (event: any) => {
+  const getAllMarks = async () => {
+    try {
+      const { data } = await axios.get(`https://bur-api.macwel.app/api/v1/marker/`, {
+        withCredentials: true,
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      console.log("🚀 ~ getAllMarks ~ data:", data)
+      setMarks(data)
+
+    } catch (error) {
+      console.log("🚀 ~ getAllMarks ~ error:", error)
+    }
+  }
+  useEffect(() => {
+    getAllMarks()
+  }, [])
+
+  const handleAddMark = async (event: any) => {
     setOpenModal(true)
     const clickedCoordinates = event.get("coords");
-    const getLastEl = marks.slice(-1)[0].id;
-    setData({
-      id: getLastEl + 1,
-      lat: clickedCoordinates[0],
-      long: clickedCoordinates[1],
-      name: nameMark
-    })
-
+    setCoords([clickedCoordinates[0], clickedCoordinates[1]])
   };
 
-  const saveMark = () => {
-    // @ts-ignore
-    setMarks((prevMarks) => [
-      ...prevMarks,
-      {
-        ...data,
+  const saveMark = async () => {
+    try {
+      const { data } = await axios.post(`https://bur-api.macwel.app/api/v1/marker/create`, {
+        latitude: coords[0],
+        longitude: coords[1],
         name: nameMark
-      }
-    ]);
+      }, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      console.log("🚀 ~ handleAddMark ~ data:", data)
+      getAllMarks()
+    } catch (error) {
+      console.log("🚀 ~ handleAddMark ~ error:", error)
+    }
     setOpenModal(false)
   }
 
-  const handlePlacemarkDrag = (event: any, markId: number) => {
+  const handlePlacemarkDrag = async (event: any, markId: string) => {
     const newCoords = event.get("target").geometry.getCoordinates();
-    setMarks((prevMarks) =>
-      prevMarks.map((mark) =>
-        mark.id === markId
-          ? { ...mark, lat: newCoords[0], long: newCoords[1] }
-          : mark
-      )
-    );
+    // setMarks((prevMarks) =>
+    //   prevMarks.map((mark) =>
+    //     mark.id === markId
+    //       ? { ...mark, latitude: newCoords[0], longitude: newCoords[1] }
+    //       : mark
+    //   )
+    // );
+    try {
+      const { data } = await axios.post(`https://bur-api.macwel.app/api/v1/marker/update`, {
+        id: markId,
+        latitude: newCoords[0],
+        longitude: newCoords[1]
+      }, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      console.log("🚀 ~ handleAddMark ~ data:", data)
+      getAllMarks()
+    } catch (error) {
+      console.log("🚀 ~ handleAddMark ~ error:", error)
+    }
   };
-  const saveEditedName = () => {
-    setMarks((prevMarks) =>
-      prevMarks.map((mark) =>
-        mark.id === editingId
-          ? { ...mark, name: nameMark }
-          : mark
-      )
-    );
+  const saveEditedName = async () => {
+    // setMarks((prevMarks) =>
+    //   prevMarks.map((mark) =>
+    //     mark.id === editingId
+    //       ? { ...mark, name: nameMark }
+    //       : mark
+    //   )
+    // );
+    try {
+      const { data } = await axios.post(`https://bur-api.macwel.app/api/v1/marker/update`, {
+        id: editingId,
+        name: nameMark
+      }, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      console.log("🚀 ~ handleAddMark ~ data:", data)
+      getAllMarks()
+    } catch (error) {
+      console.log("🚀 ~ handleAddMark ~ error:", error)
+    }
     setEditingId(null);
   };
 
@@ -73,9 +116,22 @@ export default function Main() {
     setNameMark('');
   };
 
-  const deleteMark = (id: number) => {
-    setMarks((prevMarks) => prevMarks.filter((mark) => mark.id !== id));
+  const deleteMark = async (id: string) => {
+    try {
+      const { data } = await axios.post(`https://bur-api.macwel.app/api/v1/marker/delete`, {
+        id
+      }, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      getAllMarks()
+      console.log("🚀 ~ deleteMark ~ data:", data)
+    } catch (error) {
+      console.log("🚀 ~ deleteMark ~ error:", error)
+
+    }
+    // setMarks((prevMarks) => prevMarks.filter((mark) => mark.id !== id));
   };
+
   return (
     <Block>
       <Modal
@@ -104,7 +160,9 @@ export default function Main() {
           width={"100%"}
           height={600}
           onClick={handleAddMark}
+
           defaultState={{ center: [55.177884, 59.668194], zoom: 15 }}
+        // defaultState={{ center: [20.7715239, 28.38564], zoom: 15 }}
         >
           <Clusterer
             options={{
@@ -115,7 +173,8 @@ export default function Main() {
             {marks.map((el, i) => (
               <Placemark
                 key={i}
-                defaultGeometry={[el.lat, el.long]}
+                defaultGeometry={[el.latitude, el.longitude]}
+
                 options={{
                   preset: "islands#circleIcon",
                   iconColor: "orange",
@@ -125,7 +184,7 @@ export default function Main() {
                 }}
                 onDragEnd={(event: any) => handlePlacemarkDrag(event, el.id)}
                 properties={{
-                  hintContent: el.name,
+                  hintContent: el.description,
                 }}
               />
             ))}
@@ -146,13 +205,9 @@ export default function Main() {
               padding: '15px 10px',
             }}
           >
-            <Text $size="XL" $transform="upper" $color="orange" $fontWeight="XL">
-              {el.id}
-            </Text>
             {el.id !== editingId ? (
               <div
                 style={{
-                  minWidth: '400px',
                   display: 'flex',
                   flexWrap: 'wrap',
                 }}
@@ -162,7 +217,7 @@ export default function Main() {
                 </Text>
               </div>
             ) : (
-              <div style={{ minWidth: '400px', display: 'flex', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                 <Input
                   value={nameMark}
                   placeholder="Введите название метки"
@@ -172,8 +227,8 @@ export default function Main() {
                 />
               </div>
             )}
-            <Text $size="XL" $transform="upper" $color="white" $fontWeight="XL" style={{ minWidth: 500 }}>
-              {el.lat},{el.long}
+            <Text $size="XL" $transform="upper" $color="white" $fontWeight="XL">
+              {el.latitude},{el.longitude}
             </Text>
             <EditOutlined onClick={() => setEditingId(el.id)} style={{ color: 'white', fontSize: 30 }} />
             <DeleteFilled onClick={() => deleteMark(el.id)} style={{ color: 'red', fontSize: 30 }} />

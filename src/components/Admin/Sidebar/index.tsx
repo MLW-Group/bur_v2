@@ -1,14 +1,11 @@
-"use client";
 import Image from "next/image";
-import styled from "styled-components";
 import Logo from "@svg/logo.svg";
 import { Link } from "@/components/Link/styled";
 import { Text } from "@/components/Text/styled";
-const Block = styled.div`
-`;
+
 export default function Sidebar() {
   return (
-    <Block>
+    <div>
       <div
         style={{
           width: "100%",
@@ -37,6 +34,6 @@ export default function Sidebar() {
           </Text>
         </div>
       </div>
-    </Block>
+    </div>
   );
 }
