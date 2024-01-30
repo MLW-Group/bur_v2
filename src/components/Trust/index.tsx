@@ -10,12 +10,12 @@ import Image from "next/image";
 import { Text } from "../Text/styled";
 import Subtract from "@svg/Subtract.svg";
 import { Button } from "../Button/styled";
-import img from '@img/1.jpg'
-import img1 from '@img/1.jpg'
-import img2 from '@img/1.jpg'
-import img3 from '@img/1.jpg'
-import img4 from '@img/1.jpg'
-import img5 from '@img/1.jpg'
+import img from '@img/1.png'
+import img1 from '@img/2.png'
+import img2 from '@img/3.png'
+import img3 from '@img/4.png'
+import img4 from '@img/5.png'
+import img5 from '@img/6.png'
 import { Circle } from "../Circle/styled";
 import { Block } from "../Block/styled";
 import { AppContext } from "@/context/app-context";
