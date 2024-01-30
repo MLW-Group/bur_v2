@@ -116,6 +116,7 @@ export default function Main() {
         {
           id: editingId,
           name: nameMark,
+          description: discMark,
         },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -247,6 +248,14 @@ export default function Main() {
                 >
                   {el.name}
                 </Text>
+                <Text
+                  $size="XL"
+                  $transform="upper"
+                  $color="white"
+                  $fontWeight="XL"
+                >
+                  {el.description}
+                </Text>
               </div>
             ) : (
               <div style={{ display: "flex", flexWrap: "wrap" }}>
@@ -254,6 +263,13 @@ export default function Main() {
                   value={nameMark}
                   placeholder="Введите название метки"
                   onChange={(e) => setNameMark(e.target.value)}
+                  onPressEnter={saveEditedName}
+                  // onBlur={cancelEditing}
+                />
+                <Input
+                  value={discMark}
+                  placeholder="Введите описание метки"
+                  onChange={(e) => setDiscMark(e.target.value)}
                   onPressEnter={saveEditedName}
                   // onBlur={cancelEditing}
                 />
