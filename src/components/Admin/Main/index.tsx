@@ -200,7 +200,7 @@ export default function Main() {
                   iconColor: "orange",
                   hideIconOnBalloonOpen: false,
                   openEmptyHint: true,
-                  draggable: true,
+                  draggable: false,
                 }}
                 onDragEnd={(event: any) => handlePlacemarkDrag(event, el.id)}
                 properties={{
