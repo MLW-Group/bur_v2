@@ -20,6 +20,7 @@ export default function Main() {
 
   const [marks, setMarks] = useState<Marks>([]);
   const [nameMark, setNameMark] = useState("");
+  const [discMark, setDiscMark] = useState("");
   const [editingId, setEditingId] = useState<string | null>(null);
   const [openModal, setOpenModal] = useState(false);
   const [data, setData] = useState({});
@@ -62,6 +63,7 @@ export default function Main() {
           latitude: coords[0],
           longitude: coords[1],
           name: nameMark,
+          description: discMark,
         },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -170,6 +172,11 @@ export default function Main() {
           style={{ marginTop: 20 }}
           onChange={(e) => setNameMark(e.target.value)}
           placeholder="Название метки"
+        />
+        <Input
+          style={{ marginTop: 20 }}
+          onChange={(e) => setDiscMark(e.target.value)}
+          placeholder="Описание метки"
         />
       </Modal>
       <YMaps
