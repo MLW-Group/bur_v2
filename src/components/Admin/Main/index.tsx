@@ -15,11 +15,13 @@ type Marks = {
   description: string | null;
   latitude: number;
   longitude: number;
+  markerColor: string;
 }[];
 export default function Main() {
   const [token, setToken] = useState<null | string>();
   const router = useRouter()
   const [marks, setMarks] = useState<Marks>([]);
+  console.log("🚀 ~ Main ~ marks:", marks)
   const [nameMark, setNameMark] = useState("");
   const [discMark, setDiscMark] = useState("");
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -194,14 +196,14 @@ export default function Main() {
                     defaultGeometry={[el.latitude, el.longitude]}
                     options={{
                       preset: "islands#circleIcon",
-                      iconColor: "orange",
+                      iconColor: el.markerColor || 'orange',
                       hideIconOnBalloonOpen: false,
                       openEmptyHint: true,
                       draggable: false,
                     }}
                     onDragEnd={(event: any) => handlePlacemarkDrag(event, el.id)}
                     properties={{
-                      hintContent: el.description,
+                      hintContent: el.description + '<br/>' + el.name,
                     }}
                   />
                 ))}
