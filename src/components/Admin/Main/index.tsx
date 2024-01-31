@@ -43,12 +43,11 @@ export default function Main() {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("Token")! as string
-    console.log("🚀 ~ useEffect ~ token:", token)
-    if (!token) {
+    const accessToken = localStorage.getItem("Token")! as string
+    if (!accessToken) {
       router.push('/admin')
     } else {
-      setToken(token);
+      setToken(accessToken);
     }
   }, []);
   useEffect(() => {

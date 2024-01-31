@@ -7,6 +7,7 @@ import SignInForm from "@/components/SignInForm";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { AppContext } from "@/context/app-context";
+import { useRouter } from "next/navigation";
 const Block = styled.div`
   width: 100vw;
   background: linear-gradient(
@@ -21,25 +22,24 @@ const Block = styled.div`
   align-items: center;
 `;
 export default function AdminPage() {
-  const [token, setToken] = useState<null | string>();
+  const router = useRouter()
   useEffect(() => {
-    setToken(localStorage.getItem("Token")! as string);
+    const accessToken = localStorage.getItem("Token")! as string
+    if (accessToken) {
+      router.push('/admin/panel')
+    }
   }, []);
   return (
-    <AppContext.Provider value={{ token }}>
-      <Block>
-        <div className={"container"} id="container">
-          <SignInForm />
-          <div className="overlay-container">
-            <div className="overlay">
-              <div className="overlay-panel overlay-right">
-                <h1>Hello, Friend!</h1>
-                <p>Enter your personal details and start journey with us</p>
-              </div>
+    <Block>
+      <div className={"container"} id="container">
+        <SignInForm />
+        <div className="overlay-container">
+          <div className="overlay">
+            <div className="overlay-panel overlay-right">
             </div>
           </div>
         </div>
-      </Block>
-    </AppContext.Provider>
+      </div>
+    </Block>
   );
 }
