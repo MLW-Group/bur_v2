@@ -203,7 +203,7 @@ export default function Main() {
                     }}
                     onDragEnd={(event: any) => handlePlacemarkDrag(event, el.id)}
                     properties={{
-                      hintContent: el.description + '<br/>' + el.name,
+                      hintContent: 'Название: ' + el.name + '<br/>' + 'Описание: ' + el.description,
                     }}
                   />
                 ))}
