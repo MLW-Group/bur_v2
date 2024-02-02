@@ -45,24 +45,24 @@
 // // ];
 
 // export default function TableMarks({ marks, deleteMark }) {
-    // const [searchText, setSearchText] = useState("");
-    // const [searchedColumn, setSearchedColumn] = useState("");
-    // const searchInput = useRef<InputRef>(null);
+// const [searchText, setSearchText] = useState("");
+// const [searchedColumn, setSearchedColumn] = useState("");
+// const searchInput = useRef<InputRef>(null);
 
-    // const handleSearch = (
-    //     selectedKeys: string[],
-    //     confirm: FilterDropdownProps["confirm"],
-    //     dataIndex: DataIndex
-    // ) => {
-    //     confirm();
-    //     setSearchText(selectedKeys[0]);
-    //     setSearchedColumn(dataIndex);
-    // };
+// const handleSearch = (
+//     selectedKeys: string[],
+//     confirm: FilterDropdownProps["confirm"],
+//     dataIndex: DataIndex
+// ) => {
+//     confirm();
+//     setSearchText(selectedKeys[0]);
+//     setSearchedColumn(dataIndex);
+// };
 
-    // const handleReset = (clearFilters: () => void) => {
-    //     clearFilters();
-    //     setSearchText("");
-    // };
+// const handleReset = (clearFilters: () => void) => {
+//     clearFilters();
+//     setSearchText("");
+// };
 
 
 //     const columns: (TableColumnsType<DataType> & { editable?: boolean; }) = [
@@ -358,6 +358,7 @@ export default function TableMarks({ marks, deleteMark, getAllMarks, token }) {
     ];
 
     const mergedColumns = columns.map(col => {
+        // @ts-ignore
         if (!col.editable) {
             return col;
         }
@@ -386,6 +387,7 @@ export default function TableMarks({ marks, deleteMark, getAllMarks, token }) {
                     }}
                     bordered
                     dataSource={marks}
+                    // @ts-ignore
                     columns={mergedColumns}
                     rowClassName="editable-row"
                     pagination={{
