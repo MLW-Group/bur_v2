@@ -235,3 +235,8 @@ footer a {
     color: #3c97bf;
     text-decoration: none;
 }
+.editable-row .ant-form-item-explain {
+    position: absolute;
+    top: 100%;
+    font-size: 12px;
+  }

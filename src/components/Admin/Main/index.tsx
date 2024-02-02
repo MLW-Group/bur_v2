@@ -7,6 +7,7 @@ import { EditOutlined, DeleteFilled } from "@ant-design/icons";
 import axios from "axios";
 import { AppContext } from "@/context/app-context";
 import { useRouter } from "next/navigation";
+import TableMarks from "../TableMarks";
 
 const Block = styled.div``;
 type Marks = {
@@ -18,6 +19,24 @@ type Marks = {
   markerColor: string;
 }[];
 export default function Main() {
+  const colors = [
+    {
+      id: 0,
+      color: '#3f3f3f'
+    },
+    {
+      id: 1,
+      color: 'red'
+    },
+    {
+      id: 2,
+      color: 'orange'
+    },
+    {
+      id: 3,
+      color: '#3f3f3f'
+    },
+  ]
   const [token, setToken] = useState<null | string>();
   const router = useRouter()
   const [marks, setMarks] = useState<Marks>([]);
@@ -29,6 +48,7 @@ export default function Main() {
   const [data, setData] = useState({});
   const [coords, setCoords] = useState<number[]>([]);
   const [error, setError] = useState('')
+  const [color, setColor] = useState(colors[0].color)
   const getAllMarks = async () => {
     try {
       const { data } = await axios.get(
@@ -73,6 +93,7 @@ export default function Main() {
           longitude: coords[1],
           name: nameMark,
           description: discMark,
+          markerColor: color
         },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -161,15 +182,56 @@ export default function Main() {
             }
           >
             <Input
-              style={{ marginTop: 20 }}
+              style={{ marginTop: 10 }}
               onChange={(e) => setNameMark(e.target.value)}
               placeholder="Название метки"
             />
             <Input
-              style={{ marginTop: 20 }}
+              style={{ marginTop: 10 }}
               onChange={(e) => setDiscMark(e.target.value)}
               placeholder="Описание метки"
             />
+            <div style={{
+              display: 'flex',
+              gap: 5,
+              marginTop: 10
+            }}
+            >
+              Выберите цвет:
+              {colors.map((el) => (
+                <div style={{
+                  background: el.color,
+                  borderRadius: 6,
+                  width: 24,
+                  height: 24,
+                  cursor: 'pointer'
+                }}
+                  onClick={() => setColor(el.color)}
+                >
+
+                </div>
+              ))}
+            </div>
+            {color ?
+              <div style={{
+                marginTop: 10,
+                display: 'flex',
+                gap: 10
+              }}>
+                Выбранный цвет:
+                <div style={{
+                  background: color,
+                  borderRadius: 6,
+                  width: 24,
+                  height: 24,
+                }}
+                >
+
+                </div>
+              </div>
+              :
+              null
+            }
           </Modal>
           <YMaps
             query={{
@@ -210,7 +272,8 @@ export default function Main() {
               </Clusterer>
             </Map>
           </YMaps>
-          <div style={{ overflow: "auto", maxHeight: 500 }}>
+          <TableMarks marks={marks} deleteMark={deleteMark} getAllMarks={getAllMarks} token={token} />
+          {/* <div style={{ overflow: "auto", maxHeight: 500 }}>
             {marks.map((el, index) => (
               <div
                 key={index}
@@ -293,7 +356,7 @@ export default function Main() {
                 )}
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
         :
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
