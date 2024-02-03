@@ -26,7 +26,7 @@ function SignInForm() {
             const { data } = await axios.post(`https://bur-api.macwel.app/api/v1/auth/login`, {
                 email,
                 password,
-            })
+            }, { withCredentials: true })
             localStorage.setItem('Token', data.accessToken)
             router.push(`/admin/panel`)
 
