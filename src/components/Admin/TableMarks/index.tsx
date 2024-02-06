@@ -35,13 +35,13 @@ interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
     children: React.ReactNode;
 }
 const colorsMapping = [
-    { value: '#ed4543', label: 'red' },
-    { value: '#1e98ff', label: 'светло blue' },
-    { value: '#177bc9', label: 'темно blue' },
-    { value: '#1bad03', label: 'темно green' },
+    { value: '#ed4543', label: 'красный' },
+    { value: '#1e98ff', label: 'светло синий' },
+    { value: '#177bc9', label: 'темно синий' },
+    { value: '#1bad03', label: 'темно зеленый' },
     { value: '#595959', label: 'серый' },
-    { value: '#56db40', label: 'green' },
-    { value: 'red', label: 'red' },
+    { value: '#56db40', label: 'зеленый' },
+    { value: 'red', label: 'красный' },
 
 ]
 
