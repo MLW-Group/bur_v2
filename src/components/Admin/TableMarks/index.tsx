@@ -1,119 +1,6 @@
-// import React, { useRef, useState } from "react";
-// // import "./index.css";
-// // import { SearchOutlined } from "@ant-design/icons";
-// import { GetRef, TableColumnsType, TableColumnType } from "antd";
-// import { Button, Input, Space, Table } from "antd";
-// import type { FilterDropdownProps } from "antd/es/table/interface";
-// type InputRef = GetRef<typeof Input>;
-
-// interface DataType {
-//     id: string;
-//     name: string;
-//     description: number;
-//     longitude: string;
-//     latitude: string;
-//     markerColor: string;
-// }
-
-// type DataIndex = keyof DataType;
-
-// // const data: DataType[] = [
-// //     {
-// //         key: "1",
-// //         name: "John Brown",
-// //         age: 32,
-// //         address: "New York No. 1 Lake Park",
-// //     },
-// //     {
-// //         key: "2",
-// //         name: "Joe Black",
-// //         age: 42,
-// //         address: "London No. 1 Lake Park",
-// //     },
-// //     {
-// //         key: "3",
-// //         name: "Jim Green",
-// //         age: 32,
-// //         address: "Sydney No. 1 Lake Park",
-// //     },
-// //     {
-// //         key: "4",
-// //         name: "Jim Red",
-// //         age: 32,
-// //         address: "London No. 2 Lake Park",
-// //     },
-// // ];
-
-// export default function TableMarks({ marks, deleteMark }) {
-// const [searchText, setSearchText] = useState("");
-// const [searchedColumn, setSearchedColumn] = useState("");
-// const searchInput = useRef<InputRef>(null);
-
-// const handleSearch = (
-//     selectedKeys: string[],
-//     confirm: FilterDropdownProps["confirm"],
-//     dataIndex: DataIndex
-// ) => {
-//     confirm();
-//     setSearchText(selectedKeys[0]);
-//     setSearchedColumn(dataIndex);
-// };
-
-// const handleReset = (clearFilters: () => void) => {
-//     clearFilters();
-//     setSearchText("");
-// };
-
-
-//     const columns: (TableColumnsType<DataType> & { editable?: boolean; }) = [
-//         {
-//             title: "Название",
-//             dataIndex: "name",
-//             key: "name",
-//             width: "10%",
-//             editable: true,
-//             ...getColumnSearchProps("name"),
-//         },
-//         {
-//             title: "Описание",
-//             dataIndex: "description",
-//             key: "description",
-//             width: "10%",
-//             editable: true,
-//             ...getColumnSearchProps("description"),
-//         },
-//         {
-//             title: "Цвет маркера",
-//             dataIndex: "markerColor",
-//             key: "markerColor",
-//             width: "10%",
-//             editable: true,
-//             ...getColumnSearchProps("markerColor"),
-//         },
-//         {
-//             title: 'Action',
-//             dataIndex: '',
-//             key: 'id',
-//             width: "10%",
-//             render: (obj) => {
-//                 return (
-//                     <div style={{
-//                         display: 'flex',
-//                         gap: 10
-//                     }}>
-//                         <a onClick={() => deleteMark(obj.id)}>Delete</a>
-//                         <a onClick={() => deleteMark(obj.id)}>Change</a>
-//                     </div>
-//                 )
-//             },
-//         },
-//     ];
-
-//     return <Table columns={columns} dataSource={marks} />;
-// };
 
 import React, { useRef, useState } from 'react';
-import { Button, Form, Input, InputNumber, InputRef, Popconfirm, Space, Table, TableColumnType, Typography } from 'antd';
+import { Button, Form, Input, InputNumber, InputRef, Popconfirm, Select, Space, Table, TableColumnType, Typography } from 'antd';
 import axios from 'axios';
 import { FilterDropdownProps } from 'antd/es/table/interface';
 
@@ -122,9 +9,22 @@ interface Item {
     id: string;
     name: string;
     markerColor: number;
+    colorLabel?: string;
     description: string;
 }
-
+interface Marks {
+    id: string;
+    name: string;
+    markerColor: number;
+    colorLabel?: string;
+    latitude: string;
+    longitude: string;
+    description: string;
+}[]
+interface MarksColor {
+    value: string;
+    label: string
+}[]
 interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
     editing: boolean;
     dataIndex: string;
@@ -134,6 +34,16 @@ interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
     index: number;
     children: React.ReactNode;
 }
+const colorsMapping = [
+    { value: '#ed4543', label: 'red' },
+    { value: '#1e98ff', label: 'светло blue' },
+    { value: '#177bc9', label: 'темно blue' },
+    { value: '#1bad03', label: 'темно green' },
+    { value: '#595959', label: 'серый' },
+    { value: '#56db40', label: 'green' },
+    { value: 'red', label: 'red' },
+
+]
 
 const EditableCell: React.FC<EditableCellProps> = ({
     editing,
@@ -145,7 +55,8 @@ const EditableCell: React.FC<EditableCellProps> = ({
     children,
     ...restProps
 }) => {
-    const inputNode = inputType === 'number' ? <InputNumber /> : <Input />;
+    const inputNode = dataIndex === 'colorLabel' ? <Select
+        options={colorsMapping} /> : <Input />;
 
     return (
         <td {...restProps}>
@@ -179,9 +90,7 @@ interface DataType {
 type DataIndex = keyof DataType;
 export default function TableMarks({ marks, deleteMark, getAllMarks, token }) {
     const [form] = Form.useForm();
-    const [data, setData] = useState(marks);
     const [editingKey, setEditingKey] = useState('');
-
     const isEditing = (record: Item) => record.id === editingKey;
 
     const edit = (record) => {
@@ -192,7 +101,27 @@ export default function TableMarks({ marks, deleteMark, getAllMarks, token }) {
     const cancel = () => {
         setEditingKey('');
     };
+    function getColorLabel(colorValue, colorMappings) {
+        for (let i = 0; i < colorMappings.length; i++) {
+            if (colorMappings[i].value === colorValue) {
+                return colorMappings[i].label;
+            }
+        }
+        return 'неизвестный цвет';
+    }
 
+    function assignColors(dataArray: Marks[], colorMappings: MarksColor[]) {
+        const coloredDataArray = [];
+        for (let i = 0; i < dataArray.length; i++) {
+            const item = dataArray[i];
+            const colorLabel = getColorLabel(item.markerColor, colorMappings);
+            const coloredItem = { ...item, colorLabel: colorLabel };
+            // @ts-ignore
+            coloredDataArray.push(coloredItem);
+        }
+        return coloredDataArray;
+    }
+    const newMarks = assignColors(marks, colorsMapping);
     const save = async (key: React.Key) => {
         try {
             const row = (await form.validateFields()) as Item;
@@ -202,7 +131,7 @@ export default function TableMarks({ marks, deleteMark, getAllMarks, token }) {
                     id: key,
                     name: row.name,
                     description: row.description,
-                    markerColor: row.markerColor
+                    markerColor: row.colorLabel
                 },
                 {
                     headers: { Authorization: `Bearer ${token}` },
@@ -309,6 +238,8 @@ export default function TableMarks({ marks, deleteMark, getAllMarks, token }) {
         },
     });
 
+
+
     const columns = [
         {
             title: 'Название',
@@ -325,8 +256,8 @@ export default function TableMarks({ marks, deleteMark, getAllMarks, token }) {
         },
         {
             title: 'Цвет',
-            dataIndex: 'markerColor',
-            width: '10%',
+            dataIndex: 'colorLabel',
+            width: '15%',
             editable: true,
         },
         {
@@ -386,7 +317,7 @@ export default function TableMarks({ marks, deleteMark, getAllMarks, token }) {
                         },
                     }}
                     bordered
-                    dataSource={marks}
+                    dataSource={newMarks}
                     // @ts-ignore
                     columns={mergedColumns}
                     rowClassName="editable-row"

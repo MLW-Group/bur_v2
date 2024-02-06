@@ -22,19 +22,27 @@ export default function Main() {
   const colors = [
     {
       id: 0,
-      color: '#3f3f3f'
+      color: '#ed4543'
     },
     {
       id: 1,
-      color: 'red'
+      color: '#1e98ff'
     },
     {
       id: 2,
-      color: 'orange'
+      color: '#177bc9'
     },
     {
       id: 3,
-      color: '#3f3f3f'
+      color: '#1bad03'
+    },
+    {
+      id: 4,
+      color: '#595959'
+    },
+    {
+      id: 5,
+      color: '#56db40'
     },
   ]
   const [token, setToken] = useState<null | string>();
@@ -273,90 +281,6 @@ export default function Main() {
             </Map>
           </YMaps>
           <TableMarks marks={marks} deleteMark={deleteMark} getAllMarks={getAllMarks} token={token} />
-          {/* <div style={{ overflow: "auto", maxHeight: 500 }}>
-            {marks.map((el, index) => (
-              <div
-                key={index}
-                style={{
-                  display: "flex",
-                  gap: 30,
-                  flexWrap: "wrap",
-                  borderWidth: 1,
-                  borderColor: "#FF5F1E",
-                  alignItems: "center",
-                  padding: "15px 10px",
-                }}
-              >
-                {el.id !== editingId ? (
-                  <div
-                    style={{
-                      display: "flex",
-                      flexWrap: "wrap",
-                    }}
-                  >
-                    <Text
-                      $size="XL"
-                      $transform="upper"
-                      $color="white"
-                      $fontWeight="XL"
-                    >
-                      {el.name + ', '}
-                    </Text>
-                    <Text
-                      $size="XL"
-                      $transform="upper"
-                      $color="white"
-                      $fontWeight="XL"
-                    >
-                      {el.description}
-                    </Text>
-                  </div>
-                ) : (
-                  <div style={{ display: "flex", flexWrap: "wrap" }}>
-                    <Input
-                      value={nameMark}
-                      placeholder="Введите название метки"
-                      onChange={(e) => setNameMark(e.target.value)}
-                      onPressEnter={saveEditedName}
-                    // onBlur={cancelEditing}
-                    />
-                    <Input
-                      value={discMark}
-                      placeholder="Введите описание метки"
-                      onChange={(e) => setDiscMark(e.target.value)}
-                      onPressEnter={saveEditedName}
-                    // onBlur={cancelEditing}
-                    />
-                  </div>
-                )}
-                <Text $size="XL" $transform="upper" $color="white" $fontWeight="XL">
-                  {el.latitude},{el.longitude}
-                </Text>
-                <EditOutlined
-                  onClick={() => setEditingId(el.id)}
-                  style={{ color: "white", fontSize: 30 }}
-                />
-                <DeleteFilled
-                  onClick={() => deleteMark(el.id)}
-                  style={{ color: "red", fontSize: 30 }}
-                />
-                {el.id == editingId && (
-                  <div
-                    style={{
-                      display: "flex",
-                      transition: "0.3s ease-in-out",
-                      gap: 10,
-                    }}
-                  >
-                    <Button type="primary" onClick={saveEditedName}>
-                      Сохранить
-                    </Button>
-                    <Button onClick={cancelEditing}>Отменить</Button>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div> */}
         </div>
         :
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
