@@ -22,41 +22,41 @@ export default function Main() {
   const colors = [
     {
       id: 0,
-      color: '#ed4543'
+      color: "#ed4543",
     },
     {
       id: 1,
-      color: '#1e98ff'
+      color: "#1e98ff",
     },
     {
       id: 2,
-      color: '#177bc9'
+      color: "#177bc9",
     },
     {
       id: 3,
-      color: '#1bad03'
+      color: "#1bad03",
     },
     {
       id: 4,
-      color: '#595959'
+      color: "#595959",
     },
     {
       id: 5,
-      color: '#56db40'
+      color: "#56db40",
     },
-  ]
+  ];
   const [token, setToken] = useState<null | string>();
-  const router = useRouter()
+  const router = useRouter();
   const [marks, setMarks] = useState<Marks>([]);
-  console.log("🚀 ~ Main ~ marks:", marks)
+  console.log("🚀 ~ Main ~ marks:", marks);
   const [nameMark, setNameMark] = useState("");
   const [discMark, setDiscMark] = useState("");
   const [editingId, setEditingId] = useState<string | null>(null);
   const [openModal, setOpenModal] = useState(false);
   const [data, setData] = useState({});
   const [coords, setCoords] = useState<number[]>([]);
-  const [error, setError] = useState('')
-  const [color, setColor] = useState(colors[0].color)
+  const [error, setError] = useState("");
+  const [color, setColor] = useState(colors[0].color);
   const getAllMarks = async () => {
     try {
       const { data } = await axios.get(
@@ -68,14 +68,19 @@ export default function Main() {
       );
       setMarks(data);
     } catch (error: any) {
-      setError(error.response.data.message)
+      setError(error.response.data.message);
+      if (error.response.data.statusCode == 401 || 403) {
+        localStorage.removeItem("Token");
+        router.push("/admin");
+      }
+      console.log("🚀 ~ getAllMarks ~ error:", error);
     }
   };
 
   useEffect(() => {
-    const accessToken = localStorage.getItem("Token")! as string
+    const accessToken = localStorage.getItem("Token")! as string;
     if (!accessToken) {
-      router.push('/admin')
+      router.push("/admin");
     } else {
       setToken(accessToken);
     }
@@ -101,15 +106,14 @@ export default function Main() {
           longitude: coords[1],
           name: nameMark,
           description: discMark,
-          markerColor: color
+          markerColor: color,
         },
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
       getAllMarks();
-    } catch (error) {
-    }
+    } catch (error) {}
     setOpenModal(false);
   };
 
@@ -128,8 +132,7 @@ export default function Main() {
         }
       );
       getAllMarks();
-    } catch (error) {
-    }
+    } catch (error) {}
   };
   const saveEditedName = async () => {
     try {
@@ -145,8 +148,7 @@ export default function Main() {
         }
       );
       getAllMarks();
-    } catch (error) {
-    }
+    } catch (error) {}
     setEditingId(null);
   };
 
@@ -167,13 +169,12 @@ export default function Main() {
         }
       );
       getAllMarks();
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   return (
     <Block>
-      {!error ?
+      {!error ? (
         <div>
           <Modal
             open={openModal}
@@ -183,7 +184,11 @@ export default function Main() {
             footer={
               <>
                 <Button onClick={() => setOpenModal(false)}>Cancel</Button>
-                <Button className="bg-sky-500" type="primary" onClick={saveMark}>
+                <Button
+                  className="bg-sky-500"
+                  type="primary"
+                  onClick={saveMark}
+                >
                   Save
                 </Button>
               </>
@@ -199,47 +204,46 @@ export default function Main() {
               onChange={(e) => setDiscMark(e.target.value)}
               placeholder="Описание метки"
             />
-            <div style={{
-              display: 'flex',
-              gap: 5,
-              marginTop: 10
-            }}
+            <div
+              style={{
+                display: "flex",
+                gap: 5,
+                marginTop: 10,
+              }}
             >
               Выберите цвет:
               {colors.map((el) => (
-                <div style={{
-                  background: el.color,
-                  borderRadius: 6,
-                  width: 24,
-                  height: 24,
-                  cursor: 'pointer'
-                }}
+                <div
+                  style={{
+                    background: el.color,
+                    borderRadius: 6,
+                    width: 24,
+                    height: 24,
+                    cursor: "pointer",
+                  }}
                   onClick={() => setColor(el.color)}
-                >
-
-                </div>
+                ></div>
               ))}
             </div>
-            {color ?
-              <div style={{
-                marginTop: 10,
-                display: 'flex',
-                gap: 10
-              }}>
-                Выбранный цвет:
-                <div style={{
-                  background: color,
-                  borderRadius: 6,
-                  width: 24,
-                  height: 24,
+            {color ? (
+              <div
+                style={{
+                  marginTop: 10,
+                  display: "flex",
+                  gap: 10,
                 }}
-                >
-
-                </div>
+              >
+                Выбранный цвет:
+                <div
+                  style={{
+                    background: color,
+                    borderRadius: 6,
+                    width: 24,
+                    height: 24,
+                  }}
+                ></div>
               </div>
-              :
-              null
-            }
+            ) : null}
           </Modal>
           <YMaps
             query={{
@@ -252,7 +256,7 @@ export default function Main() {
               height={400}
               onClick={handleAddMark}
               defaultState={{ center: [55.177884, 59.668194], zoom: 15 }}
-            // defaultState={{ center: [20.7715239, 28.38564], zoom: 15 }}
+              // defaultState={{ center: [20.7715239, 28.38564], zoom: 15 }}
             >
               <Clusterer
                 options={{
@@ -266,27 +270,47 @@ export default function Main() {
                     defaultGeometry={[el.latitude, el.longitude]}
                     options={{
                       preset: "islands#circleIcon",
-                      iconColor: el.markerColor || 'orange',
+                      iconColor: el.markerColor || "orange",
                       hideIconOnBalloonOpen: false,
                       openEmptyHint: true,
                       draggable: false,
                     }}
-                    onDragEnd={(event: any) => handlePlacemarkDrag(event, el.id)}
+                    onDragEnd={(event: any) =>
+                      handlePlacemarkDrag(event, el.id)
+                    }
                     properties={{
-                      hintContent: 'Название: ' + el.name + '<br/>' + 'Описание: ' + el.description,
+                      hintContent:
+                        "Название: " +
+                        el.name +
+                        "<br/>" +
+                        "Описание: " +
+                        el.description,
                     }}
                   />
                 ))}
               </Clusterer>
             </Map>
           </YMaps>
-          <TableMarks marks={marks} deleteMark={deleteMark} getAllMarks={getAllMarks} token={token} />
+          <TableMarks
+            marks={marks}
+            deleteMark={deleteMark}
+            getAllMarks={getAllMarks}
+            token={token}
+          />
         </div>
-        :
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <p style={{ color: 'white', fontSize: 25, fontWeight: 700 }}>{error}</p>
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <p style={{ color: "white", fontSize: 25, fontWeight: 700 }}>
+            {error}
+          </p>
         </div>
-      }
+      )}
     </Block>
   );
 }
