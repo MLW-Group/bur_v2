@@ -42,8 +42,9 @@ export default function RootLayout({
       </head>
       <body>
         <Providers>{children}</Providers>
-        <Script id="yandex-metrica" type="text/javascript">
-          {`
+        {process.env.NODE_ENV !== "development" && (
+          <Script id="yandex-metrica" type="text/javascript">
+            {`
     (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
     m[i].l=1*new Date();
     for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
@@ -57,7 +58,8 @@ export default function RootLayout({
           webvisor:true
     });
    `}
-        </Script>
+          </Script>
+        )}
         <noscript>
           <img
             id={"yandex-metrica123"}

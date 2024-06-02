@@ -12,6 +12,7 @@
     "@pbe/react-yandex-maps": "^1.2.5",
     "antd": "^5.12.7",
     "axios": "^1.6.2",
+    "formik": "^2.4.6",
     "google-maps-react-markers": "^2.0.7",
     "maplibre-gl": "^3.6.2",
     "next": "13.5.6",
@@ -24,7 +25,8 @@
     "react-yandex-maps": "^4.6.0",
     "styled-components": "^6.1.1",
     "swiper": "^11.0.4",
-    "telegraf": "^4.15.0"
+    "telegraf": "^4.15.0",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@swc/plugin-styled-components": "^1.5.97",

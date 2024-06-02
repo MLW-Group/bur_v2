@@ -42,7 +42,6 @@ const colorsMapping = [
     { value: '#595959', label: 'серый' },
     { value: '#56db40', label: 'зеленый' },
     { value: 'red', label: 'красный' },
-
 ]
 
 const EditableCell: React.FC<EditableCellProps> = ({

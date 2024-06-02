@@ -1,7 +1,8 @@
 "use client";
-import Main from "@/components/Admin/Main";
+import ModeratorTable from "@/components/Admin/ModeratorTable";
 import Sidebar from "@/components/Admin/Sidebar";
-import { Header } from "@/components/Header";
+import axios from "axios";
+import { useEffect } from "react";
 import styled from "styled-components";
 const Block = styled.div`
   width: 100vw;
@@ -13,11 +14,18 @@ const Block = styled.div`
     url(/img/grid.png), black 50% / cover no-repeat;
   min-height: 100vh;
 `;
-export default function AdminPage() {
+export default function ModeratorPage() {
   return (
     <Block>
       <Sidebar />
-      <Main />
+      <div
+        style={{
+          // background: "white",
+          padding: "10px 50px ",
+        }}
+      >
+        <ModeratorTable />
+      </div>
     </Block>
   );
 }

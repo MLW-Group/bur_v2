@@ -24,9 +24,9 @@ const Block = styled.div`
 export default function AdminPage() {
   const router = useRouter()
   useEffect(() => {
-    const accessToken = localStorage.getItem("Token")! as string
+    const accessToken = localStorage.getItem("accessToken")! as string
     if (accessToken) {
-      router.push('/admin/panel')
+      router.push('/admin/order')
     }
   }, []);
   return (

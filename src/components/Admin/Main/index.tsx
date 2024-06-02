@@ -48,7 +48,6 @@ export default function Main() {
   const [token, setToken] = useState<null | string>();
   const router = useRouter();
   const [marks, setMarks] = useState<Marks>([]);
-  console.log("🚀 ~ Main ~ marks:", marks);
   const [nameMark, setNameMark] = useState("");
   const [discMark, setDiscMark] = useState("");
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -62,31 +61,33 @@ export default function Main() {
       const { data } = await axios.get(
         `https://bur-api.macwel.app/api/v1/marker`,
         {
-          // withCredentials: true,
-          headers: { Authorization: `Bearer ${token}` },
+          withCredentials: true,
+          // headers: { Authorization: `Bearer ${token}` },
         }
       );
       setMarks(data);
     } catch (error: any) {
+      const errStatus = error.response.data.statusCode;
       setError(error.response.data.message);
-      if (error.response.data.statusCode == 401 || 403) {
+      if (errStatus == 401 || errStatus == 403) {
         localStorage.removeItem("Token");
-        router.push("/admin");
+        // router.push("/admin");
       }
-      console.log("🚀 ~ getAllMarks ~ error:", error);
     }
   };
 
   useEffect(() => {
-    const accessToken = localStorage.getItem("Token")! as string;
-    if (!accessToken) {
-      router.push("/admin");
-    } else {
-      setToken(accessToken);
+    const role = localStorage.getItem("role")! as string;
+    setToken(role);
+    if (!role) {
+      return router.push("/admin");
+    }
+    if (role !== "ADMIN") {
+      return router.push("/admin/order");
     }
   }, []);
   useEffect(() => {
-    if (token) {
+    if (token === "ADMIN") {
       getAllMarks();
     }
   }, [token]);
@@ -109,7 +110,7 @@ export default function Main() {
           markerColor: color,
         },
         {
-          headers: { Authorization: `Bearer ${token}` },
+          withCredentials: true,
         }
       );
       getAllMarks();
@@ -128,7 +129,7 @@ export default function Main() {
           longitude: newCoords[1],
         },
         {
-          headers: { Authorization: `Bearer ${token}` },
+          withCredentials: true,
         }
       );
       getAllMarks();
@@ -144,7 +145,7 @@ export default function Main() {
           description: discMark,
         },
         {
-          headers: { Authorization: `Bearer ${token}` },
+          withCredentials: true,
         }
       );
       getAllMarks();
@@ -165,7 +166,7 @@ export default function Main() {
           id,
         },
         {
-          headers: { Authorization: `Bearer ${token}` },
+          withCredentials: true,
         }
       );
       getAllMarks();
