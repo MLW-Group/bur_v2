@@ -9,8 +9,9 @@ export const OfferContainer = styled.div`
     ),
     url("/img/grid.png"), black 50% / cover no-repeat;
   gap: 50px;
-  padding-top: 70px;
+  // padding-top: 70px;
   display: flex;
+  padding: 100px 30px;
   flex-direction: column;
   padding-bottom: 20px;
 `;

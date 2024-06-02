@@ -23,7 +23,7 @@ export function Receive() {
   const { width } = useContext(AppContext);
 
   return (
-    <ReceiveContainer>
+    <ReceiveContainer id="receive">
       <BlockHalf>
         <Block $flexDirection="col" $gap="XL">
           <BlockTitle>

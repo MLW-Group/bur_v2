@@ -1,5 +1,7 @@
+"use client";
 import { AppContext } from "@/context/app-context";
 import axios from "axios";
+import { useCookies } from "next-client-cookies";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { useContext } from "react";
@@ -18,6 +20,7 @@ function SignInForm() {
       [evt.target.name]: value,
     });
   };
+
   const handleOnSubmit = async (evt) => {
     evt.preventDefault();
 
@@ -32,11 +35,7 @@ function SignInForm() {
         { withCredentials: true }
       );
       localStorage.setItem("role", data.user.role);
-      if (data.user.role === "ADMIN") {
-        router.push(`/admin/panel`);
-      } else {
-        router.push("/admin/order");
-      }
+      router.push("/admin/order");
     } catch (error: any) {
       alert(`Ошибка авторизации: ${error.response.data.message}`);
     }

@@ -18,7 +18,7 @@ import { Block } from "../Block/styled";
 import { AppContext } from "@/context/app-context";
 export function SliderPage() {
   // @ts-ignore
-  const { width, modal } = useContext(AppContext);
+  const { width, modal, setTypeModal } = useContext(AppContext);
 
   const dummy = [
     {
@@ -32,7 +32,7 @@ export function SliderPage() {
     },
   ];
   return (
-    <SliderContainer>
+    <SliderContainer id="about">
       <BlockHalf>
         <Swiper
           slidesPerView={1}
@@ -104,7 +104,10 @@ export function SliderPage() {
             $background="orange"
             $color="white"
             $transform="upper"
-            onClick={() => modal.setOpenModal(true)}
+            onClick={() => {
+              setTypeModal("modalPhone2");
+              modal.setOpenModal(true);
+            }}
           >
             {/* @ts-ignore */}
             <Text $size="L" $whiteSpace="nowrap">

@@ -48,9 +48,15 @@ export function Footer() {
           <BlockInfoChildren $gap="M">
             {dummy.map((el, i) => (
               <BlockNew $flexDirection="row" key={i}>
-                <Circle $height="S" $width="S" $background="orange">
-                  <Image src={el.img} alt="123" width={22} height={22} />
-                </Circle>
+                <div
+                  style={{
+                    minWidth: 50,
+                  }}
+                >
+                  <Circle $height="S" $width="S" $background="orange">
+                    <Image src={el.img} alt="123" width={22} height={22} />
+                  </Circle>
+                </div>
                 <BlockNew $flexDirection="col">
                   <Text $size="M" $color="gray" $fontFamily="open">
                     {el.title}
@@ -104,19 +110,19 @@ export function Footer() {
             >
               меню
             </Link>
-            <Link $size="S" $fontFamily="open" $color="gray">
+            <Link $size="S" $fontFamily="open" $color="gray" href="#main">
               Главная
             </Link>
-            <Link $size="S" $fontFamily="open" $color="gray">
+            <Link $size="S" $fontFamily="open" $color="gray" href="#about">
               О компании
             </Link>
-            <Link $size="S" $fontFamily="open" $color="gray">
+            <Link $size="S" $fontFamily="open" $color="gray" href="#offer">
               Новости
             </Link>
-            <Link $size="S" $fontFamily="open" $color="gray">
+            <Link $size="S" $fontFamily="open" $color="gray" href="#receive">
               Отзывы о нас
             </Link>
-            <Link $size="S" $fontFamily="open" $color="gray">
+            <Link $size="S" $fontFamily="open" $color="gray" href="#contacts">
               Контакты
             </Link>
           </BlockInfoChildren>

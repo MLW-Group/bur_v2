@@ -51,6 +51,7 @@ export default function Home() {
   const [openModal, setOpenModal] = useState(false);
   const [openModalRe, setOpenModalRe] = useState(false);
   const [openInvite, setOpenInvite] = useState(false);
+  const [typeModal, setTypeModal] = useState(null);
   return (
     <AppContext.Provider
       value={{
@@ -59,6 +60,8 @@ export default function Home() {
         setOpenModalRe,
         openInvite,
         setOpenInvite,
+        typeModal,
+        setTypeModal,
         slug: "chelyabinsk",
       }}
     >
@@ -80,7 +83,10 @@ export default function Home() {
           <Modal setOpenModal={setOpenModal} setOpenModalRe={setOpenModalRe} />
         )}
         {openInvite && (
-          <ModalInvite setOpenModal={setOpenInvite} setOpenModalRe={setOpenModalRe} />
+          <ModalInvite
+            setOpenModal={setOpenInvite}
+            setOpenModalRe={setOpenModalRe}
+          />
         )}
         {openModalRe && <ModalRe setOpenModalRe={setOpenModalRe} />}
       </Block>

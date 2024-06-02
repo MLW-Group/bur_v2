@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useRef, useState } from "react";
 import InputMask from "react-input-mask";
 import {
   ModalContainer,
@@ -12,6 +12,8 @@ import {
 import { Text } from "../Text/styled";
 import { Button } from "../Button/styled";
 import axios from "axios";
+import { Input } from "antd";
+import { AppContext } from "@/context/app-context";
 
 const Modal = ({
   setOpenModal,
@@ -23,6 +25,8 @@ const Modal = ({
   title?: string;
 }) => {
   const [error, setError] = useState("");
+  const { typeModal } = useContext(AppContext);
+  console.log("🚀 ~ typeModal:", typeModal);
 
   const [phone, setPhone] = useState("");
 
@@ -32,15 +36,21 @@ const Modal = ({
     } else {
       if (process.env.NODE_ENV !== "development") {
         // @ts-ignore
-        ym(94753079, "reachGoal", "modalPhone1");
+        ym(94753079, "reachGoal", typeModal);
       }
       await axios.post(`/api`, {
         phone,
       });
-      if (process.env.NODE_ENV !== "development") {
-        // @ts-ignore
-        ym(94753079, "reachGoal", "modalPhone2");
-      }
+      await axios.post(
+        `https://bur-api.macwel.app/api/v1/request/create/`,
+        {
+          phone,
+          modelType: typeModal,
+        },
+        {
+          withCredentials: true,
+        }
+      );
       setOpenModal(false);
       setOpenModalRe(true);
     }
@@ -94,6 +104,18 @@ const Modal = ({
                   fontSize: 20,
                 }}
               />
+              {/* <Input
+                style={{
+                  display: "inline-block",
+                  padding: 10,
+                  outline: "none",
+                  border: "1px solid #ccc",
+                  borderRadius: 4,
+                  backgroundColor: "#FFF",
+                  fontSize: 16,
+                }}
+                placeholder="Введите описание"
+              /> */}
               {error && (
                 <Text
                   $size="M"
@@ -106,7 +128,7 @@ const Modal = ({
               )}
               <Button
                 $size="L"
-                $mix="10x10"
+                $mix="10x0"
                 $borderRadius="4px"
                 onClick={sendForm}
                 $background="orange"

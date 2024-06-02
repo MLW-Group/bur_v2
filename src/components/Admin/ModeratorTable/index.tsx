@@ -14,6 +14,7 @@ interface DataType {
   status: string;
   id: string;
   role?: string;
+  roleLabel?: string;
 }
 interface UserType {
   email: string;
@@ -58,7 +59,10 @@ const initialValues = {
   password: "",
   // role: "MODERATOR",
 };
-
+const rolesCode = [
+  { value: "MODERATOR", label: "Модератор" },
+  { value: "ADMIN", label: "Админ" },
+];
 const ModeratorTable: React.FC = () => {
   const [openModal, setOpenModal] = useState<UserType>(initialValues);
 
@@ -82,7 +86,7 @@ const ModeratorTable: React.FC = () => {
     },
     {
       title: "Роль",
-      dataIndex: "role",
+      dataIndex: "roleLabel",
     },
     {
       title: "Действия",
@@ -208,6 +212,30 @@ const ModeratorTable: React.FC = () => {
       setOpenModal(initialValues);
     } catch (error) {}
   };
+
+  function getRolesLabel(colorValue, status) {
+    for (let i = 0; i < status.length; i++) {
+      if (status[i].value === colorValue) {
+        return status[i].label;
+      }
+    }
+    return "неизвестная роль";
+  }
+
+  function assignRoles(dataArray: any, role: any) {
+    const coloredDataArray = [];
+    for (let i = 0; i < dataArray.length; i++) {
+      const item = dataArray[i];
+      const roleLabel = getRolesLabel(item.role, role);
+      const coloredItem = { ...item, roleLabel: roleLabel };
+      // @ts-ignore
+      coloredDataArray.push(coloredItem);
+    }
+    return coloredDataArray;
+  }
+  const newMarks = assignRoles(allUsers, rolesCode);
+  console.log("🚀 ~ newMarks:", newMarks);
+
   return (
     <>
       <div
@@ -224,7 +252,7 @@ const ModeratorTable: React.FC = () => {
       </div>
       <Table
         columns={columns}
-        dataSource={allUsers}
+        dataSource={newMarks}
         onChange={onChange}
         pagination={{
           style: {
@@ -306,10 +334,7 @@ const ModeratorTable: React.FC = () => {
                       value={values.role}
                       onChange={(e) => setFieldValue("role", e)}
                       style={{ width: "100%" }}
-                      options={[
-                        { value: "MODERATOR", label: "Модератор" },
-                        { value: "ADMIN", label: "Админ" },
-                      ]}
+                      options={rolesCode}
                     />
                   </>
                 ) : null}
@@ -334,7 +359,7 @@ const ModeratorTable: React.FC = () => {
                     disabled={!dirty || !isValid}
                     htmlType="submit"
                   >
-                    Добавить
+                    Редактировать
                   </Button>
                 </div>
               </Form>

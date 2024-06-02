@@ -3,52 +3,52 @@ import {
   TrustHeader,
   TrustSubTitle,
   TrustWrapper,
-  TrustBlock
+  TrustBlock,
 } from "./styled";
 import { useContext, useState } from "react";
 import Image from "next/image";
 import { Text } from "../Text/styled";
 import Subtract from "@svg/Subtract.svg";
 import { Button } from "../Button/styled";
-import img from '@img/1.png'
-import img1 from '@img/2.png'
-import img2 from '@img/3.png'
-import img3 from '@img/4.png'
-import img4 from '@img/5.png'
-import img5 from '@img/6.png'
+import img from "@img/1.png";
+import img1 from "@img/2.png";
+import img2 from "@img/3.png";
+import img3 from "@img/4.png";
+import img4 from "@img/5.png";
+import img5 from "@img/6.png";
 import { Circle } from "../Circle/styled";
 import { Block } from "../Block/styled";
 import { AppContext } from "@/context/app-context";
 export function Trust() {
   // @ts-ignore
-  const { width, setOpenInvite } = useContext(AppContext);
+  const { width, setOpenInvite, setTypeModal } = useContext(AppContext);
 
   const dummy = [
     {
-      name: 'г. Екатеринбург, объездная АД',
+      name: "г. Екатеринбург, объездная АД",
       image: img,
     },
     {
-      name: 'пос. Федоровка, Челябинская обл',
+      name: "пос. Федоровка, Челябинская обл",
       image: img1,
     },
     {
-      name: 'г. Березовский, Свердловская обл.',
+      name: "г. Березовский, Свердловская обл.",
       image: img2,
     },
     {
-      name: 'г. Челябинск, ул. Университетская набережная',
+      name: "г. Челябинск, ул. Университетская набережная",
       image: img3,
     },
     {
-      name: 'пос. Еткуль, Челябинская обл.',
+      name: "пос. Еткуль, Челябинская обл.",
       image: img4,
     },
     {
-      name: 'г. Челябинск, Комсомольский проспект',
+      name: "г. Челябинск, Комсомольский проспект",
       image: img5,
     },
-  ]
+  ];
   return (
     <TrustContainer>
       <TrustHeader>
@@ -57,20 +57,40 @@ export function Trust() {
         </Text>
       </TrustHeader>
       <TrustSubTitle>
-        <Text $size="M" $maxWidth="60%" $color="white" $fontWeight="small" $fontFamily="open" $textAlign="center">
-          ГК «Магнезит» г. Сатка, АО «Карабашский медеплавильный комбинат» г. Карабаш, ГРЭС Березовский Свердловская область, Завод бетоносмесительного оборудования г. Златоуст , Завод «Иристон» г. Златоуст, Магнитогорский Металлургический Комбинат и многие другие.
+        <Text
+          $size="M"
+          $maxWidth="60%"
+          $color="white"
+          $fontWeight="small"
+          $fontFamily="open"
+          $textAlign="center"
+        >
+          ГК «Магнезит» г. Сатка, АО «Карабашский медеплавильный комбинат» г.
+          Карабаш, ГРЭС Березовский Свердловская область, Завод
+          бетоносмесительного оборудования г. Златоуст , Завод «Иристон» г.
+          Златоуст, Магнитогорский Металлургический Комбинат и многие другие.
         </Text>
       </TrustSubTitle>
       <TrustWrapper>
         {dummy.map((el) => (
           <TrustBlock>
-            <Image src={el.image} alt="img" width={400} height={250}
+            <Image
+              src={el.image}
+              alt="img"
+              width={400}
+              height={250}
               style={{
-                borderRadius: 5
+                borderRadius: 5,
               }}
               objectFit="contain"
             />
-            <Text $size="M" $whiteSpace="nowrap" $color="white" $fontWeight="XXL" $transform="upper">
+            <Text
+              $size="M"
+              $whiteSpace="nowrap"
+              $color="white"
+              $fontWeight="XXL"
+              $transform="upper"
+            >
               {el.name}
             </Text>
           </TrustBlock>
@@ -83,7 +103,10 @@ export function Trust() {
         $background="orange"
         $color="white"
         $transform="upper"
-        onClick={() => setOpenInvite(true)}
+        onClick={() => {
+          setTypeModal("modalPhone3");
+          setOpenInvite(true);
+        }}
       >
         {/* @ts-ignore */}
         <Text $size="L" $whiteSpace="nowrap">

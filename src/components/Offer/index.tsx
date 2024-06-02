@@ -46,7 +46,7 @@ export function Offer() {
   ];
 
   return (
-    <OfferContainer>
+    <OfferContainer id="offer">
       <BlockTitle>
         <Text
           $size={width && width < 1150 ? "30" : "70"}

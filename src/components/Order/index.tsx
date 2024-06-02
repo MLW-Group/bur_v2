@@ -10,10 +10,10 @@ import { AppContext } from "@/context/app-context";
 import { NumberCompany, NumberCompanySecond } from "@/texts/number";
 export function Order() {
   // @ts-ignore
-  const { width, modal } = useContext(AppContext);
+  const { width, modal, setTypeModal } = useContext(AppContext);
 
   return (
-    <OrderContainer>
+    <OrderContainer id="contacts">
       <BlockTitle>
         <Text
           $size="70"
@@ -59,7 +59,10 @@ export function Order() {
           $color="white"
           $transform="upper"
           $fontWeight="XXL"
-          onClick={() => modal.setOpenModal(true)}
+          onClick={() => {
+            setTypeModal("modalPhone4");
+            modal.setOpenModal(true);
+          }}
         >
           {/* @ts-ignore */}
           <Text $size="XL" $whiteSpace="nowrap">

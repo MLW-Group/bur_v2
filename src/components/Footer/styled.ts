@@ -12,11 +12,11 @@ export const Container = styled.div`
   flex: 1;
   & > :nth-child(1) {
     border-right: 1px solid rgba(255, 255, 255, 0.2);
-    margin-right: 10px;
+    // margin-right: 10px;
   }
   & > :nth-child(2) {
     border-right: 1px solid rgba(255, 255, 255, 0.2);
-    margin-right: 10px;
+    // margin-right: 10px;
   }
   & > :nth-child(3) {
     border-right: none;
@@ -66,11 +66,11 @@ export const BlockNew = styled.div<{
   $flexDirection?: FlexDirection;
 }>`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 10px;
   height: 100%;
   align-items: center;
-  // align-items: center;
+  margin-bottom: 10px;
   @media (max-width: 750px) {
     flex-direction: column;
     justify-content: center;

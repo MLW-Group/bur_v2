@@ -40,7 +40,12 @@ export default function RootLayout({
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
         />
       </head>
-      <body>
+      <body
+        style={{
+          overflowY: "scroll",
+          scrollBehavior: "smooth",
+        }}
+      >
         <Providers>{children}</Providers>
         {process.env.NODE_ENV !== "development" && (
           <Script id="yandex-metrica" type="text/javascript">

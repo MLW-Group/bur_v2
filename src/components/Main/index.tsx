@@ -20,10 +20,10 @@ import { BannerSlugTitle } from "@/dummy/bannerSlug";
 import { H1 } from "../H1/styled";
 export function Main() {
   // @ts-ignore
-  const { width, modal, slug } = useContext(AppContext);
+  const { width, modal, slug, setTypeModal } = useContext(AppContext);
   const title = BannerSlugTitle.filter((el) => el.name === slug)[0].title;
   return (
-    <MainContainer>
+    <MainContainer id="main">
       <BlockTitle>
         <BlockCenter>
           <Block $justifyContent="center" $flexDirection="col">
@@ -147,7 +147,10 @@ export function Main() {
                 $size={width && width < 480 ? "XS" : "L"}
                 $transform="upper"
                 $fontWeight="XL"
-                onClick={() => modal.setOpenModal(true)}
+                onClick={() => {
+                  setTypeModal("modalPhone1");
+                  modal.setOpenModal(true);
+                }}
               >
                 {/* @ts-ignore */}
                 <Text $size="L" $whiteSpace="nowrap">

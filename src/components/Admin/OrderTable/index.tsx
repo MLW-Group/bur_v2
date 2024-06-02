@@ -42,6 +42,7 @@ const initialValues = {
   adminDescription: "",
 };
 const OrderTable: React.FC = () => {
+  
   const [openModal, setOpenModal] = useState<DataType>(initialValues);
   const [allReq, setAllReq] = useState([]);
   const [deleteReq, setDeleteReq] = useState({
@@ -122,7 +123,7 @@ const OrderTable: React.FC = () => {
     return "неизвестный статус";
   }
 
-  function assignColors(dataArray: any, status: any) {
+  function assignRoles(dataArray: any, status: any) {
     const coloredDataArray = [];
     for (let i = 0; i < dataArray.length; i++) {
       const item = dataArray[i];
@@ -133,7 +134,7 @@ const OrderTable: React.FC = () => {
     }
     return coloredDataArray;
   }
-  const newMarks = assignColors(allReq, statusCode);
+  const newMarks = assignRoles(allReq, statusCode);
 
   const submit = async (data: {
     id: string;
@@ -233,6 +234,7 @@ const OrderTable: React.FC = () => {
                 <p style={{ color: "red", marginBottom: 10 }}>
                   {errors.adminDescription}
                 </p>
+                <Typography>Статус</Typography>
                 <Select
                   value={values.status}
                   onChange={(e) => setFieldValue("status", e)}
@@ -262,7 +264,7 @@ const OrderTable: React.FC = () => {
                     disabled={!dirty || !isValid}
                     htmlType="submit"
                   >
-                    Добавить
+                    Редактировать
                   </Button>
                 </div>
               </Form>
