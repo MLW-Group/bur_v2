@@ -26,12 +26,13 @@ const Block = styled.div`
 export default function AdminPage() {
   const router = useRouter();
 
-  // useEffect(() => {
-  //   const accessToken = localStorage.getItem("accessToken")! as string;
-  //   if (accessToken) {
-  //     router.push("/admin/order");
-  //   }
-  // }, []);
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken")! as string;
+    console.log("🚀 ~ useEffect ~ accessToken:", accessToken)
+    if (accessToken) {
+      router.push("/admin/order");
+    }
+  }, []);
   return (
     <Block>
       <div className={"container"} id="container">

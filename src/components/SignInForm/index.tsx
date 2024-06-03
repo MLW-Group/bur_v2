@@ -35,6 +35,7 @@ function SignInForm() {
         { withCredentials: true }
       );
       localStorage.setItem("role", data.user.role);
+      localStorage.setItem("accessToken", data.accessToken);
       router.push("/admin/order");
     } catch (error: any) {
       alert(`Ошибка авторизации: ${error.response.data.message}`);

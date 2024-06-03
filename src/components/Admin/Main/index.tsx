@@ -61,33 +61,31 @@ export default function Main() {
       const { data } = await axios.get(
         `https://bur-api.macwel.app/api/v1/marker`,
         {
-          withCredentials: true,
-          // headers: { Authorization: `Bearer ${token}` },
+          headers: { Authorization: `Bearer ${token}` },
         }
       );
       setMarks(data);
     } catch (error: any) {
       const errStatus = error.response.data.statusCode;
       setError(error.response.data.message);
-      if (errStatus == 401 || errStatus == 403) {
+      if (errStatus == 401) {
         localStorage.removeItem("Token");
-        // router.push("/admin");
+        router.push("/admin");
+      }
+      if (errStatus === 403) {
+        router.push("/admin/order");
       }
     }
   };
-
   useEffect(() => {
-    const role = localStorage.getItem("role")! as string;
-    setToken(role);
-    if (!role) {
-      return router.push("/admin");
-    }
-    if (role !== "ADMIN") {
-      return router.push("/admin/order");
+    const accessToken = localStorage.getItem("accessToken")! as string;
+    setToken(accessToken);
+    if (!accessToken) {
+      router.push("/admin");
     }
   }, []);
   useEffect(() => {
-    if (token === "ADMIN") {
+    if (token) {
       getAllMarks();
     }
   }, [token]);
@@ -110,7 +108,7 @@ export default function Main() {
           markerColor: color,
         },
         {
-          withCredentials: true,
+          headers: { Authorization: `Bearer ${token}` },
         }
       );
       getAllMarks();
@@ -129,7 +127,7 @@ export default function Main() {
           longitude: newCoords[1],
         },
         {
-          withCredentials: true,
+          headers: { Authorization: `Bearer ${token}` },
         }
       );
       getAllMarks();
@@ -145,7 +143,7 @@ export default function Main() {
           description: discMark,
         },
         {
-          withCredentials: true,
+          headers: { Authorization: `Bearer ${token}` },
         }
       );
       getAllMarks();
@@ -166,7 +164,7 @@ export default function Main() {
           id,
         },
         {
-          withCredentials: true,
+          headers: { Authorization: `Bearer ${token}` },
         }
       );
       getAllMarks();

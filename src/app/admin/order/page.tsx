@@ -1,6 +1,8 @@
 "use client";
 import OrderTable from "@/components/Admin/OrderTable";
 import Sidebar from "@/components/Admin/Sidebar";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import styled from "styled-components";
 const Block = styled.div`
   width: 100vw;
@@ -13,6 +15,7 @@ const Block = styled.div`
   min-height: 100vh;
 `;
 export default function OrderPage() {
+ 
   return (
     <Block>
       <Sidebar />

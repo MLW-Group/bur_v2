@@ -65,7 +65,7 @@ const rolesCode = [
 ];
 const ModeratorTable: React.FC = () => {
   const [openModal, setOpenModal] = useState<UserType>(initialValues);
-
+  const [token, setToken] = useState("");
   const [allUsers, setAllUsers] = useState([]);
   const formikRef = useRef();
   const [deleteUser, setDeleteUser] = useState({
@@ -128,11 +128,16 @@ const ModeratorTable: React.FC = () => {
       const { data } = await axios.get(
         `https://bur-api.macwel.app/api/v1/user`,
         {
-          withCredentials: true,
+          headers: { Authorization: `Bearer ${token}` },
         }
       );
       setAllUsers(data.data);
-    } catch (error: any) {}
+    } catch (error: any) {
+      if (error.response.data.statusCode === 403) {
+        router.push("/admin/order");
+      }
+      console.log("🚀 ~ getAllUsers ~ error:", error);
+    }
   };
 
   const getMe = async () => {
@@ -140,7 +145,7 @@ const ModeratorTable: React.FC = () => {
       const { data } = await axios.get(
         `https://bur-api.macwel.app/api/v1/user/me`,
         {
-          withCredentials: true,
+          headers: { Authorization: `Bearer ${token}` },
         }
       );
       setMe(data.data);
@@ -148,18 +153,22 @@ const ModeratorTable: React.FC = () => {
   };
 
   useEffect(() => {
-    getAllUsers();
-    getMe();
+    const accessToken = localStorage.getItem("accessToken")! as string;
+    setToken(accessToken);
+    if (!accessToken) {
+      router.push("/admin");
+    }
   }, []);
 
   const router = useRouter();
 
   useEffect(() => {
-    console.log("🚀 ~ useEffect ~ me:", me);
-    if (me?.role === "MODERATOR") {
-      router.push("/admin/order");
+    if (token) {
+      getAllUsers();
+      getMe();
     }
-  }, [me]);
+  }, [token]);
+
   const handleCreate = async (data: IUser) => {
     const { password, name, email, role } = data;
     try {
@@ -172,7 +181,7 @@ const ModeratorTable: React.FC = () => {
           role: role ? role : undefined,
         },
         {
-          withCredentials: true,
+          headers: { Authorization: `Bearer ${token}` },
         }
       );
       getAllUsers();
@@ -186,7 +195,7 @@ const ModeratorTable: React.FC = () => {
         `https://bur-api.macwel.app/api/v1/user/delete/${deleteUser.id}`,
         {},
         {
-          withCredentials: true,
+          headers: { Authorization: `Bearer ${token}` },
         }
       );
       getAllUsers();
@@ -205,7 +214,7 @@ const ModeratorTable: React.FC = () => {
           role: role ? role : undefined,
         },
         {
-          withCredentials: true,
+          headers: { Authorization: `Bearer ${token}` },
         }
       );
       getAllUsers();
@@ -234,7 +243,6 @@ const ModeratorTable: React.FC = () => {
     return coloredDataArray;
   }
   const newMarks = assignRoles(allUsers, rolesCode);
-  console.log("🚀 ~ newMarks:", newMarks);
 
   return (
     <>

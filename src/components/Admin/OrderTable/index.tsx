@@ -4,6 +4,7 @@ import type { TableColumnsType, TableProps } from "antd";
 import axios from "axios";
 import * as Yup from "yup";
 import { Form, Formik } from "formik";
+import { useRouter } from "next/navigation";
 
 interface DataType {
   key?: React.Key | null;
@@ -42,9 +43,10 @@ const initialValues = {
   adminDescription: "",
 };
 const OrderTable: React.FC = () => {
-  
   const [openModal, setOpenModal] = useState<DataType>(initialValues);
   const [allReq, setAllReq] = useState([]);
+  const router = useRouter();
+  const [token, setToken] = useState("");
   const [deleteReq, setDeleteReq] = useState({
     id: "",
     active: false,
@@ -104,15 +106,17 @@ const OrderTable: React.FC = () => {
       const { data } = await axios.get(
         `https://bur-api.macwel.app/api/v1/request`,
         {
-          withCredentials: true,
+          headers: { Authorization: `Bearer ${token}` },
         }
       );
       setAllReq(data.data);
     } catch (error: any) {}
   };
   useEffect(() => {
-    getAllRequests();
-  }, []);
+    if (token) {
+      getAllRequests();
+    }
+  }, [token]);
 
   function getStatusLabel(colorValue, status) {
     for (let i = 0; i < status.length; i++) {
@@ -149,7 +153,7 @@ const OrderTable: React.FC = () => {
           status: data.status,
         },
         {
-          withCredentials: true,
+          headers: { Authorization: `Bearer ${token}` },
         }
       );
       getAllRequests();
@@ -164,7 +168,7 @@ const OrderTable: React.FC = () => {
         `https://bur-api.macwel.app/api/v1/request/delete/${deleteReq.id}`,
         {},
         {
-          withCredentials: true,
+          headers: { Authorization: `Bearer ${token}` },
         }
       );
       getAllRequests();
@@ -173,6 +177,13 @@ const OrderTable: React.FC = () => {
       console.log("🚀 ~ handleCreate ~ error:", error);
     }
   };
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken")! as string;
+    setToken(accessToken);
+    if (!accessToken) {
+      router.push("/admin");
+    }
+  }, []);
   return (
     <>
       <Table
