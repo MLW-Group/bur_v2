@@ -20,7 +20,7 @@ export default function OrderPage() {
   const getCurrentUser = async (token: string) => {
     try {
       const { data } = await axios.get(
-        `https://bur-api.macwel.app/api/v1/marker`,
+        `https://bur-api.macwel.app/api/v1/user/me`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
