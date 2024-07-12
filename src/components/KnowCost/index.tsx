@@ -19,6 +19,10 @@ export default function KnowCost({ slug }: { slug: string }) {
       if (process.env.NODE_ENV !== "development") {
         // @ts-ignore
         ym(94753079, "reachGoal", "modalPhone1");
+        await axios.post("https://bur-api.macwel.app/api/v1/request/create",{
+          modelType:'modalPhone1',
+          
+        });
       }
       await axios.post(`/api`, {
         phone,

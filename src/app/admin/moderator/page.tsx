@@ -2,6 +2,7 @@
 import ModeratorTable from "@/components/Admin/ModeratorTable";
 import Sidebar from "@/components/Admin/Sidebar";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import styled from "styled-components";
 const Block = styled.div`
@@ -15,6 +16,29 @@ const Block = styled.div`
   min-height: 100vh;
 `;
 export default function ModeratorPage() {
+  const router = useRouter();
+  const getCurrentUser = async (token: string) => {
+    try {
+      const { data } = await axios.get(
+        `https://bur-api.macwel.app/api/v1/marker`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      console.log("🚀 ~ getCurrentUser ~ data:", data);
+      // if (data) {
+      //   router.push("/admin/order");
+      // }
+    } catch (error) {
+      if (error) {
+        router.push("/admin");
+      }
+    }
+  };
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken")! as string;
+    getCurrentUser(accessToken);
+  }, []);
   return (
     <Block>
       <Sidebar />

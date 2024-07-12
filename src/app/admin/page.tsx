@@ -9,6 +9,7 @@ import styled from "styled-components";
 import { AppContext } from "@/context/app-context";
 import { useRouter } from "next/navigation";
 import { useCookies } from "next-client-cookies";
+import axios from "axios";
 
 const Block = styled.div`
   width: 100vw;
@@ -25,13 +26,24 @@ const Block = styled.div`
 `;
 export default function AdminPage() {
   const router = useRouter();
-
+  const getCurrentUser = async (token: string) => {
+    try {
+      const { data } = await axios.get(
+        `https://bur-api.macwel.app/api/v1/marker`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      if (data) {
+        router.push("/admin/order");
+      }
+    } catch (error) {
+      console.log("🚀 ~ getCurrentUser ~ error:", error);
+    }
+  };
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken")! as string;
-    console.log("🚀 ~ useEffect ~ accessToken:", accessToken)
-    if (accessToken) {
-      router.push("/admin/order");
-    }
+    getCurrentUser(accessToken);
   }, []);
   return (
     <Block>
