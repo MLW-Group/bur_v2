@@ -3,17 +3,18 @@ import { useState, useEffect } from "react";
 
 function Resize() {
   const [width, setWidth] = useState<number>();
+  console.log("🚀 ~ Resize ~ width:", width);
 
+  const handleResize = () => {
+    setWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  };
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const handleResize = () => {
-        setWidth(window.innerWidth);
-      };
-
-      window.addEventListener("resize", handleResize);
-
-      return () => window.removeEventListener("resize", handleResize);
+      return handleResize();
     }
+    return handleResize();
   }, []);
 
   return { width };
