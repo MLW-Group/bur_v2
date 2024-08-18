@@ -54,7 +54,7 @@ export function Footer() {
                   }}
                 >
                   <Circle $height="S" $width="S" $background="orange">
-                    <Image src={el.img} alt="123" width={22} height={22} />
+                    <Image src={el.img} alt="IconFooter" width={22} height={22} />
                   </Circle>
                 </div>
                 <BlockNew $flexDirection="col">

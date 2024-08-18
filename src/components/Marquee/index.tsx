@@ -37,7 +37,7 @@ export function MarqueeBlock() {
             <Content key={i}>
               <Image
                 src={el.img}
-                alt="123"
+                alt="Marquee"
                 width={180}
                 height={100}
                 style={{

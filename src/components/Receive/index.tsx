@@ -56,9 +56,9 @@ export function Receive() {
         <BlockQuality>
           <Quality>
             <Block>
-              <Image src={Subtract} alt="123" />
+              <Image src={Subtract} alt="Subtract" />
               <Circle $width="L" $height="L" $background="orange">
-                <Image alt="123" src={"/img/like.png"} width={50} height={50} />
+                <Image alt="Receive" src={"/img/like.png"} width={50} height={50} />
               </Circle>
             </Block>
             <Text
@@ -72,9 +72,9 @@ export function Receive() {
           </Quality>
           <Quality>
             <Block>
-              <Image src={Subtract} alt="123" />
+              <Image src={Subtract} alt="Subtract" />
               <Circle $width="L" $height="L" $background="orange">
-                <Image alt="123" src={"/img/like.png"} width={50} height={50} />
+                <Image alt="Like" src={"/img/like.png"} width={50} height={50} />
               </Circle>
             </Block>
             <Text
@@ -108,7 +108,7 @@ export function Receive() {
             </Text>
             <Absolute>
               <Image
-                alt="123"
+                alt="Receive"
                 src={"/img/underRec.png"}
                 width={226}
                 height={69}
@@ -135,7 +135,7 @@ export function Receive() {
             </Text>
             <Absolute>
               <Image
-                alt="123"
+                alt="Receive"
                 src={"/img/underRec.png"}
                 width={226}
                 height={69}

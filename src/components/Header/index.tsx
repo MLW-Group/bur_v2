@@ -20,7 +20,7 @@ export function Header() {
     <HeaderContainer>
       {/* @ts-ignore */}
       <Block $flexDirection={width < 540 && "col"} $gap={width < 500 && "XS"}>
-        <Image alt="123" src={ClockSVG} />
+        <Image alt="Clock" src={ClockSVG} />
         <Text $size="M" $color="orange" $mix="0x10" $fontFamily="open">
           {WorkTimePreText}:
         </Text>
@@ -51,7 +51,7 @@ export function Header() {
       </Block>
       {/* @ts-ignore */}
       <Block $flexDirection={width < 500 && "col"} $gap={width < 500 && "XS"}>
-        <Image alt="123" src={Address} />
+        <Image alt="Address" src={Address} />
         <Text $size="M" $color="orange" $mix="0x10" $fontFamily="open">
           {OurAddressText}
         </Text>

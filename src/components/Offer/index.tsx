@@ -73,7 +73,7 @@ export function Offer() {
               </Text>
             </Number>
             <BlockLeft>
-              <Image src={el.img} alt="123" width={70} height={70} />
+              <Image src={el.img} alt="OfferIcon" width={70} height={70} />
               <Text
                 $size="L"
                 $color="white"

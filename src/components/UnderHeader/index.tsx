@@ -35,7 +35,7 @@ export function UnderHeader() {
   return (
     <UnderHeaderContainer>
       <Block>
-        <Image alt="123" src={Logo} width={75} height={75} />
+        <Image alt="Logo" src={Logo} width={75} height={75} />
         <Block
           $flexDirection="col"
           $marginLeft="l"
@@ -78,7 +78,7 @@ export function UnderHeader() {
           </Text>
         </Block>
         <Circle $width="S" $height="S" $background="orange">
-          <Image alt="123" src={Phone} />
+          <Image alt="Phone" src={Phone} />
         </Circle>
       </Block>
     </UnderHeaderContainer>

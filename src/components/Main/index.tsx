@@ -95,9 +95,9 @@ export function Main() {
       <BlockBot>
         <BlockBottom>
           <Block>
-            <Image src={Subtract} alt="123" />
+            <Image src={Subtract} alt="Subtract" />
             <Circle $width="L" $height="L" $background="orange">
-              <Image alt="123" src={Bur} width="50" height="50" />
+              <Image alt="Bur" src={Bur} width="50" height="50" />
             </Circle>
           </Block>
           {/* @ts-ignore */}
