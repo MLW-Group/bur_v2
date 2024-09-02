@@ -20,6 +20,7 @@ import { InCost } from "@/components/InCost";
 import { OurWorks } from "@/components/OurWorks";
 import { Trust } from "@/components/Trust";
 import ModalInvite from "@/components/ModalInvite";
+import { Calculator } from "@/components/Calculator";
 const Block = styled.div`
   width: 100vw;
   background-image: linear-gradient(
@@ -70,6 +71,7 @@ export default function Home() {
         <UnderHeader />
         <Main />
         <MainBottom />
+        <Calculator />
         <SliderPage />
         <Offer />
         <Receive />
