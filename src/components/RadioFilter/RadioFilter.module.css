@@ -1,0 +1,73 @@
+.radioFilter {
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.radio {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 24px;
+	border-radius: 100%;
+	border: 2px solid #cdd7e4;
+	transition: var(--transition);
+}
+.row {
+	display: flex;
+	position: relative;
+	/* margin-left: 30px; */
+}
+.tooltip {
+	position: absolute;
+	bottom: 5px;
+	right: -25px;
+}
+.radioActive {
+	border: 2px solid rgb(186, 189, 192);
+}
+
+.checker {
+	width: 16px;
+	height: 16px;
+	background-color: #ff5f1e;
+	border-radius: 100%;
+	opacity: 0;
+	transition: var(--transition);
+}
+
+.checkerActive {
+	opacity: 1;
+}
+
+.label {
+	font-size: 14px;
+	min-height: 35px;
+	line-height: 90%;
+	max-width: 90px;
+	text-align: center;
+	letter-spacing: -1.2px;
+	font-family: 'Open Sans';
+	opacity: 0.5;
+	transition: var(--transition);
+}
+
+.labelActive {
+	opacity: 1;
+}
+@media (max-width: 820px) {
+	.label {
+		font-size: 14px;
+		max-width: 100px;
+	}
+}
+
+@media (max-width: 575px) {
+	.label {
+		font-size: 14px;
+	}
+}
