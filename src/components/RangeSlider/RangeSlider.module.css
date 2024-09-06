@@ -1,0 +1,44 @@
+.track {
+	width: 100%;
+	height: 16px;
+	display: flex;
+	position: relative;
+}
+
+.filler {
+	height: 8px;
+	width: 100%;
+	border-radius: 4px;
+	align-self: center;
+}
+
+.thumb {
+	height: 16px;
+	width: 16px;
+	border-radius: 100%;
+	position: relative;
+	background-color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-shadow: 0px 1.3px 5.3px rgba(165, 164, 182, 0.5);
+	left: 0;
+}
+.value{
+	position: absolute;
+	bottom: 20px;
+	padding: 0 10px;
+	/* min-width: 55px; */
+	height: 30px;
+	background-color: #FF5F1E;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 4px;
+	color: white;
+}
+@media screen and (max-width: 736px) {
+	.filler {
+		position: relative;
+	}
+}
