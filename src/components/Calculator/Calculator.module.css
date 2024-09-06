@@ -231,7 +231,6 @@
 	font-family: 'Open Sans';
 	display: flex;
 	justify-content: space-evenly;
-	gap: 20px;
 	align-items: center;
 	flex-direction: column;
 	padding: 20px 0px;
@@ -247,14 +246,16 @@
 }
 
 .value p {
-	font-weight: 500;
-	font-size: 25px;
+	font-weight: 600;
+	font-size: 32px;
 	line-height: 100%;
 	letter-spacing: -0.06em;
 	color: white;
 }
 
-.value p:nth-child(2) {
+.value p:nth-child(1) {
+	font-weight: 500;
+	font-size: 25px;
 	text-decoration: line-through;
 }
 

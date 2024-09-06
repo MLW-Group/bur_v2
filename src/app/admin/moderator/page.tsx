@@ -25,7 +25,6 @@ export default function ModeratorPage() {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      console.log("🚀 ~ getCurrentUser ~ data:", data);
       // if (data) {
       //   router.push("/admin/order");
       // }

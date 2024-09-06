@@ -6,7 +6,7 @@
 .tooltip {
 	display: none;
 	position: absolute;
-	width: 240px;
+	width: 350px;
 	top: calc(100% + 12px);
 	left: 50%;
 	transform: translateX(-50%);
@@ -21,7 +21,7 @@
 
 .text {
 	font-size: 14px;
-	letter-spacing: -0.9px;
+	font-family: 'Open Sans';
 	text-align: center;
 }
 

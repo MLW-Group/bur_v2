@@ -15,7 +15,6 @@ const Sqhema = () => {
     if (phone.length == 0 || phone.includes("_")) {
       setError("Заполните номер телефона");
     } else {
-      console.log(phone.length);
       if (process.env.NODE_ENV !== "development") {
         // @ts-ignore
         ym(94753079, "reachGoal", "zamer1");

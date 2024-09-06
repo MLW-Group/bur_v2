@@ -21,7 +21,7 @@ export const RadioFilter: FC<RadioFilterProps> = ({ isChecked, onChange, label, 
 				<p className={`${styles.label} ${isChecked ? styles.labelActive : ''}`}>{label && label}</p>
 				<div className={styles.tooltip}>
 					{toolTipText && (
-						<Tooltip text={'The amount earned by your miners for you all the time'}>
+						<Tooltip text={toolTipText}>
 							<InfoSmallIcon />
 						</Tooltip>
 					)}

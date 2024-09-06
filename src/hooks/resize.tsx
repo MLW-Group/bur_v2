@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 
 function Resize() {
   const [width, setWidth] = useState<number>();
-  console.log("🚀 ~ Resize ~ width:", width);
 
   const handleResize = () => {
     setWidth(window.innerWidth);

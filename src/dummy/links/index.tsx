@@ -44,7 +44,7 @@ export const LinkByCitySlug = {
   ekb: [
     {
       title: "Скважины на воду в Каменск Уральск",
-      name: "Каменск-Уркальский",
+      name: "Каменск-Уральский",
       url: "/kamensk",
     },
     {
@@ -86,7 +86,7 @@ export const LinkByCitySlug = {
   aramil: [
     {
       title: "Скважины на воду в Каменск Уральск",
-      name: "Каменск-Уркальский",
+      name: "Каменск-Уральский",
       url: "/verkhnyaya-pyshma",
     },
     {
@@ -128,7 +128,7 @@ export const LinkByCitySlug = {
   polevskoy: [
     {
       title: "Скважины на воду в Каменск Уральск",
-      name: "Каменск-Уркальский",
+      name: "Каменск-Уральский",
       url: "/verkhnyaya-pyshma",
     },
     {
@@ -170,7 +170,7 @@ export const LinkByCitySlug = {
   "sysertskiy-region": [
     {
       title: "Скважины на воду в Каменск Уральск",
-      name: "Каменск-Уркальский",
+      name: "Каменск-Уральский",
       url: "/verkhnyaya-pyshma",
     },
     {
@@ -338,7 +338,7 @@ export const LinkByCitySlug = {
   beryozovsky: [
     {
       title: "Скважины на воду в Каменск Уральск",
-      name: "Каменск-Уркальский",
+      name: "Каменск-Уральский",
       url: "/verkhnyaya-pyshma",
     },
     {
