@@ -5,7 +5,7 @@
           [
             "@swc/plugin-styled-components",
             {
-              "ssr": true
+              "ssr": true,
             }
           ]
         ]
