@@ -11,7 +11,7 @@ import styled from "styled-components";
 import Bur from "@img/bur.png";
 import Image from "next/image";
 const Block = styled.div`
-  width: 100vw;
+  // width: 100vw;  
   background: linear-gradient(
       0deg,
       rgba(255, 255, 255, 0.05) 0%,

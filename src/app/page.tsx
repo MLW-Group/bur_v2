@@ -22,7 +22,7 @@ import { Trust } from '@/components/Trust';
 import ModalInvite from '@/components/ModalInvite';
 import { Calculator } from '@/components/Calculator';
 const Block = styled.div`
-	width: 100vw;
+	// width: 100vw;
 	background-image: linear-gradient(rgba(1, 2, 2, 0.2) 0%, rgba(255, 255, 255, 0) 100%), url('/img/grid.png'),
 		linear-gradient(rgba(1, 2, 2, 0.25) 0%, rgba(1, 2, 2, 0.25) 100%),
 		linear-gradient(0deg, rgba(1, 2, 2, 1) 0%, rgba(1, 2, 2, 1) 16%, rgba(0, 0, 0, 0) 43%, rgba(255, 255, 255, 0) 100%),
