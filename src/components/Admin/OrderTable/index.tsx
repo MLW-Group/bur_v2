@@ -146,7 +146,6 @@ const OrderTable: React.FC = () => {
 		return coloredDataArray;
 	}
 	const newMarks = assignRoles(allReq, statusCode);
-	console.log('🚀 ~ newMarks:', newMarks);
 
 	const submit = async (data: { id: string; adminDescription: string; status: string }) => {
 		try {
