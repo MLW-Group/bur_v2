@@ -232,7 +232,7 @@ export default function TableMarks({ marks, deleteMark, getAllMarks, token, setM
 		{
 			title: 'Название',
 			dataIndex: 'name',
-			width: '20%',
+			width: '35%',
 			editable: true,
 			...getColumnSearchProps('name'),
 		},
@@ -242,23 +242,23 @@ export default function TableMarks({ marks, deleteMark, getAllMarks, token, setM
 			width: '25%',
 			editable: true,
 		},
-		{
-			title: 'Дата заявки',
-			dataIndex: 'createdAt',
-			render: (_, record) => {
-				const date = new Date(record.createdAt);
-				const localDate = date.toLocaleDateString('ru-RU');
-				return (
-					<Space size="middle">
-						<div style={{ minWidth: 100 }}>{localDate}</div>
-					</Space>
-				);
-			},
-		},
+		// {
+		// 	title: 'Дата заявки',
+		// 	dataIndex: 'createdAt',
+		// 	render: (_, record) => {
+		// 		const date = new Date(record.createdAt);
+		// 		const localDate = date.toLocaleDateString('ru-RU');
+		// 		return (
+		// 			<Space size="middle">
+		// 				<div style={{ minWidth: 100 }}>{localDate}</div>
+		// 			</Space>
+		// 		);
+		// 	},
+		// },
 		{
 			title: 'Цвет',
 			dataIndex: 'colorLabel',
-			width: '15%',
+			width: '10%',
 			editable: true,
 		},
 		{
