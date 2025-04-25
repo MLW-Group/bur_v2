@@ -16,8 +16,8 @@ export const LinkByCitySlug = {
       url: "/beryozovsky",
     },
     {
-      title: "Скважины на воду в Екатеренбурге",
-      name: "Екатеренбург",
+      title: "Скважины на воду в Екатеринбурге",
+      name: "Екатеринбург",
       url: "/ekb",
     },
     {

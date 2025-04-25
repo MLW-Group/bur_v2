@@ -55,6 +55,7 @@ export default function Main() {
 	const [coords, setCoords] = useState<number[]>([]);
 	const [error, setError] = useState('');
 	const [color, setColor] = useState(colors[0].color);
+	const [markLocation, setMarksLocation] = useState([55.177884, 59.668194, 13]);
 	const getAllMarks = async () => {
 		try {
 			const { data } = await axios.get(`https://bur-api.macwel.app/api/v1/marker`, {
@@ -247,9 +248,10 @@ export default function Main() {
 					>
 						<Map
 							width={'100%'}
+							state={{ center: [markLocation[0], markLocation[1]], zoom: markLocation[2] }}
 							height={400}
 							onClick={handleAddMark}
-							defaultState={{ center: [55.177884, 59.668194], zoom: 15 }}
+							defaultState={{ center: [markLocation[0], markLocation[1]], zoom: 15 }}
 							// defaultState={{ center: [20.7715239, 28.38564], zoom: 15 }}
 						>
 							<Clusterer
@@ -278,7 +280,13 @@ export default function Main() {
 							</Clusterer>
 						</Map>
 					</YMaps>
-					<TableMarks marks={marks} deleteMark={deleteMark} getAllMarks={getAllMarks} token={token} />
+					<TableMarks
+						marks={marks}
+						deleteMark={deleteMark}
+						getAllMarks={getAllMarks}
+						token={token}
+						setMarksLocation={setMarksLocation}
+					/>
 				</div>
 			) : (
 				<div
