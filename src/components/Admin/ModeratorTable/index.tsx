@@ -59,9 +59,9 @@ const rolesCode = [
 	{ value: 'MODERATOR', label: 'Модератор' },
 	{ value: 'ADMIN', label: 'Админ' },
 ];
-const ModeratorTable: React.FC = () => {
+const ModeratorTable = ({ moderators }: { moderators: any[] }) => {
 	const [openModal, setOpenModal] = useState<UserType>(initialValues);
-	const [allUsers, setAllUsers] = useState([]);
+	const [allUsers, setAllUsers] = useState(moderators);
 	const formikRef = useRef();
 	const [deleteUser, setDeleteUser] = useState({
 		id: '',
@@ -146,7 +146,6 @@ const ModeratorTable: React.FC = () => {
 
 	useEffect(() => {
 		if (token) {
-			getAllUsers();
 			getMe();
 		}
 	}, [token]);

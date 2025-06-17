@@ -41,11 +41,20 @@ const initialValues = {
 	adminDescription: '',
 	date: '',
 };
-const OrderTable: React.FC = () => {
+type Requests = {
+	id: string;
+	description: string | null;
+	adminDescription: number;
+	createdAt: number;
+	phone: string;
+	status: string;
+	updatedAt: string;
+	wellOptionsId: string;
+};
+const OrderTable = ({ requests }: { requests: Requests[] }) => {
 	const [openModal, setOpenModal] = useState<DataType>(initialValues);
-	const [allReq, setAllReq] = useState([]);
-	const router = useRouter();
-	// const [token, setToken] = useState('');
+	const [allReq, setAllReq] = useState<Requests[]>(requests);
+
 	const [deleteReq, setDeleteReq] = useState({
 		id: '',
 		active: false,
@@ -122,11 +131,6 @@ const OrderTable: React.FC = () => {
 			setAllReq(data.data);
 		} catch (error: any) {}
 	};
-	useEffect(() => {
-		if (token) {
-			getAllRequests();
-		}
-	}, [token]);
 
 	function getStatusLabel(colorValue, status) {
 		for (let i = 0; i < status.length; i++) {
