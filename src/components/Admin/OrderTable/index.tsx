@@ -1,3 +1,4 @@
+'use client';
 import React, { useEffect, useState } from 'react';
 import { Button, Input, Modal, Select, Space, Table, Typography } from 'antd';
 import type { TableColumnsType, TableProps } from 'antd';
@@ -5,6 +6,7 @@ import axios from 'axios';
 import * as Yup from 'yup';
 import { Form, Formik } from 'formik';
 import { useRouter } from 'next/navigation';
+import { getCookie } from 'cookies-next/client';
 
 interface DataType {
 	key?: React.Key | null;
@@ -43,7 +45,7 @@ const OrderTable: React.FC = () => {
 	const [openModal, setOpenModal] = useState<DataType>(initialValues);
 	const [allReq, setAllReq] = useState([]);
 	const router = useRouter();
-	const [token, setToken] = useState('');
+	// const [token, setToken] = useState('');
 	const [deleteReq, setDeleteReq] = useState({
 		id: '',
 		active: false,
@@ -110,6 +112,7 @@ const OrderTable: React.FC = () => {
 			},
 		},
 	];
+	const token = getCookie('accessToken');
 
 	const getAllRequests = async () => {
 		try {
@@ -180,13 +183,6 @@ const OrderTable: React.FC = () => {
 			console.log('🚀 ~ handleCreate ~ error:', error);
 		}
 	};
-	useEffect(() => {
-		const accessToken = localStorage.getItem('accessToken')! as string;
-		setToken(accessToken);
-		if (!accessToken) {
-			router.push('/admin');
-		}
-	}, []);
 	return (
 		<>
 			<Table

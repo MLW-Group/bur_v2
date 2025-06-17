@@ -1,3 +1,4 @@
+'use client';
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { YMaps, Placemark, Map, Clusterer } from '@pbe/react-yandex-maps';
@@ -8,7 +9,7 @@ import axios from 'axios';
 import { AppContext } from '@/context/app-context';
 import { useRouter } from 'next/navigation';
 import TableMarks from '../TableMarks';
-
+import { getCookie, deleteCookie } from 'cookies-next/client';
 const Block = styled.div``;
 type Marks = {
 	id: string;
@@ -17,8 +18,8 @@ type Marks = {
 	latitude: number;
 	longitude: number;
 	markerColor: string;
-}[];
-export default function Main() {
+};
+export default function Main({ marksData }: { marksData: Marks[] }) {
 	const colors = [
 		{
 			id: 0,
@@ -45,9 +46,10 @@ export default function Main() {
 			color: '#56db40',
 		},
 	];
-	const [token, setToken] = useState<null | string>();
+	const token = getCookie('accessToken');
 	const router = useRouter();
-	const [marks, setMarks] = useState<Marks>([]);
+	const [marks, setMarks] = useState<Marks[]>(marksData);
+	const [loadingMarks, setLoadingMarks] = useState(true);
 	const [nameMark, setNameMark] = useState('');
 	const [discMark, setDiscMark] = useState('');
 	const [editingId, setEditingId] = useState<string | null>(null);
@@ -61,13 +63,15 @@ export default function Main() {
 			const { data } = await axios.get(`https://bur-api.macwel.app/api/v1/marker`, {
 				headers: { Authorization: `Bearer ${token}` },
 			});
-
 			setMarks(data);
+			setLoadingMarks(false);
 		} catch (error: any) {
+			setLoadingMarks(false);
 			const errStatus = error.response.data.statusCode;
 			setError(error.response.data.message);
 			if (errStatus == 401) {
-				localStorage.removeItem('Token');
+				localStorage.removeItem('accessToken');
+				deleteCookie('accessToken');
 				router.push('/admin');
 			}
 			if (errStatus === 403) {
@@ -75,19 +79,6 @@ export default function Main() {
 			}
 		}
 	};
-
-	useEffect(() => {
-		const accessToken = localStorage.getItem('accessToken')! as string;
-		setToken(accessToken);
-		if (!accessToken) {
-			router.push('/admin');
-		}
-	}, []);
-	useEffect(() => {
-		if (token) {
-			getAllMarks();
-		}
-	}, [token]);
 
 	const handleAddMark = async (event: any) => {
 		setOpenModal(true);
@@ -239,54 +230,56 @@ export default function Main() {
 							</div>
 						) : null}
 					</Modal>
-					<YMaps
-						query={{
-							mode: 'debug',
-							load: 'package.full',
-							apikey: '1b78f20f-50a5-4e5e-b339-9603ad045d05',
-						}}
-					>
-						<Map
-							width={'100%'}
-							state={{ center: [markLocation[0], markLocation[1]], zoom: markLocation[2] }}
-							height={400}
-							onClick={handleAddMark}
-							defaultState={{ center: [markLocation[0], markLocation[1]], zoom: 15 }}
-							// defaultState={{ center: [20.7715239, 28.38564], zoom: 15 }}
+					<div style={{ padding: '10px 50px' }}>
+						<YMaps
+							query={{
+								mode: 'debug',
+								load: 'package.full',
+								apikey: '1b78f20f-50a5-4e5e-b339-9603ad045d05',
+							}}
 						>
-							<Clusterer
-								options={{
-									preset: 'islands#invertedVioletClusterIcons',
-									groupByCoordinates: false,
-								}}
+							<Map
+								width={'100%'}
+								state={{ center: [markLocation[0], markLocation[1]], zoom: markLocation[2] }}
+								height={600}
+								onClick={handleAddMark}
+								defaultState={{ center: [markLocation[0], markLocation[1]], zoom: 15 }}
+								// defaultState={{ center: [20.7715239, 28.38564], zoom: 15 }}
 							>
-								{marks.map((el, i) => (
-									<Placemark
-										key={i}
-										defaultGeometry={[el.latitude, el.longitude]}
-										options={{
-											preset: 'islands#circleIcon',
-											iconColor: el.markerColor || 'orange',
-											hideIconOnBalloonOpen: false,
-											openEmptyHint: true,
-											draggable: false,
-										}}
-										onDragEnd={(event: any) => handlePlacemarkDrag(event, el.id)}
-										properties={{
-											hintContent: 'Название: ' + el.name + '<br/>' + 'Описание: ' + el.description,
-										}}
-									/>
-								))}
-							</Clusterer>
-						</Map>
-					</YMaps>
-					<TableMarks
-						marks={marks}
-						deleteMark={deleteMark}
-						getAllMarks={getAllMarks}
-						token={token}
-						setMarksLocation={setMarksLocation}
-					/>
+								<Clusterer
+									options={{
+										preset: 'islands#invertedVioletClusterIcons',
+										groupByCoordinates: false,
+									}}
+								>
+									{marks.map((el, i) => (
+										<Placemark
+											key={i}
+											defaultGeometry={[el.latitude, el.longitude]}
+											options={{
+												preset: 'islands#circleIcon',
+												iconColor: el.markerColor || 'orange',
+												hideIconOnBalloonOpen: false,
+												openEmptyHint: true,
+												draggable: false,
+											}}
+											onDragEnd={(event: any) => handlePlacemarkDrag(event, el.id)}
+											properties={{
+												hintContent: 'Название: ' + el.name + '<br/>' + 'Описание: ' + el.description,
+											}}
+										/>
+									))}
+								</Clusterer>
+							</Map>
+						</YMaps>
+						<TableMarks
+							marks={marks}
+							deleteMark={deleteMark}
+							getAllMarks={getAllMarks}
+							token={token}
+							setMarksLocation={setMarksLocation}
+						/>
+					</div>
 				</div>
 			) : (
 				<div
