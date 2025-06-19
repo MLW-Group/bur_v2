@@ -13,7 +13,7 @@ export default async function OrderPage() {
 		redirect('/admin');
 	}
 	try {
-		const getRequests = await axios.get(`https://bur-api.macwel.app/api/v1/request`, {
+		const getRequests = await axios.get(`http://159.69.188.136:3500/api/v1/request`, {
 			headers: { Authorization: `Bearer ${token}` },
 		});
 		return (

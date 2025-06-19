@@ -13,7 +13,7 @@ export default async function ModeratorPage() {
 		redirect('/admin');
 	}
 	try {
-		const getModerators = await axios.get(`https://bur-api.macwel.app/api/v1/user`, {
+		const getModerators = await axios.get(`http://159.69.188.136:3500/api/v1/user`, {
 			headers: { Authorization: `Bearer ${token}` },
 		});
 		return (

@@ -12,7 +12,7 @@ export default async function AdminPage() {
 	if (!token) redirect('/admin');
 
 	try {
-		const getMarks = await axios.get(`https://bur-api.macwel.app/api/v1/marker`, {
+		const getMarks = await axios.get(`http://159.69.188.136:3500/api/v1/marker`, {
 			headers: { Authorization: `Bearer ${token}` },
 		});
 		return (
