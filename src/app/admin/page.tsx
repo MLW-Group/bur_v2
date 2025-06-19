@@ -7,9 +7,8 @@ import { redirect } from 'next/navigation';
 export default async function AdminPage() {
 	const cookieStore = await cookies();
 	const token = cookieStore.get('accessToken')?.value;
-	console.log('🚀 ~ AdminPage ~ token:', token);
 	if (token) {
-		const { data } = await axios.get(`https://bur-api.macwel.app/api/v1/user/me`, {
+		const { data } = await axios.get(`http://159.69.188.136:3500/api/v1/user/me`, {
 			headers: { Authorization: `Bearer ${token}` },
 		});
 		if (data?.data) {

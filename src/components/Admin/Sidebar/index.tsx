@@ -36,7 +36,6 @@ export default function Sidebar() {
 			const { data } = await axios.post(`https://bur-api.macwel.app/api/v1/auth/logout`, {
 				headers: { Authorization: `Bearer ${token}` },
 			});
-			console.log('🚀 ~ logout ~ data:', data);
 			if (data.success) {
 				deleteCookie('accessToken');
 				router.push('/admin');
