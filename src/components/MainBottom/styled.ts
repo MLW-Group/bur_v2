@@ -8,8 +8,6 @@ export const MainBottomContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: url("https://mos-710255.oml.ru/d/bez_nazvaniya_2022-09-14t155347804.png"),
-    linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000 28.65%);
   @media (max-width: 1500px) {
     height: 800px;
   }
