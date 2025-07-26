@@ -13,16 +13,30 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 		<html>
 			<head>
 				{process.env.NODE_ENV !== 'development' && (
-					<Script id="yandex-metrica" type="text/javascript">
+					<Script id="gtm" type="text/javascript">
 						{`
-        <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PV8HXG22');</script>
-<!-- End Google Tag Manager -->
-        `}
+							<!-- Google Tag Manager -->
+					<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+					new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+					j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+					'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+					})(window,document,'script','dataLayer','GTM-PV8HXG22');</script>
+					<!-- End Google Tag Manager -->
+							`}
+					</Script>
+				)}
+				{process.env.NODE_ENV !== 'development' && (
+					<Script id="gtag" async src="https://www.googletagmanager.com/gtag/js?id=G-P75PS75CP8" />
+				)}
+				{process.env.NODE_ENV !== 'development' && (
+					<Script id="gtag-init">
+						{`
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+
+					gtag('config', 'G-P75PS75CP8');
+					`}
 					</Script>
 				)}
 
