@@ -14,7 +14,7 @@ export function Header() {
   // @ts-ignore
   const { width, slug } = useContext(AppContext);
   // @ts-ignore
-  const arr = LinkByCitySlug[slug].slice(0, 4);
+  const arr = LinkByCitySlug[slug]?.slice(0, 4);
 
   return (
     <HeaderContainer>
@@ -36,7 +36,7 @@ export function Header() {
       </Block>
       <Block $gap="M" $flexDirection={width && width < 500 ? "col" : "row"}>
          {/* @ts-ignore */}
-        {arr.map((el) => (
+        {arr?.map((el) => (
           <Link
             href={el.url}
             $size="XL"
