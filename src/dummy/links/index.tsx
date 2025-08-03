@@ -74,7 +74,7 @@ export const LinkByCitySlug = {
     },
     {
       title: "Скважины на воду в Сысертарском Районе",
-      name: "Сысертарский Район",
+      name: "Сысертский Район",
       url: "/sysertskiy-region",
     },
     {
@@ -101,7 +101,7 @@ export const LinkByCitySlug = {
     },
     {
       title: "Скважины на воду в Сысертарском Районе",
-      name: "Сысертарский Район",
+      name: "Сысертский Район",
       url: "/sysertskiy-region",
     },
     {
@@ -143,7 +143,7 @@ export const LinkByCitySlug = {
     },
     {
       title: "Скважины на воду в Сысертарском Районе",
-      name: "Сысертарский Район",
+      name: "Сысертский Район",
       url: "/sysertskiy-region",
     },
     {
@@ -311,7 +311,7 @@ export const LinkByCitySlug = {
     },
     {
       title: "Скважины на воду в Сысертарском Районе",
-      name: "Сысертарский Район",
+      name: "Сысертский Район",
       url: "/sysertskiy-region",
     },
     {
@@ -353,7 +353,7 @@ export const LinkByCitySlug = {
     },
     {
       title: "Скважины на воду в Сысертарском Районе",
-      name: "Сысертарский Район",
+      name: "Сысертский Район",
       url: "/sysertskiy-region",
     },
     {
